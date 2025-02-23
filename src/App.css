@@ -1,0 +1,20 @@
+input{
+    background: #1f1f1f;
+}
+
+.bg-color{
+    background: #121212;
+}
+.card-color{
+    background-color: #1f1f1f;
+}
+.card-color:hover{
+    background-color: #1f1f1f;
+}
+
+.bg-gradient{
+    background-color: rgb(80, 56, 160);
+}
+.bg-gradient-color{
+    background-color: #49358e;
+}
