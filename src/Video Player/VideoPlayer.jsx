@@ -5,7 +5,6 @@ const VideoPlayer = ({ currentSong }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
 
@@ -31,11 +30,6 @@ const VideoPlayer = ({ currentSong }) => {
     setProgress(percentage);
   };
 
-  const handleSeek = (e) => {
-    const newTime = (e.target.value / 100) * videoRef.current.duration;
-    videoRef.current.currentTime = newTime;
-    setProgress(e.target.value);
-  };
 
   const toggleFullScreen = () => {
     if (!isFullScreen) {
@@ -53,28 +47,29 @@ const VideoPlayer = ({ currentSong }) => {
   };
 
   return (
-    <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg lg:w-[68%] lg:h-[90%]">
+    <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg  lg:w-[68%] lg:h-[90%]">
       <video
         ref={videoRef}
         src={currentSong.video}
-        controls={false}
+       // controls={false}
         autoPlay={isPlaying}
         onTimeUpdate={handleProgress}
         className="w-full max-w-5xl rounded-4xl shadow-xl "
+        controls preload="auto"
       >
         Your browser does not support the video tag.
       </video>
     
        {/* Progress Bar */}
-       <input
+       {/* <input
         type="range"
         value={progress}
         onChange={handleSeek}
         className="w-full  max-w-5xl mt-1.5  h-1.5 bg-gray-900 rounded-lg cursor-pointer"
-      />
+      /> */}
 
 
-     <div className="flex w-full justify-between">
+     <div className="flex sm:w-full justify-between">
 
       {/* Video Details */}
       <div>
@@ -85,7 +80,7 @@ const VideoPlayer = ({ currentSong }) => {
 
 
        {/* Controls */}
-       <div className="flex items-center  gap-5 mt-4">
+       <div className="flex items-center gap-2 md:gap-5 mt-4">
         <Rewind onClick={() => (videoRef.current.currentTime -= 10)} className="text-white cursor-pointer" />
         <button onClick={togglePlay} className="p-2 bg-white rounded-full">
           {isPlaying ? <Pause className="w-4 h-4 md:w-6 md:h-6" /> : <Play className="w-6 h-6" />}
@@ -99,9 +94,9 @@ const VideoPlayer = ({ currentSong }) => {
         <button onClick={toggleFullScreen} className="p-2 bg-white rounded-full">
           {isFullScreen ? <Minimize2 className="w-6 h-6" /> : <Maximize2 className="w-6 h-6" />}
         </button>
-        <button onClick={changeSpeed} className="px-3 py-1 bg-gray-700 text-white rounded-lg">
+        {/* <button onClick={changeSpeed} className="px-3 py-1 bg-gray-700 text-white rounded-lg">
           {playbackSpeed}x
-        </button>
+        </button> */}
       </div>
 
      </div>
