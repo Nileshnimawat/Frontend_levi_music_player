@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPlus, FaBars, FaGlobe } from "react-icons/fa";
+import {  FaGlobe } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 const Footer = ({isOpen}) => {

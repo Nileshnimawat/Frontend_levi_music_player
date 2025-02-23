@@ -1,6 +1,5 @@
 import { FaSpotify, FaSearch } from "react-icons/fa";
 import { IoHomeSharp } from "react-icons/io5";
-import { Routes, Route,  useLocation } from "react-router-dom";
 
 export default function Navbar() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Album from './album';
+import Album from './Album';
 import './scrollbar.css'; // Import custom scrollbar styles
 
 const Section = ({ 

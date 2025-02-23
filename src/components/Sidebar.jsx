@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { IoHomeSharp, IoSearch } from "react-icons/io5";
-import { FaPlus, FaBars, FaGlobe } from "react-icons/fa";
-import { BiLibrary } from "react-icons/bi";
+import { FaPlus, FaBars} from "react-icons/fa";
 import Footer from "./Footer";
-import { VscIssueReopened } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";
 import SongInfo from "../Music Player/SongInfo";
 
