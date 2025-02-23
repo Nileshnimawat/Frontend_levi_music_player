@@ -1,6 +1,6 @@
-import Navbar from "./components/navBar";
+import Navbar from "./components/NavBar";
 import Sidebar from "./components/Sidebar";
-import Section from "./components/section";
+import Section from "./components/Section";
 import "./App.css";
 import albumData from './components/api/musicApi.json'; 
 import { useState,useEffect } from "react";
