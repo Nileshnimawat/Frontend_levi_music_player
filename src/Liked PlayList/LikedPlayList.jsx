@@ -1,8 +1,17 @@
 import React from "react";
 import { FaPlay, FaList } from "react-icons/fa";
 import '../components/scrollbar.css'
+import { useState } from "react";
 
 const LikedPlayList = ({ songs , setCurrentSong }) => {
+
+    const [selectedDiv, setSelectedDiv] = useState(null); // Track selected div
+  
+    const handleClick = (index,song) => {
+      setCurrentSong(song)
+      setSelectedDiv(index); // Update selected div
+    };
+
   return (
     <section className="flex-1 bg-color text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh]">
       {/* Header Section */}
@@ -40,9 +49,9 @@ const LikedPlayList = ({ songs , setCurrentSong }) => {
         {songs &&
           songs.map((song) => (
             <div
-              onClick={()=>setCurrentSong(song)}
+              onClick={()=>handleClick(song.id,song)}
               key={song.id}
-              className="grid grid-cols-4 items-center py-2 mb-2 text-sm text-gray-300 hover:bg-gray-800  rounded-lg px-2"
+              className={`grid grid-cols-4 items-center py-2 mb-2 text-sm text-gray-300 hover:bg-blue-900 duration-200  rounded-lg px-2 ${selectedDiv === song.id? "bg-blue-900": ""}`}
             >
               {/* <span>{index + 1}</span> */}
               <div className="flex items-start lg:items-center gap-4 flex-col lg:flex-row">

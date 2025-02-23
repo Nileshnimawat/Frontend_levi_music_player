@@ -1,9 +1,18 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa";
+import { useState } from "react";
 import "../components/scrollbar.css";
 import SongInfo from "../Music Player/SongInfo";
 
 const PlayList = ({ data, setCurrentSong }) => {
+
+  const [selectedDiv, setSelectedDiv] = useState(null); // Track selected div
+
+  const handleClick = (index,song) => {
+    setCurrentSong(song)
+    setSelectedDiv(index); // Update selected div
+  };
+
   return (
     <div className=" mx-auto mt-2 p-1 lg:p-4 bg-color text-white rounded-2xl shadow-lg w-full lg:max-w-2xl lg:w-[32%] lg:h-[90%]">
       {/* Header Section */}
@@ -20,8 +29,8 @@ const PlayList = ({ data, setCurrentSong }) => {
         {data.map((song) => (
           <div
             key={song.id}
-            onClick={() => setCurrentSong(song)}
-            className="card-color p-2 rounded-xl w-full mb-3 hover:scale-105 transition duration-200"
+            onClick={() => handleClick(song.id, song)}
+            className={` p-2 rounded-xl w-full mb-3 hover:scale-105 transition duration-200 ${selectedDiv === song.id? "bg-blue-950" : "card-color" }`}
           >
             <SongInfo currentSong={song} />
           </div>

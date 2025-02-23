@@ -74,8 +74,7 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
 
           <button
             className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-black shadow-lg"
-            onClick={togglePlay}
-          >
+            onClick={togglePlay}>
             {isPlaying ? (
               <Pause className="w-6 h-6" />
             ) : (
