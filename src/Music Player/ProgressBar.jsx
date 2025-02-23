@@ -19,7 +19,7 @@ const ProgressBar = ({ currentTime, duration, audioRef }) => {
     };
   
     return (
-      <div className="w-full flex items-center space-x-2">
+      <div className=" w-[70%] md:w-full flex items-center space-x-2">
         <span className="text-xs text-gray-400">{formatTime(currentTime)}</span>
         <div
           className="h-1 bg-gray-600 rounded-full w-95 cursor-pointer"

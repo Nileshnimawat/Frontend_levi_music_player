@@ -63,7 +63,7 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
   
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-2 md:space-x-4">
       <Heart
         onClick={handleHeartClicked}
         className={`w-5 h-5 cursor-pointer ${liked ? "text-red-500" : ""}`}

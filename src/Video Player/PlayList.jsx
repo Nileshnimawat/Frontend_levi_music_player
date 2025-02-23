@@ -5,7 +5,7 @@ import SongInfo from "../Music Player/SongInfo";
 
 const PlayList = ({ data, setCurrentSong }) => {
   return (
-    <div className="max-w-2xl mx-auto mt-2 p-4 bg-color text-white rounded-2xl shadow-lg w-[32%] h-[90%]">
+    <div className=" mx-auto mt-2 p-1 lg:p-4 bg-color text-white rounded-2xl shadow-lg w-full lg:max-w-2xl lg:w-[32%] lg:h-[90%]">
       {/* Header Section */}
       <div className="flex items-center space-x-4 mb-4">
         <button className="bg-green-500 p-4 rounded-full hover:scale-105 transition">

@@ -53,7 +53,7 @@ const VideoPlayer = ({ currentSong }) => {
   };
 
   return (
-    <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg w-[68%] h-[90%]">
+    <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg lg:w-[68%] lg:h-[90%]">
       <video
         ref={videoRef}
         src={currentSong.video}
@@ -78,8 +78,8 @@ const VideoPlayer = ({ currentSong }) => {
 
       {/* Video Details */}
       <div>
-      <h3 className="text-3xl text-white mt-3">{currentSong.title}</h3>
-      <p className="text-xl text-white mt-2">{currentSong.artist}</p>
+      <h3 className=" text-xl sm:text-2xl md:text-3xl text-white mt-3">{currentSong.title}</h3>
+      <p className="text-md sm:text-xl text-white mt-2">{currentSong.artist}</p>
       </div>
      
 
@@ -88,7 +88,7 @@ const VideoPlayer = ({ currentSong }) => {
        <div className="flex items-center  gap-5 mt-4">
         <Rewind onClick={() => (videoRef.current.currentTime -= 10)} className="text-white cursor-pointer" />
         <button onClick={togglePlay} className="p-2 bg-white rounded-full">
-          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+          {isPlaying ? <Pause className="w-4 h-4 md:w-6 md:h-6" /> : <Play className="w-6 h-6" />}
         </button>
         <FastForward onClick={() => (videoRef.current.currentTime += 10)} className="text-white cursor-pointer" />
 

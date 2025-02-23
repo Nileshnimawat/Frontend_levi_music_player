@@ -29,7 +29,7 @@ export default function Sidebar({ location, likedSongs }) {
         {/* Sidebar */}
         <aside
           className={` bg-color text-white h-[80%] p-5 flex flex-col justify-between transition-all duration-300 rounded-xl min-h-full
-            ${isOpen ? "w-105" : "w-22 items-center"} 
+            ${isOpen ? "w-75 md:w-105" : "w-12  md:w-22 items-center"} 
              `
         }
         >
@@ -39,18 +39,18 @@ export default function Sidebar({ location, likedSongs }) {
               className="text-white p-3 focus:outline-none card-color rounded-full hover:bg-gray-700 transition"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <FaBars className="text-2xl " />
+              <FaBars className=" text-md md:text-2xl" />
             </button>
           </div>
 
           {/* Navigation Links */}
           <div className="flex flex-col gap-3 border-b border-gray-600 pb-4">
             <button onClick={handleNavigation} className="flex items-center gap-3 text-lg hover:scale-105 transition duration-200">
-              <IoHomeSharp className="text-2xl" /> {isOpen && "Home"}
+              <IoHomeSharp className=" text-xl md:text-2xl" /> {isOpen && "Home"}
             </button>
             <button onClick={()=>navigate('/VideoPlayer')}
             className="flex items-center gap-3 text-lg hover:scale-105 transition duration-200">
-              <IoSearch className="text-2xl" /> {isOpen && "VideoPlayer"}
+              <IoSearch className=" text-xl md:text-2xl" /> {isOpen && "VideoPlayer"}
             </button>
 
           </div>
@@ -79,7 +79,7 @@ export default function Sidebar({ location, likedSongs }) {
              <SongInfo currentSong={currentSong} ></SongInfo>
             </button>
 
-            <div className="card-color p-4 rounded-lg ">
+            <div className="card-color p-4 rounded-lg  ">
               <p className="font-semibold">Create your first playlist</p>
               <p className="text-sm text-gray-400">It's easy, we'll help you</p>
               <button className="mt-2 bg-white text-black px-4 py-2 rounded-full font-semibold hover:scale-105 transition duration-200">

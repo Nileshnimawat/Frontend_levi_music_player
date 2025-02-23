@@ -51,7 +51,7 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
   if (!currentSong) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-4 flex items-center justify-between shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-4 sm:flex  md:items-center md:justify-between shadow-lg">
       {/* Song Info */}
       <SongInfo currentSong={currentSong} />
 
@@ -73,7 +73,7 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
           />
 
           <button
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-white text-black shadow-lg"
+            className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-black shadow-lg"
             onClick={togglePlay}
           >
             {isPlaying ? (
