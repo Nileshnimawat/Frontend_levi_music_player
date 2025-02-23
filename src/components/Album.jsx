@@ -13,17 +13,17 @@ const Album = ({ data,setCurrentSong }) => {
   }
 
   return (
-    <div className="flex flex-wrap gap-5 justify-start p-3 bg-color ">
+    <div className="flex flex-wrap gap-3 sm:gap-5 justify-start p-3 bg-color ">
       {data.map((item) => (
         <div onDoubleClick={handleNavigation} onClick={()=>setCurrentSong(item)}
           key={item.id}
-          className=" w-34 h-[24vh]  md:w-42 md:h-[36vh] shadow-lg rounded-2xl overflow-hidden relative group p-2 card-color "
+          className=" w-20 h-[17vh] sm:w-34 sm:h-[24vh]  md:w-42 md:h-[36vh] shadow-lg rounded-2xl overflow-hidden relative group p-2 card-color "
         >
           {/* Album Image */}
           <img
             src={item.image}
             alt={item.title}
-            className=" w-full h-30 md:w-full md:h-40 object-cover rounded-2xl"
+            className=" w-full h-15 sm:h-30 md:w-full md:h-40 object-cover rounded-2xl"
           />
 
           {/* Play Button - Higher Above Title on Hover */}
@@ -35,8 +35,8 @@ const Album = ({ data,setCurrentSong }) => {
 
           {/* Album Details */}
           <div className="p-2">
-            <h3 className="text-sm md:text-lg font-bold text-white">{item.title}</h3>
-            <p className="text-xs md:text-sm text-gray-400">{item.artist}</p>
+            <h3 className="text-[9px] md:text-lg font-bold text-white">{item.title}</h3>
+            <p className="text-[7px] md:text-sm text-gray-400">{item.artist}</p>
           </div>
         </div>
       ))}

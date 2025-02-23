@@ -4,11 +4,11 @@ const SongInfo = ({currentSong }) => {
   if(!currentSong) return;
   return (
     <div className={`flex items-center space-x-4 `}>
-    <div className="h-12 w-13 md:h-16 md:w-16 bg-gray-700 rounded-xl">
+    <div className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 bg-gray-700 rounded-xl">
       <img 
       src={currentSong.image}
        alt="Artist image"
-       className=' w-full h-15  md:w-full md:h-full rounded-xl '
+       className=' w-full h-11 sm:h-15  md:w-full md:h-full rounded-xl '
         />
     </div>
     <div>

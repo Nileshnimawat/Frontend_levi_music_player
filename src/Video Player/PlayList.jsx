@@ -14,13 +14,13 @@ const PlayList = ({ data, setCurrentSong }) => {
   };
 
   return (
-    <div className=" mx-auto mt-2 p-1 lg:p-4 bg-color text-white rounded-2xl shadow-lg w-full lg:max-w-2xl lg:w-[32%] lg:h-[90%]">
+    <div className=" mx-auto ml-0.5 mt-2 p-2 lg:p-4 bg-color text-white rounded-2xl shadow-lg w-full lg:max-w-2xl lg:w-[32%] lg:h-[90%]">
       {/* Header Section */}
-      <div className="flex items-center space-x-4 mb-4">
-        <button className="bg-green-500 p-4 rounded-full hover:scale-105 transition">
-          <FaPlay className="text-black text-xl" />
+      <div className="flex items-center space-x-4 mb-4 ">
+        <button className="bg-green-500  p-2 sm:p-4 rounded-full hover:scale-105 transition">
+          <FaPlay className="text-black text-xs" />
         </button>
-        <h2 className="text-2xl font-bold">PlayList</h2>
+        <h2 className="text-lg  sm:text-2xl font-bold">PlayList</h2>
       </div>
 
       {/* Popular Songs List */}
@@ -30,8 +30,7 @@ const PlayList = ({ data, setCurrentSong }) => {
           <div
             key={song.id}
             onClick={() => handleClick(song.id, song)}
-            className={` p-2 rounded-xl w-full mb-3 hover:scale-105 transition duration-200 ${selectedDiv === song.id? "bg-blue-950" : "card-color" }`}
-          >
+            className={` p-2 rounded-xl w-full  mb-3 hover:scale-105 transition duration-200 ${selectedDiv === song.id? "bg-blue-950" : "card-color" }`}>
             <SongInfo currentSong={song} />
           </div>
         ))}
