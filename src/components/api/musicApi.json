@@ -1,135 +1,166 @@
 [
-      {
-        "id": 1,
-        "title": "Desi Kalakaar",
-        "image": "/images/desiKalakaar.png",
-        "artist": "Yo Yo Honey Singh",
-        "video": "/video/DesiKalakaar.mp4",
-        "music": "/music/honey/Desi Kalakaar.mp3"
-      },
-      {
-        "id": 2,
-        "title": "Brown Rang",
-        "image": "/images/BrownRang.jpg",
-        "artist": "Yo Yo Honey Singh",
-        "video": "/video/BrownRang.mp4",
-        "music": "/music/honey/BrownRang.mp3"
-      },
-      {
-        "id": 3,
-        "title": "Millionaire",
-        "image": "/images/honeySinghGlory.png",
-        "artist": "Yo Yo Honey Singh",
-        "video": "/video/MILLIONAIRE.mp4",
-        "music": "/music/millionare.mp3"
-      },
-      {
-        "id": 4,
-        "title": "Faded ",
-        "image": "/images/Faded.png",
-        "artist": "Alan walker",
-        "video": "/video/faded.mp4",
-        "music": "/music/faded.mp3"
-      },
-      {
-        "id": 5,
-        "title": "Angreezi Beat",
-        "image": "/images/honeySinghGlory.png",
-        "artist": "Yo Yo Honey Singh",
-        "video": "/video/AngreeziBeat.mp4",
-        "music": "/music/honey/Angreezi Beat.mp3"
-      },
-      {
-        "id": 6,
-        "title": "Darkside",
-        "image": "/images/DarkSide.png",
-        "artist": "Alan walker",
-        "video": "/video/DarkSide.mp4",
-        "music": "/music/DarkSide.mp3"
-      },
-      {
-        "id": 7,
-        "title": "Toofan",
-        "image": "/images/chaava.png",
-        "artist": "A.R Rahman Vaishali samant",
-        "video": "/video/toofan.mp4",
-        "music": "/music/toofan.mp3"
-      },
-     
+  {
+    "id": 1,
+    "title": "Desi Kalakaar",
+    "image": "/images/desiKalakaar.png",
+    "artist": "Yo Yo Honey Singh",
+    "video": "/video/DesiKalakaar.mp4",
+    "music": "/music/honey/Desi Kalakaar.mp3",
+    "duration": "4:30"
+  },
+  {
+    "id": 2,
+    "title": "Brown Rang",
+    "image": "/images/BrownRang.jpg",
+    "artist": "Yo Yo Honey Singh",
+    "video": "/video/BrownRang.mp4",
+    "music": "/music/honey/BrownRang.mp3",
+    "duration": "3:50"
+  },
+  {
+    "id": 3,
+    "title": "Millionaire",
+    "image": "/images/honeySinghGlory.png",
+    "artist": "Yo Yo Honey Singh",
+    "video": "/video/MILLIONAIRE.mp4",
+    "music": "/music/millionare.mp3",
+    "duration": "3:45"
+  },
+  {
+    "id": 4,
+    "title": "Faded",
+    "image": "/images/Faded.png",
+    "artist": "Alan Walker",
+    "video": "/video/faded.mp4",
+    "music": "/music/faded.mp3",
+    "duration": "3:32"
+  },
+  {
+    "id": 5,
+    "title": "Kya Mujhe Pyaar Hai",
+    "image": "/images/Kya_Muje_Pyaar_Hai.png",
+    "artist": "KK, Pritam",
+    "video": "/video/Kya_Mujhe_Pyaar_Hai.mp4",
+    "music": "/music/Kya_Mujhe_Pyaar_Hai.mp3",
+    "duration": "4:10"
+  },
+  {
+    "id": 6,
+    "title": "Darkside",
+    "image": "/images/DarkSide.png",
+    "artist": "Alan Walker",
+    "video": "/video/DarkSide.mp4",
+    "music": "/music/DarkSide.mp3",
+    "duration": "3:31"
+  },
+  {
+    "id": 7,
+    "title": "Toofan",
+    "image": "/images/chaava.png",
+    "artist": "A.R Rahman, Vaishali Samant",
+    "video": "/video/toofan.mp4",
+    "music": "/music/toofan.mp3",
+    "duration": "4:05"
+  },
+  {
+    "id": 8,
+    "title": "Jaana Samjho Na",
+    "image": "/images/jaanaSamjhoNa.png",
+    "artist": "Aditya Rikhari",
+    "video": "/video/JaanaSamjhoNa.mp4",
+    "music": "/music/jaana samjho na.mp3",
+    "duration": "3:20"
+  },
+  {
+    "id": 9,
+    "title": "Chand Sifarish",
+    "image": "/images/ChandSifarish.png",
+    "artist": "Jatin Lalit, Fanaa",
+    "video": "/video/ChandSifarish.mp4",
+    "music": "/music/ChandSifarish.mp3",
+    "duration": "4:50"
+  },
+  {
+    "id": 10,
+    "title": "Aadat",
+    "image": "/images/Aadat.png",
+    "artist": "Atif Aslam",
+    "video": "/video/Aadat.mp4",
+    "music": "/music/Aadat.mp3",
+    "duration": "4:30"
+  },
+  {
+    "id": 11,
+    "title": "Die With A Smile",
+    "image": "/images/DieWithASmile.png",
+    "artist": "Bruno Mars & Lady Gaga",
+    "video": "/video/DieWithASmile.mp4",
+    "music": "/music/DieWithASmile.mp3",
+    "duration": "3:55"
+  },
+  {
+    "id": 12,
+    "title": "Love Me Like You Do",
+    "image": "/images/Love_Me_Like_You_Do.png",
+    "artist": "Ellie Goulding",
+    "video": "/video/Love_Me_Like_You_Do.mp4",
+    "music": "/music/Love_Me_Like_You_Do.mp3",
+    "duration": "4:10"
+  },
+  {
+    "id": 13,
+    "title": "Let Me Love You",
+    "image": "/images/Let_Me_Love_You.png",
+    "artist": "DJ Snake",
+    "video": "/video/DJ_snake_let_me_love_you.mp4",
+    "music": "/music/DJ_snake_let_me_love_you.mp3",
+    "duration": "3:25"
+  },
+  {
+    "id": 14,
+    "title": "Makasam",
+    "image": "/images/Makasam.png",
+    "artist": "KRI$NA",
+    "video": "/video/MAKASAM.mp4",
+    "music": "/music/MAKASAM.mp3",
+    "duration": "3:40"
+  },
+  {
+    "id": 15,
+    "title": "Aankhon Aankhon",
+    "image": "/images/Aankhon_Aankhon.png",
+    "artist": "Yo Yo Honey Singh",
+    "video": "/video/Aankhon_Aankhon.mp4",
+    "music": "/music/Aankhon_Aankhon.mp3",
+    "duration": "3:50"
+  },
+  {
+    "id": 16,
+    "title": "Machayenge 4",
+    "image": "/images/Machayenge_4.png",
+    "artist": "KRI$NA",
+    "video": "/video/Machayenge_4.mp4",
+    "music": "/music/Machayenge_4.mp3",
+    "duration": "4:00"
+  },
+  {
+    "id": 17,
+    "title": "Angreezi Beat",
+    "image": "/images/honeySinghGlory.png",
+    "artist": "Yo Yo Honey Singh",
+    "video": "/video/AngreeziBeat.mp4",
+    "music": "/music/honey/Angreezi Beat.mp3",
+    "duration": "3:40"
+  },
+  {
+    "id": 18,
+    "title": "Akhiyaan Gulaab",
+    "image": "/images/Akhiyaan_Gulaab.png",
+    "artist": "Mitraz",
+    "video": "/video/Akhiyaan_Gulaab.mp4",
+    "music": "/music/Akhiyaan_Gulaab.mp3",
+    "duration": "3:30"
+  }
+]
 
-      {
-        "id": 8,
-        "title": "Jaana Samjho Na",
-        "image": "/images/jaanaSamjhoNa.png",
-        "artist": "Aditya Rikhari",
-        "video": "/video/JaanaSamjhoNa.mp4",
-        "music": "/music/jaana samjho na.mp3"
-      },
-      {
-        "id": 9,
-        "title": "Chand Sifarish",
-        "image": "/images/ChandSifarish.png",
-        "artist": "jatin lalit faana",
-        "video": "/video/ChandSifarish.mp4",
-        "music": "/music/ChandSifarish.mp3"
-      },
-      {
-        "id": 10,
-        "title": "Aadat",
-        "image": "/images/Aadat.png",
-        "artist": "Atif Aslam",
-        "video": "/video/Aadat.mp4",
-        "music": "/music/Aadat.mp3"
-      },
-      {
-        "id": 11,
-        "title": "Die With A Smile",
-        "image": "/images/DieWithASmile.png",
-        "artist": "Bruno Mars & Lady Gaga",
-        "video": "/video/DieWithASmile.mp4",
-        "music": "/music/DieWithASmile.mp3"
-      },
-      {
-        "id": 12,
-        "title": "Love Me Like You Do",
-        "image": "/images/Love_Me_Like_You_Do.png",
-        "artist": "Ellie Goulding",
-        "video": "/video/Love_Me_Like_You_Do.mp4",
-        "music": "/music/Love_Me_Like_You_Do.mp3"
-      },
-      {
-        "id": 13,
-        "title": "Let Me Love You",
-        "image": "/images/Let_Me_Love_You.png",
-        "artist": "DJ Snake",
-        "video": "/video/DJ_snake_let_me_love_you.mp4",
-        "music": "/music/DJ_snake_let_me_love_you.mp3"
-      }
-      , {
-        "id": 14,
-        "title": "Makasam",
-        "image": "/images/Makasam.png",
-        "artist": "KRI$NA",
-        "video": "/video/MAKASAM.mp4",
-        "music": "/music/MAKASAM.mp3"
-      },
-      {
-        "id": 15,
-        "title": "Aankhon Aankhon",
-        "image": "/images/Aankhon_Aankhon.png",
-        "artist": "Yo Yo Honey Singh",
-        "video": "/video/Aankhon_Aankhon.mp4",
-        "music": "/music/Aankhon_Aankhon.mp3"
-      },
-      {
-        "id": 16,
-        "title": "Machayenge 4",
-        "image": "/images/Machayenge_4.png",
-        "artist": "KRI$NA",
-        "video": "/video/Machayenge_4.mp4",
-        "music": "/music/Machayenge_4.mp3"
-      }
-      
-  
-    ]
   

@@ -1,0 +1,160 @@
+{
+  "Arijit": [
+    {
+      "id": "1",
+      "image": "/images/arijit/10.jpg",
+      "title": "Ae Dil Hai Mushkil",
+      "artist": "Arijit Singh",
+      "album": "Ae Dil Hai Mushkil",
+      "duration": "4:30",
+      "music": "/music/arijit/Ae_Dil_Hai_Mushkil.mp3"
+    },
+    {
+      "id": "2",
+      "image": "/images/arijit/1.jpg",
+      "title": "Bekhayali",
+      "artist": "Arijit Singh",
+      "album": "Kabir Singh",
+      "duration": "5:34",
+      "music": "/music/arijit/Bekhayali.mp3"
+    },
+    {
+      "id": "3",
+      "image": "/images/arijit/9.jpg",
+      "title": "Hawayein",
+      "artist": "Arijit Singh",
+      "album": "Jab Harry Met Sejal",
+      "duration": "4:50",
+      "music": "/music/arijit/Hawayein.mp3"
+    },
+    {
+      "id": "4",
+      "image": "/images/arijit/3.jpg",
+      "title": "Kabira",
+      "artist": "Arijit Singh",
+      "album": "Yeh Jawaani Hai Deewani",
+      "duration": "4:19",
+      "music": "/music/arijit/Kabira.mp3"
+    },
+    {
+      "id": "5",
+      "image": "/images/arijit/2.jpg",
+      "title": "Kaise Hua",
+      "artist": "Arijit Singh",
+      "album": "Kabir Singh",
+      "duration": "3:55",
+      "music": "/music/arijit/Kaise_Hua.mp3"
+    },
+    {
+      "id": "6",
+      "image": "/images/arijit/11.jpg",
+      "title": "Kesariya",
+      "artist": "Arijit Singh",
+      "album": "Brahmāstra",
+      "duration": "4:28",
+      "music": "/music/arijit/Kesariya.mp3"
+    },
+    {
+      "id": "7",
+      "image": "/images/arijit/12.jpg",
+      "title": "Khamoshiyan",
+      "artist": "Arijit Singh",
+      "album": "Khamoshiyan",
+      "duration": "4:10",
+      "music": "/music/arijit/Khamoshiyan.mp3"
+    },
+    {
+      "id": "8",
+      "image": "/images/arijit/13.jpg",
+      "title": "Mast Malang",
+      "artist": "Arijit Singh",
+      "album": "Main Tera Hero",
+      "duration": "4:35",
+      "music": "/music/arijit/Mast_Malang.mp3"
+    },
+    {
+      "id": "9",
+      "image": "/images/arijit/5.jpg",
+      "title": "Phir Bhi Tumko Chahunga",
+      "artist": "Arijit Singh",
+      "album": "Half Girlfriend",
+      "duration": "5:09",
+      "music": "/music/arijit/Phir_Bhi_Tumko_Chahunga.mp3"
+    },
+    {
+      "id": "10",
+      "image": "/images/arijit/7.jpg",
+      "title": "Tujhe Kitna Chahne Lage",
+      "artist": "Arijit Singh",
+      "album": "Kabir Singh",
+      "duration": "4:45",
+      "music": "/music/arijit/Tujhe_Kitna_Chahne_Lage.mp3"
+    },
+    {
+      "id": "11",
+      "image": "/images/arijit/8.jpg",
+      "title": "Uska Hi Banana",
+      "artist": "Arijit Singh",
+      "album": "1920: Evil Returns",
+      "duration": "5:30",
+      "music": "/music/arijit/Uska_Hi_Banana.mp3"
+    }
+  ],
+  "AP_Dhillon": [
+    {
+      "id": "1",
+      "image": "/images/Ap/1.png",
+      "title": "Arrogant",
+      "artist": "AP Dhillon",
+      "album": "Singles",
+      "duration": "3:25",
+      "music": "/music/ap/Arrogant.mp3"
+    },
+    {
+      "id": "2",
+      "image": "/images/Ap/2.png",
+      "title": "Brown Munde",
+      "artist": "AP Dhillon",
+      "album": "Singles",
+      "duration": "3:45",
+      "music": "/music/ap/Brown_Munde.mp3"
+    },
+    {
+      "id": "3",
+      "image": "/images/Ap/3.png",
+      "title": "Drop Top",
+      "artist": "AP Dhillon",
+      "album": "Singles",
+      "duration": "3:30",
+      "music": "/music/ap/Drop_Top.mp3"
+    },
+    {
+      "id": "4",
+      "image": "/images/Ap/4.png",
+      "title": "Insane",
+      "artist": "AP Dhillon",
+      "album": "Hidden Gems",
+      "duration": "3:50",
+      "music": "/music/ap/INSANE_-_AP_DHILLON.mp3"
+    },
+    {
+      "id": "5",
+      "image": "/images/Ap/5.png",
+      "title": "Ma Belle",
+      "artist": "AP Dhillon",
+      "album": "Hidden Gems",
+      "duration": "3:40",
+      "music": "/music/ap/Ma_Belle.mp3"
+    },
+    {
+      "id": "6",
+      "image": "/images/Ap/6.png",
+      "title": "Takeover",
+      "artist": "AP Dhillon",
+      "album": "Singles",
+      "duration": "3:15",
+      "music": "/music/ap/Takeover.mp3"
+    }
+  ]
+}
+

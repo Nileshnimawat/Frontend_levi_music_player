@@ -2,74 +2,95 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Section from "./components/Section";
 import "./App.css";
-import albumData from './components/api/musicApi.json'; 
-import { useState,useEffect } from "react";
+import albumData from "./components/api/musicApi.json";
+import { useState, useEffect } from "react";
 import MusicPlayer from "./Music Player/MusicPlayer";
-import { Routes, Route,  useLocation } from "react-router-dom";
-import SectionVideo from "./Video Player/SectionVideo"
+import { Routes, Route, useLocation } from "react-router-dom";
+import SectionVideo from "./Video Player/SectionVideo";
 import LikedPlayList from "./Liked PlayList/LikedPlayList";
-
+import Artist from "./components/api/Artist.json";
 
 function App() {
-
-
-  const location = useLocation(); // Hook to get current route
+  const location = useLocation(); 
 
   const [currentSong, setCurrentSong] = useState(null);
   const [likedSongs, setLikedSongs] = useState([]);
 
+  useEffect(() => {
+    let songs = JSON.parse(localStorage.getItem("spotify-album"));
+    if (songs) {
+      setCurrentSong(songs);
+    }
+  }, []);
 
+  useEffect(() => {
+    const storedSongs = JSON.parse(localStorage.getItem("likedSongs"));
+    if (storedSongs) {
+      setLikedSongs(storedSongs);
+    }
+  }, []);
 
-useEffect(() => {
-  let songs = JSON.parse(localStorage.getItem("spotify-album"));
-  if(songs){
-   setCurrentSong(songs);
-  }
-
-}, [])
-
-useEffect(() => {
-  const storedSongs = JSON.parse(localStorage.getItem("likedSongs"));
-  if (storedSongs) {
-    setLikedSongs(storedSongs);
-  }
-}, []);
-
-useEffect(() => {
-  if(currentSong != null){
-    localStorage.setItem("spotify-album",JSON.stringify(currentSong));
-  }
-
-}, [currentSong])
-
+  useEffect(() => {
+    if (currentSong != null) {
+      localStorage.setItem("spotify-album", JSON.stringify(currentSong));
+    }
+  }, [currentSong]);
 
   return (
     <div className="flex flex-col h-screen scroll-smooth">
       <Navbar />
       <div className="flex flex-grow bg-black">
-        <Sidebar location={location} likedSongs={likedSongs}/>
+        <Sidebar location={location} likedSongs={likedSongs} />
         <Routes>
-        <Route
+          <Route
             path="/"
-            element={<Section data={albumData} setCurrentSong={setCurrentSong}  />}
+            element={
+              <Section data={albumData} setCurrentSong={setCurrentSong} />
+            }
           />
-            <Route
+          <Route
             path="/videoPlayer"
-            element={<SectionVideo currentSong={currentSong} data={albumData} setCurrentSong={setCurrentSong} />}
+            element={
+              <SectionVideo
+                currentSong={currentSong}
+                data={albumData}
+                setCurrentSong={setCurrentSong}
+              />
+            }
           />
           <Route
             path="/LikedPlayList"
-            element={<LikedPlayList songs={likedSongs} setCurrentSong={setCurrentSong}/>}
+            element={
+              <LikedPlayList
+                songs={likedSongs}
+                setCurrentSong={setCurrentSong}
+              />
+            }
           />
-
-          </Routes>
-
+          <Route
+            path="/ArijitSingh"
+            element={
+              <LikedPlayList
+                songs={Artist.Arijit}
+                setCurrentSong={setCurrentSong}
+              />
+            }
+          />
+          <Route
+            path="/AP_Dhillon"
+            element={
+              <LikedPlayList
+                songs={Artist.AP_Dhillon}
+                setCurrentSong={setCurrentSong}
+              />
+            }
+          />
+        </Routes>
       </div>
-      {location.pathname !== "/VideoPlayer" && <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} />}
-
+      {location.pathname !== "/VideoPlayer" && (
+        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} />
+      )}
     </div>
-
-    
   );
 }
 

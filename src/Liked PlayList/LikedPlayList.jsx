@@ -5,17 +5,20 @@ import { useState } from "react";
 
 const LikedPlayList = ({ songs , setCurrentSong }) => {
 
-    const [selectedDiv, setSelectedDiv] = useState(null); // Track selected div
+    const [selectedDiv, setSelectedDiv] = useState(null); 
   
     const handleClick = (index,song) => {
       setCurrentSong(song)
-      setSelectedDiv(index); // Update selected div
+      setSelectedDiv(index); 
     };
+
+    const date = new Date();
+
 
   return (
     <section className="flex-1 bg-color text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh]">
       {/* Header Section */}
-      <div className="flex items-end p-4 sm:p-7 gap-6 bg-gradient mb-3 ">
+      <div className="flex items-end p-4 sm:p-7 gap-5 bg-gradient mb-3 ">
         <div className="bg-gradient-color">
           <img src="/liked.png" alt="" className="w-20 sm:w-40 md:w-53 h-auto  rounded-lg" />
         </div>
@@ -38,7 +41,7 @@ const LikedPlayList = ({ songs , setCurrentSong }) => {
 
       {/* Songs List */}
       <div className="mt-6 px-2 lg:px-8 " style={{ maxHeight: "50vh" }}>
-        <div className="grid grid-cols-4 text-gray-400 text-sm border-b border-gray-600 pb-2 mb-2">
+        <div className="grid grid-cols-4 md:gap-4 text-gray-400 text-sm border-b border-gray-600 pb-2 mb-2">
           <span>Title</span>
           <span>Album</span>
           <span>Date added</span>
@@ -51,10 +54,10 @@ const LikedPlayList = ({ songs , setCurrentSong }) => {
             <div
               onClick={()=>handleClick(song.id,song)}
               key={song.id}
-              className={`grid grid-cols-4 items-center py-2 mb-2 text-sm text-gray-300 hover:bg-blue-900 duration-200  rounded-lg px-2 ${selectedDiv === song.id? "bg-blue-900": ""}`}
+              className={`grid grid-cols-4 md:gap-4 items-center py-2 mb-2 text-sm text-gray-300 hover:bg-blue-900 duration-200  rounded-lg px-2 ${selectedDiv === song.id? "bg-blue-900": ""}`}
             >
               {/* <span>{index + 1}</span> */}
-              <div className="flex items-start lg:items-center gap-4 flex-col lg:flex-row">
+              <div className="flex items-start lg:items-center gap-5 flex-col lg:flex-row">
                 <img
                   src={song.image}
                   alt={song.title}
@@ -67,9 +70,9 @@ const LikedPlayList = ({ songs , setCurrentSong }) => {
                 </div>
 
               </div>
-              <span className="text-xs sm:text-xm md:text-base">{"song album"}</span>
-              <span className="text-xs sm:text-xm md:text-base">{song.likedDate}</span>
-              <span className="text-right sm:text-xm md:text-base">{"3 : 00"}</span>
+              <span className="text-xs sm:text-xm md:text-base">{`${song.album ? song.album: "Album"}`}</span>
+              <span className="text-xs sm:text-xm md:text-base">{`${song.likedDate ? song.likedDate : date.toLocaleDateString()} `}</span>
+              <span className="text-right sm:text-xm md:text-base">{`${song.duration ? song.duration : "3:29"}`}</span>
             </div>
           ))}
 

@@ -13,11 +13,28 @@ export default function Sidebar({ location, likedSongs }) {
     navigate('/');
   }
 
-  const  currentSong = {
-    image : "/liked.png",
-    title : "Liked Songs",
-    artist : likedSongs.length
-  }
+  const currentSong = [
+    {
+      image: "/liked.png",
+      title: "Liked Songs",
+      artist: likedSongs.length
+    },
+    {
+      image: "/images/arijit/ArijitSingh.png",
+      title: "Arijit Singh ",
+      artist: "PlayList"
+    },
+    {
+      image: "/images/AP_Dhillon.png",
+      title: "AP Dhillon",
+      artist: "PlayList"
+    },
+    {
+      image: "/song3.png",
+      title: "Levitating",
+      artist: "Dua Lipa"
+    }
+  ];
 
   return (
     <div
@@ -76,7 +93,17 @@ export default function Sidebar({ location, likedSongs }) {
           >
              <button onClick={()=>navigate('/LikedPlayList')}
             className="flex  gap-3 w-full pl-2 hover:scale-105 duration-200 ">
-             <SongInfo currentSong={currentSong} ></SongInfo>
+             <SongInfo currentSong={currentSong[0]} ></SongInfo>
+            </button>
+
+            <button onClick={()=>navigate('/ArijitSingh')}
+            className="flex  gap-3 w-full pl-2 hover:scale-105 duration-200 ">
+             <SongInfo currentSong={currentSong[1]} ></SongInfo>
+            </button>
+
+            <button onClick={()=>navigate('/AP_Dhillon')}
+            className="flex  gap-3 w-full pl-2 hover:scale-105 duration-200 ">
+             <SongInfo currentSong={currentSong[2]} ></SongInfo>
             </button>
 
             <div className="card-color p-4 rounded-lg  ">
