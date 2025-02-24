@@ -46,7 +46,7 @@ export default function Sidebar({ location, likedSongs }) {
         {/* Sidebar */}
         <aside
           className={` bg-color text-white h-[80%] p-5 flex flex-col justify-between transition-all duration-300 rounded-xl min-h-full
-            ${isOpen ? "w-screen md:w-105" : "w-15~  md:w-22 items-center"} 
+            ${isOpen ? "w-screen md:w-105" : "w-10  md:w-22 items-center"} 
              `
         }
         >
