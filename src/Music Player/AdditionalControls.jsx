@@ -34,8 +34,8 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
   const handleHeartClicked = () => {
     if (!isLiked) {
       const updatedSongs = [
-        ...likedSongs,
-        { ...currentSong, likedDate: getCurrentDate() }
+        
+        { ...currentSong, likedDate: getCurrentDate() }, ...likedSongs
       ];
       setLikedSongsState(updatedSongs);
       setLikedSongs(updatedSongs); 
