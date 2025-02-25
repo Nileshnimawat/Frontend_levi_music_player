@@ -22,14 +22,15 @@ export default function Navbar() {
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center  justify-between mt-1 sm:mt-1 text-xs sm:text-base  sm:justify-between md:justify-evenly gap-0 sm:gap-1 md:gap-2 lg:gap-4 xl:gap-6">
-        <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Premium</button>
+     {/* <div className="flex items-center  justify-between mt-1 sm:mt-1 text-xs sm:text-base  sm:justify-between md:justify-evenly gap-0 sm:gap-1 md:gap-2 lg:gap-4 xl:gap-6">
+          <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Premium</button>
         <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Support</button>
-        {/* <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Download</button> */}
+         <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Download</button> 
         <span className="text-gray-600">|</span>
         <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Sign up</button>
-        <button className="bg-white text-black text-sm sm:text-base px-3 py-2 sm:px-8 sm:py-3 rounded-full  hover:scale-105 transition duration-200">Log in</button>
+        <button className="bg-white text-black text-sm sm:text-base px-3 py-2 sm:px-8 sm:py-3 rounded-full  hover:scale-105 transition duration-200">Log in</button> 
       </div>
+    */}
 
     </nav>
   );
