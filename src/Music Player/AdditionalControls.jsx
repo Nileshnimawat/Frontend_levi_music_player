@@ -24,11 +24,8 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
   };
 
   const getCurrentDate = () => {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.toLocaleString("default", { month: "short" });
-    const year = today.getFullYear();
-    return `${day} ${month} ${year}`;
+   const date = new Date();
+    return `${date.toLocaleDateString()}`;
   };
 
   const handleHeartClicked = () => {
