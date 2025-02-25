@@ -3,7 +3,7 @@ import { FaPlay, FaList } from "react-icons/fa";
 import '../components/scrollbar.css'
 import { useState } from "react";
 
-const LikedPlayList = ({ songs , setCurrentSong }) => {
+const LikedPlayList = ({ songs , setCurrentSong, headings }) => {
 
     const [selectedDiv, setSelectedDiv] = useState(null); 
   
@@ -19,12 +19,14 @@ const LikedPlayList = ({ songs , setCurrentSong }) => {
     <section className="flex-1 bg-color text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh]">
       {/* Header Section */}
       <div className="flex items-end p-4 sm:p-7 gap-5 bg-gradient mb-3 ">
-        <div className="bg-gradient-color">
-          <img src="/liked.png" alt="" className="w-20 sm:w-40 md:w-53 h-auto  rounded-lg" />
+        <div className={`${ "bg-gradient-color"} `}>
+          <img 
+          src={`${headings? headings.image : "/liked.png"}`} alt="artist name" 
+          className="w-20 sm:w-40 md:w-53 h-auto  rounded-lg" />
         </div>
         <div>
           <p className="uppercase text-l font-semibold">Playlist</p>
-          <h1 className=" text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">Liked Songs</h1>
+          <h1 className=" text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">{headings.title}</h1>
           <p className="mt-2 text-gray-300">{songs.length}</p>
         </div>
       </div>

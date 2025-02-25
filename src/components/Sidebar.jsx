@@ -4,6 +4,7 @@ import { FaPlus, FaBars} from "react-icons/fa";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import SongInfo from "../Music Player/SongInfo";
+import currentSong from "./api/PlayList.json"
 
 export default function Sidebar({ location, likedSongs }) {
   let navigate = useNavigate();
@@ -28,11 +29,6 @@ export default function Sidebar({ location, likedSongs }) {
       image: "/images/AP_Dhillon.png",
       title: "AP Dhillon",
       artist: "PlayList"
-    },
-    {
-      image: "/song3.png",
-      title: "Levitating",
-      artist: "Dua Lipa"
     }
   ];
 

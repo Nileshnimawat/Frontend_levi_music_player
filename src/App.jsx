@@ -9,7 +9,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import SectionVideo from "./Video Player/SectionVideo";
 import LikedPlayList from "./Liked PlayList/LikedPlayList";
 import Artist from "./components/api/Artist.json";
-
+import TheArtist from "./components/api/PlayList.json";
 function App() {
   const location = useLocation(); 
 
@@ -64,6 +64,7 @@ function App() {
               <LikedPlayList
                 songs={likedSongs}
                 setCurrentSong={setCurrentSong}
+                name="Liked Songs"
               />
             }
           />
@@ -73,6 +74,8 @@ function App() {
               <LikedPlayList
                 songs={Artist.Arijit}
                 setCurrentSong={setCurrentSong}
+                headings = {TheArtist[0]}
+
               />
             }
           />
@@ -82,6 +85,7 @@ function App() {
               <LikedPlayList
                 songs={Artist.AP_Dhillon}
                 setCurrentSong={setCurrentSong}
+                headings = {TheArtist[1]}
               />
             }
           />

@@ -27,7 +27,6 @@ export default function Navbar() {
         <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Support</button>
         {/* <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Download</button> */}
         <span className="text-gray-600">|</span>
-        <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Install App</button>
         <button className="text-gray-400 hover:text-white hover:scale-105 transition duration-200">Sign up</button>
         <button className="bg-white text-black text-sm sm:text-base px-3 py-2 sm:px-8 sm:py-3 rounded-full  hover:scale-105 transition duration-200">Log in</button>
       </div>

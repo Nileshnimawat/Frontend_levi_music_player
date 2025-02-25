@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Heart,
   VolumeX,
   MessageSquare,
   Volume2,
-  ListMusic,
-  Maximize2,
+  ListMusic
 } from "lucide-react";
 
 const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
   const [isMuted, setIsMuted] = useState(false);
-  const [liked, setliked] = useState(false);
+  const [likedSongs, setLikedSongsState] = useState([]);
+
+  useEffect(() => {
+    const storedLikes = JSON.parse(localStorage.getItem("likedSongs")) || [];
+    setLikedSongsState(storedLikes);
+  }, []);
+
+  const isLiked = likedSongs.some((song) => song.id === currentSong.id);
 
   const toggleMute = () => {
     audioRef.current.muted = !isMuted;
@@ -19,68 +25,51 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
 
   const getCurrentDate = () => {
     const today = new Date();
-  
     const day = today.getDate();
-    const month = today.toLocaleString('default', { month: 'short' }); 
+    const month = today.toLocaleString("default", { month: "short" });
     const year = today.getFullYear();
-  
     return `${day} ${month} ${year}`;
   };
 
   const handleHeartClicked = () => {
-    if (!liked) {
-      setLikedSongs((prevSongs) => {
-        const isAlreadyLiked = prevSongs.some(
-          (song) => song.id === currentSong.id
-        );
-  
-        if (!isAlreadyLiked) {
-          const updatedSongs = [
-            ...prevSongs,
-            { ...currentSong, likedDate: getCurrentDate() }
-          ];
-          localStorage.setItem("likedSongs", JSON.stringify(updatedSongs)); 
-          return updatedSongs;
-        }
-        setliked(true); 
-  
-        return prevSongs; 
-      });
+    if (!isLiked) {
+      const updatedSongs = [
+        ...likedSongs,
+        { ...currentSong, likedDate: getCurrentDate() }
+      ];
+      setLikedSongsState(updatedSongs);
+      setLikedSongs(updatedSongs); 
+      localStorage.setItem("likedSongs", JSON.stringify(updatedSongs));
     } else {
-
-      setLikedSongs((prevSongs) => {
-        const updatedSongs = prevSongs.filter(
-          (song) => song.id !== currentSong.id
-        );
-        localStorage.setItem("likedSongs", JSON.stringify(updatedSongs)); // Update localStorage
-        setliked(false); 
-        return updatedSongs;
-      });
+      const updatedSongs = likedSongs.filter(
+        (song) => song.id !== currentSong.id
+      );
+      setLikedSongsState(updatedSongs);
+      setLikedSongs(updatedSongs); 
+      localStorage.setItem("likedSongs", JSON.stringify(updatedSongs));
     }
-  
-    
   };
-  
 
   return (
     <div className="flex items-center space-x-2 md:space-x-4">
       <Heart
         onClick={handleHeartClicked}
-        className={`w-5 h-5 cursor-pointer ${liked ? "text-red-500" : ""}`}
+        className={`w-6 h-6 cursor-pointer transition-colors duration-300 ${
+          isLiked ? "text-red-500 fill-red-500" : ""
+        }`}
       />
-      <MessageSquare className="w-5 h-5 cursor-pointer" />
-      <ListMusic className="w-5 h-5 cursor-pointer" />
+      <MessageSquare className="w-6 h-6 cursor-pointer" />
+      <ListMusic className="w-6 h-6 cursor-pointer" />
       <button
         onClick={toggleMute}
         className={`p-2 rounded-full ${isMuted ? "bg-red-500" : ""}`}
       >
         {isMuted ? (
-          <VolumeX className="w-5 h-5" />
+          <VolumeX className="w-6 h-6" />
         ) : (
-          <Volume2 className="w-5 h-5" />
+          <Volume2 className="w-6 h-6" />
         )}
       </button>
-      <Maximize2 className="w-5 h-5 cursor-pointer" />
     </div>
   );
 };

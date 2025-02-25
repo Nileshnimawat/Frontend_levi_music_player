@@ -17,12 +17,11 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  // Update currentTime as the song plays
+ 
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
   };
 
-  // Set duration when audio metadata loads
   const handleLoadedMetadata = () => {
     setDuration(audioRef.current.duration);
   };
@@ -51,18 +50,16 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
   if (!currentSong) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-4 sm:flex  md:items-center md:justify-between shadow-lg">
-      {/* Song Info */}
+    <div className="fixed bottom-0 left-0 right-0  bg-black text-white p-4 sm:flex  md:items-center  md:justify-between shadow-lg">
       <SongInfo currentSong={currentSong} />
 
-      {/* Controls */}
       <div className="flex flex-col items-center space-y-2">
         <div className="flex items-center space-x-4">
           <Shuffle className="w-5 h-5 cursor-pointer" />
           <SkipBack onClick={()=>(audioRef.current.currentTime-=10)}
            className="w-6 h-6 cursor-pointer" />
 
-          {/* Audio Element */}
+
           <audio
             ref={audioRef}
             src={currentSong.music}
@@ -87,7 +84,6 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
           <Repeat className="w-5 h-5 cursor-pointer" />
         </div>
 
-        {/* Progress Bar */}
         <ProgressBar
           currentTime={currentTime}
           duration={duration}
@@ -95,7 +91,6 @@ const MusicPlayer = ({ currentSong , setLikedSongs}) => {
         />
       </div>
 
-      {/* Additional Controls */}
       <AdditionalControls audioRef={audioRef} currentSong={currentSong}  setLikedSongs={setLikedSongs} />
     </div>
   );
