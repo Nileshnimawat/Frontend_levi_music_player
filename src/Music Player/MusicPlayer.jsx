@@ -27,8 +27,8 @@ const MusicPlayer = ({ currentSong, setLikedSongs }) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-black text-white p-4 sm:flex md:items-center md:justify-between shadow-lg">
       <SongInfo currentSong={currentSong} />
-      <div className="flex flex-col items-center space-y-2 w-[35%]">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col items-center space-y-2 w-70% sm:w-[35%]">
+        <div className="flex items-center space-x-3">
           <Shuffle className="w-5 h-5 cursor-pointer" />
           <SkipBack onClick={() => (audioRef.current.currentTime -= 10)} className="w-6 h-6 cursor-pointer" />
           
