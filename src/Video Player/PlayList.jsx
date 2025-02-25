@@ -6,11 +6,11 @@ import SongInfo from "../Music Player/SongInfo";
 
 const PlayList = ({ data, setCurrentSong }) => {
 
-  const [selectedDiv, setSelectedDiv] = useState(null); // Track selected div
+  const [selectedDiv, setSelectedDiv] = useState(null); 
 
   const handleClick = (index,song) => {
     setCurrentSong(song)
-    setSelectedDiv(index); // Update selected div
+    setSelectedDiv(index); 
   };
 
   return (

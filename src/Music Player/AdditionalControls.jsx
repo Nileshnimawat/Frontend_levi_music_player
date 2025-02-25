@@ -23,16 +23,11 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
     setIsMuted(!isMuted);
   };
 
-  const getCurrentDate = () => {
-   const date = new Date();
-    return `${date.toLocaleDateString()}`;
-  };
-
   const handleHeartClicked = () => {
     if (!isLiked) {
       const updatedSongs = [
         
-        { ...currentSong, likedDate: getCurrentDate() }, ...likedSongs
+        { ...currentSong, likedDate: new Date().toLocaleDateString() }, ...likedSongs
       ];
       setLikedSongsState(updatedSongs);
       setLikedSongs(updatedSongs); 

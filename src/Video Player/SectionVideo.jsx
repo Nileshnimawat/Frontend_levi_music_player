@@ -9,7 +9,7 @@ const SectionVideo = ({
 }) => {
   return (
     <>
-    <div className='lg:flex  sm:w-full lg:h-[90vh] mt-2 bg-color rounded-2xl'> 
+    <div className='h-full lg:flex  sm:w-full lg:h-[90vh] mt-2 bg-color rounded-2xl'> 
         <VideoPlayer currentSong={currentSong} />
     <PlayList data={data} setCurrentSong={setCurrentSong}/>
     </div>

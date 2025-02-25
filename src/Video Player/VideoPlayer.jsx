@@ -1,15 +1,14 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 const VideoPlayer = ({ currentSong }) => {
-  const videoRef = useRef(null);
   return (
     <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg  lg:w-[68%] lg:h-[90%]">
       <video
-        ref={videoRef}
         src={currentSong.video}
         autoPlay={true}
-        className="w-full h-auto max-w-5xl rounded-4xl shadow-xl "
+        className="w-full h-auto max-w-5xl 2xl:max-w-7xl  rounded-4xl shadow-xl "
         controls
         preload="auto"
+        controlsList="nodownload"
       >
         Your browser does not support the video tag.
       </video>

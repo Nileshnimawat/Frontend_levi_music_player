@@ -4,10 +4,11 @@ import { FaPlay } from 'react-icons/fa';
 
 const Album = ({ data,setCurrentSong }) => {
   let navigate = useNavigate();
-  if (!data || data.length === 0) {
+
+  if (!data || data.length === 0){ 
     return <div>Loading...</div>;
   }
-
+  
   let handleNavigation = ()=>{
     navigate('/VideoPlayer');
   }
