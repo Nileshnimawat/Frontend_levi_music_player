@@ -26,7 +26,7 @@ const LikedPlayList = ({ songs , setCurrentSong, headings }) => {
         </div>
         <div>
           <p className="uppercase text-l font-semibold">Playlist</p>
-          <h1 className=" text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">{headings.title}</h1>
+          <h1 className=" text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">{`${headings? headings.title : "Liked Songs"}`}</h1>
           <p className="mt-2 text-gray-300">{songs.length}</p>
         </div>
       </div>
