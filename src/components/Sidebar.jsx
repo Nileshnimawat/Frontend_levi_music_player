@@ -5,10 +5,9 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import SongInfo from "../Music Player/SongInfo";
 
-export default function Sidebar({ location, likedSongs }) {
+export default function Sidebar({ location, likedSongs, isOpen, setIsOpen }) {
   let navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-
+ 
   let handleNavigation = ()=>{
     navigate('/');
   }
@@ -41,7 +40,7 @@ export default function Sidebar({ location, likedSongs }) {
         {/* Sidebar */}
         <aside
           className={` bg-color text-white h-[80%] p-5 flex flex-col justify-between transition-all duration-300 rounded-xl min-h-full
-            ${isOpen ? "w-screen md:w-105" : "w-10  md:w-22 items-center"} 
+            ${isOpen ? "w-screen md:w-105" : "hidden sm:block  sm:w-16 md:w-22 sm:opacity-100  items-center"} 
              `
         }
         >

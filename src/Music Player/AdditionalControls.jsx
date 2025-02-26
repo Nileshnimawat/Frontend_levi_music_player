@@ -7,15 +7,9 @@ import {
   ListMusic
 } from "lucide-react";
 
-const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
+const AdditionalControls = ({ audioRef, currentSong, setLikedSongs,likedSongs }) => {
   const [isMuted, setIsMuted] = useState(false);
-  const [likedSongs, setLikedSongsState] = useState([]);
-
-  useEffect(() => {
-    const storedLikes = JSON.parse(localStorage.getItem("likedSongs")) || [];
-    setLikedSongsState(storedLikes);
-  }, []);
-
+ 
   const isLiked = likedSongs.some((song) => song.id === currentSong.id);
 
   const toggleMute = () => {
@@ -29,14 +23,12 @@ const AdditionalControls = ({ audioRef, currentSong, setLikedSongs }) => {
         
         { ...currentSong, likedDate: new Date().toLocaleDateString() }, ...likedSongs
       ];
-      setLikedSongsState(updatedSongs);
       setLikedSongs(updatedSongs); 
       localStorage.setItem("likedSongs", JSON.stringify(updatedSongs));
     } else {
       const updatedSongs = likedSongs.filter(
         (song) => song.id !== currentSong.id
       );
-      setLikedSongsState(updatedSongs);
       setLikedSongs(updatedSongs); 
       localStorage.setItem("likedSongs", JSON.stringify(updatedSongs));
     }

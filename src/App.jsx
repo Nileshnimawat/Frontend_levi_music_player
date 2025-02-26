@@ -15,6 +15,7 @@ function App() {
 
   const [currentSong, setCurrentSong] = useState(null);
   const [likedSongs, setLikedSongs] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     let songs = JSON.parse(localStorage.getItem("spotify-album"));
@@ -38,9 +39,9 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen scroll-smooth">
-      <Navbar />
+      <Navbar isOpen={isOpen} setIsOpen={setIsOpen}/>
       <div className="flex flex-grow bg-black">
-        <Sidebar location={location} likedSongs={likedSongs} />
+        <Sidebar location={location} likedSongs={likedSongs} isOpen={isOpen} setIsOpen={setIsOpen} />
         <Routes>
           <Route
             path="/"
@@ -92,7 +93,7 @@ function App() {
         </Routes>
       </div>
       {location.pathname !== "/VideoPlayer" && (
-        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} />
+        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs}/>
       )}
     </div>
   );

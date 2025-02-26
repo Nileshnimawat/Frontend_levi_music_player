@@ -4,7 +4,7 @@ import SongInfo from "./SongInfo";
 import AdditionalControls from "./AdditionalControls";
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat } from "lucide-react";
 
-const MusicPlayer = ({ currentSong, setLikedSongs }) => {
+const MusicPlayer = ({ currentSong, setLikedSongs,likedSongs }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -51,7 +51,7 @@ const MusicPlayer = ({ currentSong, setLikedSongs }) => {
         <ProgressBar currentTime={currentTime} duration={duration} audioRef={audioRef} />
       </div>
 
-      <AdditionalControls audioRef={audioRef} currentSong={currentSong} setLikedSongs={setLikedSongs} />
+      <AdditionalControls audioRef={audioRef} currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs} />
     </div>
   );
 };
