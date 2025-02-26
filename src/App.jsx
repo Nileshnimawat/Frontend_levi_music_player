@@ -41,7 +41,7 @@ function App() {
     <div className="flex flex-col h-screen scroll-smooth">
       <Navbar isOpen={isOpen} setIsOpen={setIsOpen}/>
       <div className="flex flex-grow bg-black">
-        <Sidebar location={location} likedSongs={likedSongs} isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Sidebar location={location} likedSongs={likedSongs} isOpen={isOpen}  />
         <Routes>
           <Route
             path="/"

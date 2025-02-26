@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import SongInfo from "../Music Player/SongInfo";
 
-export default function Sidebar({ location, likedSongs, isOpen, setIsOpen }) {
+export default function Sidebar({ location, likedSongs, isOpen}) {
   let navigate = useNavigate();
  
   let handleNavigation = ()=>{
@@ -42,16 +42,6 @@ export default function Sidebar({ location, likedSongs, isOpen, setIsOpen }) {
           className={` bg-color  text-white h-[80%] p-5 flex flex-col transition-all duration-300 rounded-xl min-h-full
             ${isOpen ? "w-screen md:w-105" : "hidden items-center sm:block  sm:w-16 md:w-22 sm:opacity-100  "}`}
         >
-          {/* Toggle Button */}
-          <div className="flex justify-start mb-3 ">
-            <button
-              className="text-white p-3 focus:outline-none card-color rounded-full hover:bg-gray-700 transition"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <FaBars className=" text-md md:text-2xl" />
-            </button>
-          </div>
-
           {/* Navigation Links */}
           <div className={`flex flex-col gap-3 border-b border-gray-600 pb-3 ${!isOpen ? "items-center": ""} `}>
             <button onClick={handleNavigation} className="flex items-center gap-3 text-lg hover:scale-105 transition duration-200">
