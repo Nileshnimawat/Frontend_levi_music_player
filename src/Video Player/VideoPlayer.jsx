@@ -3,7 +3,7 @@ const VideoPlayer = ({ currentSong }) => {
   return (
     <div className="flex flex-col items-start  bg-color p-3 rounded-xl shadow-lg  lg:w-[68%] lg:h-[90%]">
       <video
-        src={currentSong.video}
+        src={`${currentSong ? currentSong.video : "video"}`}
         autoPlay={true}
         className="w-full h-auto max-w-5xl 2xl:max-w-7xl  rounded-4xl shadow-xl "
         controls
@@ -16,10 +16,10 @@ const VideoPlayer = ({ currentSong }) => {
         {/* Video Details */}
         <div>
           <h3 className=" text-xl sm:text-2xl md:text-3xl text-white mt-3">
-            {currentSong.title}
+          {`${currentSong ? currentSong.title : "artist"}`}
           </h3>
           <p className="text-md sm:text-xl text-white mt-2">
-            {currentSong.artist}
+          {`${currentSong ? currentSong.artist : "artist"}`}
           </p>
         </div>
       </div>
