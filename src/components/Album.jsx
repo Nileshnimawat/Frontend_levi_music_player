@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
 
-const Album = ({ data,setCurrentSong, setIsPlaying }) => {
+const Album = ({ data,setCurrentSong }) => {
   let navigate = useNavigate();
 
   if (!data || data.length === 0){ 
@@ -13,15 +13,12 @@ const Album = ({ data,setCurrentSong, setIsPlaying }) => {
     navigate('/VideoPlayer');
   }
 
-  const handleClick = ()=>{
-    setCurrentSong(item);
-    setIsPlaying(true);
-  }
+
 
   return (
     <div className="flex flex-wrap gap-3 sm:gap-5 justify-center sm:justify-start p-3 bg-color ">
       {data.map((item) => (
-        <div onDoubleClick={handleNavigation} onClick={handleClick}
+        <div onDoubleClick={handleNavigation} onClick={()=>setCurrentSong(item)}
           key={item.id}
           className=" w-full h-auto sm:w-34 sm:h-[24vh]  md:w-42 md:h-[36vh]  shadow-lg rounded-2xl overflow-hidden relative group p-2 card-color ">
           {/* Album Image */}

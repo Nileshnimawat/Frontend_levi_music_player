@@ -16,7 +16,6 @@ function App() {
   const [currentSong, setCurrentSong] = useState(null);
   const [likedSongs, setLikedSongs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
 
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Section data={albumData} setCurrentSong={setCurrentSong} setIsPlaying={setIsPlaying} />
+              <Section data={albumData} setCurrentSong={setCurrentSong} />
             }
           />
           <Route
@@ -95,7 +94,7 @@ function App() {
         </Routes>
       </div>
       {location.pathname !== "/VideoPlayer" && (
-        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs} />
       )}
     </div>
   );
