@@ -16,6 +16,8 @@ function App() {
   const [currentSong, setCurrentSong] = useState(null);
   const [likedSongs, setLikedSongs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
 
   useEffect(() => {
     let songs = JSON.parse(localStorage.getItem("spotify-album"));
@@ -46,7 +48,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Section data={albumData} setCurrentSong={setCurrentSong} />
+              <Section data={albumData} setCurrentSong={setCurrentSong} setIsPlaying={setIsPlaying} />
             }
           />
           <Route
@@ -93,7 +95,7 @@ function App() {
         </Routes>
       </div>
       {location.pathname !== "/VideoPlayer" && (
-        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs}/>
+        <MusicPlayer currentSong={currentSong} setLikedSongs={setLikedSongs} likedSongs={likedSongs} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
       )}
     </div>
   );

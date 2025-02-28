@@ -4,8 +4,8 @@ import SongInfo from "./SongInfo";
 import AdditionalControls from "./AdditionalControls";
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat } from "lucide-react";
 
-const MusicPlayer = ({ currentSong, setLikedSongs,likedSongs }) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+const MusicPlayer = ({ currentSong, setLikedSongs, likedSongs ,isPlaying, setIsPlaying }) => {
+  
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
