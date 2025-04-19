@@ -98,7 +98,7 @@ export default function Sidebar({ location, likedSongs, isOpen, setIsOpen }) {
              <SongInfo currentSong={currentSong[2]} ></SongInfo>
             </button>
 
-            <div className="card-color p-4 rounded-lg  ">
+            {/* <div className="card-color p-4 rounded-lg  ">
               <p className="font-semibold text-xm md:text-xl">Create your first playlist</p>
               <p className="text-xs md:text-sm text-gray-400">It's easy, we'll help you</p>
               <button className="mt-2 bg-white text-black px-4 py-2 rounded-full font-semibold hover:scale-105 transition duration-200">
@@ -116,7 +116,7 @@ export default function Sidebar({ location, likedSongs, isOpen, setIsOpen }) {
               <button className="mt-2 bg-white text-black px-4 py-2 rounded-full font-semibold hover:scale-105 transition duration-200">
                 Browse podcasts
               </button>
-            </div>
+            </div> */}
           </div>
           <Footer isOpen={isOpen} />
         </aside>
