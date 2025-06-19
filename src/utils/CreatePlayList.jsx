@@ -13,24 +13,16 @@ const CreatePlaylist = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [preview, setPreview] = useState(null); // 👈 for preview
+  const [preview, setPreview] = useState(null); 
 
-  useEffect(() => {
-    if (!coverImage) {
-      setPreview(null);
-      return;
+    const handleCoverChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCoverImage(file);
+      setPreview(URL.createObjectURL(file));
     }
-
-    const objectUrl = URL.createObjectURL(coverImage);
-    setPreview(objectUrl);
-
-    // Cleanup URL object when component unmounts or coverImage changes
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [coverImage]);
-
-  const handleClose = () => {
-    navigate(-1);
   };
+
 
   const handleUpload = async () => {
     if (!title) {
@@ -53,7 +45,7 @@ const CreatePlaylist = () => {
         },
       });
 
-      if (res?.data) dispatch(addPlaylist(res.data.playlist));
+      if (res?.data) dispatch(addPlaylist(res?.data?.playlist));
 
       toast.success(res.data.message || "Playlist created successfully!");
       navigate("/");
@@ -110,7 +102,8 @@ const CreatePlaylist = () => {
               type="file"
               accept="image/*"
               className="w-full p-2 bg-black border border-gray-600 rounded"
-              onChange={(e) => setCoverImage(e.target.files[0])}
+              onChange={handleCoverChange}
+             
             />
           </div>
 
