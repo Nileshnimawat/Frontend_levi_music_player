@@ -10,7 +10,9 @@ export const useGetAllPlaylists = () => {
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const res = await axios.get('/api/v1/playlist');
+        const res = await axios.get('/api/v1/playlist',{
+          withCredentials : true
+        });
         if (res.data && res.data.playlists) {
           dispatch(setPlaylists(res.data.playlists));
         }

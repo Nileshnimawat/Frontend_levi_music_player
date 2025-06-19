@@ -13,7 +13,9 @@ export const useGetAllMusics = () => {
   useEffect(() => {
     const handleApi = async () => {
       try {
-        const res = await axios.get('/api/v1/music');
+        const res = await axios.get('/api/v1/music',{
+          withCredentials : true
+        });
         // console.log("Fetched API Data:", res.data);
 
         if (res.data && res.data.musics) {
