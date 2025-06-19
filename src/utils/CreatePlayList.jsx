@@ -1,6 +1,4 @@
-import {
-  useState,
-} from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -14,7 +12,21 @@ const CreatePlaylist = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [coverImage, setCoverImage] = useState(null); // cover image state
+  const [coverImage, setCoverImage] = useState(null);
+  const [preview, setPreview] = useState(null); // 👈 for preview
+
+  useEffect(() => {
+    if (!coverImage) {
+      setPreview(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(coverImage);
+    setPreview(objectUrl);
+
+    // Cleanup URL object when component unmounts or coverImage changes
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [coverImage]);
 
   const handleClose = () => {
     navigate(-1);
@@ -70,7 +82,6 @@ const CreatePlaylist = () => {
           </button>
         </div>
 
-        {/* Metadata Inputs */}
         <div className="space-y-4">
           <div>
             <label className="text-sm block">Title</label>
@@ -120,4 +131,3 @@ const CreatePlaylist = () => {
 };
 
 export default CreatePlaylist;
-
