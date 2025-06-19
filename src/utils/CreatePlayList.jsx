@@ -1,18 +1,20 @@
 import {
   useState,
 } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { CREATE_PLAYLIST } from "./constants";
 import { addPlaylist } from "../store/playlistSlice";
+
 const CreatePlaylist = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [coverImage, setCoverImage] = useState(null); // cover image state
 
   const handleClose = () => {
     navigate(-1);
@@ -20,25 +22,26 @@ const CreatePlaylist = () => {
 
   const handleUpload = async () => {
     if (!title) {
-      toast.error("Please fill in all fields.");
+      toast.error("Please provide a title.");
       return;
     }
 
     try {
-      const payload = {
-        title,
-        description,
-      };
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
 
-      const res = await axios.post(CREATE_PLAYLIST, payload, {
+      const res = await axios.post(CREATE_PLAYLIST, formData, {
         withCredentials: true,
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res);
-      
-      if(res?.data) dispatch(addPlaylist(res?.data?.playlist))
+
+      if (res?.data) dispatch(addPlaylist(res.data.playlist));
 
       toast.success(res.data.message || "Playlist created successfully!");
       navigate("/");
@@ -87,6 +90,16 @@ const CreatePlaylist = () => {
               className="w-full p-2 bg-black border border-gray-600 rounded"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label className="text-sm block">Cover Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              className="w-full p-2 bg-black border border-gray-600 rounded"
+              onChange={(e) => setCoverImage(e.target.files[0])}
             />
           </div>
         </div>
