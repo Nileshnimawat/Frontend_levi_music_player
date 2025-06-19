@@ -4,18 +4,20 @@ import { persistReducer, persistStore } from 'redux-persist';
 import musicReducer from './musicSlice';     // ✅ Import your slices
 import userReducer from './userSlice';
 import playlistReducer from './playlistSlice';
+import loadingReducer from "./loadingSlice"
 
 const rootReducer = combineReducers({
   music: musicReducer,
 
   user: userReducer,
   playlist: playlistReducer,
+  loading:loadingReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['music','user','playlist'], // ✅ Only these slices will persist
+  whitelist: ['music','user','playlist'], 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
