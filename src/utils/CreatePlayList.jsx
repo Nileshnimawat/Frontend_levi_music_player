@@ -13,16 +13,32 @@ const CreatePlaylist = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [preview, setPreview] = useState(null); 
+  const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-    const handleCoverChange = (e) => {
+  const handleClose = () => {
+    navigate(-1); // Or any logic to hide modal
+  };
+
+  const handleCoverChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error("Cover image must be less than 2MB.");
+        return;
+      }
       setCoverImage(file);
       setPreview(URL.createObjectURL(file));
     }
   };
 
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   const handleUpload = async () => {
     if (!title) {
@@ -30,6 +46,7 @@ const CreatePlaylist = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("title", title);
@@ -45,13 +62,16 @@ const CreatePlaylist = () => {
         },
       });
 
-      if (res?.data) dispatch(addPlaylist(res?.data?.playlist));
-
-      toast.success(res.data.message || "Playlist created successfully!");
-      navigate("/");
+      if (res?.data) {
+        dispatch(addPlaylist(res.data.playlist));
+        toast.success(res.data.message || "Playlist created successfully!");
+        navigate("/");
+      }
     } catch (err) {
-      toast.error("Upload failed");
+      toast.error(err?.response?.data?.message || "Upload failed");
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,9 +88,12 @@ const CreatePlaylist = () => {
           <h2 className="text-lg font-semibold">Create Playlist</h2>
           <button
             onClick={handleUpload}
-            className="bg-gray-800 px-4 py-1 rounded-full hover:bg-gray-700"
+            disabled={loading}
+            className={`bg-gray-800 px-4 py-1 rounded-full ${
+              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+            }`}
           >
-            Create
+            {loading ? "Creating..." : "Create"}
           </button>
         </div>
 
@@ -103,7 +126,6 @@ const CreatePlaylist = () => {
               accept="image/*"
               className="w-full p-2 bg-black border border-gray-600 rounded"
               onChange={handleCoverChange}
-             
             />
           </div>
 
