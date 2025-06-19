@@ -23,10 +23,6 @@ const CreatePlaylist = () => {
   const handleCoverChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        toast.error("Cover image must be less than 2MB.");
-        return;
-      }
       setCoverImage(file);
       setPreview(URL.createObjectURL(file));
     }
@@ -61,6 +57,8 @@ const CreatePlaylist = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(res);
+      
 
       if (res?.data) {
         dispatch(addPlaylist(res.data.playlist));
