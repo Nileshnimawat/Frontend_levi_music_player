@@ -19,13 +19,12 @@ const CreatePlaylist = () => {
     navigate(-1);
   };
 
-  // Update preview whenever a new file is selected
   useEffect(() => {
     if (coverImage) {
       const imageURL = URL.createObjectURL(coverImage);
       setPreview(imageURL);
 
-      // Cleanup the object URL when component unmounts or file changes
+    
       return () => URL.revokeObjectURL(imageURL);
     }
   }, [coverImage]);

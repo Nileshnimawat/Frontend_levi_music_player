@@ -102,6 +102,17 @@ const CreatePlaylist = () => {
               onChange={(e) => setCoverImage(e.target.files[0])}
             />
           </div>
+
+          {preview && (
+            <div className="mt-4">
+              <p className="text-sm mb-2">Preview:</p>
+              <img
+                src={preview}
+                alt="Cover Preview"
+                className="w-full h-48 object-cover rounded border border-gray-600"
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
