@@ -26,12 +26,12 @@ const Album = () => {
         <div
           
           onClick={() => dispatch(setCurrentMusic(item))}
-          key={item._id}
+          key={item?._id}
           className="w-full h-auto sm:w-34 sm:h-[24vh] md:w-42 md:h-[35vh] shadow-lg rounded-2xl overflow-hidden relative group p-2 card-color"
         >
           <img
             src={item?.coverImage}
-            alt={item.title}
+            alt={item?.title}
             className="w-full h-auto sm:h-30 md:w-full md:h-40 rounded-2xl"
           />
 
@@ -43,8 +43,8 @@ const Album = () => {
           </button>
 
           <div className="p-2 overflow-hidden">
-            <h3 className="text-sm md:text-sm font-bold text-white">{item.title}</h3>
-            <p className="text-sm md:text-sm text-gray-400">{item.artist}</p>
+            <h3 className="text-sm md:text-sm font-bold text-white">{item?.title}</h3>
+            <p className="text-sm md:text-sm text-gray-400">{item?.artist}</p>
           </div>
         </div>
       ))}

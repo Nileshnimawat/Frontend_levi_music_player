@@ -16,3 +16,8 @@ export const CREATE_PLAYLIST = `${BASE_URL}/api/v1/playlist/createPlaylist`;
 export const DELETE_PLAYLIST = `${BASE_URL}/api/v1/playlist/deletePlaylist`;
 export const ADD_MUSIC_TO_PLAYLIST = `${BASE_URL}/api/v1/playlist/addMusic`;
 export const REMOVE_MUSIC_FROM_PLAYLIST = `${BASE_URL}/api/v1/playlist/removeMusic`;
+
+
+//musics
+export const GET_MUSICS =`${BASE_URL}/api/v1/music`
+export const GET_PLAYLIST = `${BASE_URL}/api/v1/playlist`
