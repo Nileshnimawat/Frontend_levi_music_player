@@ -11,7 +11,7 @@ import {
   REMOVE_MUSIC_FROM_PLAYLIST,
 } from "../../utils/constants";
 import { addSongToPlaylist, removePlaylist, removeSongFromPlaylist } from "../../store/playlistSlice";
-
+import reactsvg from "../../assets/react.svg";
 const PlaylistViewer = () => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const PlaylistViewer = () => {
       <div className="flex items-end p-4 sm:p-7 gap-5 bg-gradient mb-3">
         <div className="bg-gradient-color">
           <img
-            src={playlist?.coverImage || "/liked.png"}
+            src={playlist?.coverImage || reactsvg}
             alt={playlist?.title || "Playlist"}
             className="w-20 sm:w-40 md:w-53 h-auto rounded-lg"
           />

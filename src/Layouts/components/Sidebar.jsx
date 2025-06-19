@@ -15,7 +15,7 @@ export default function Sidebar({isOpen, setIsOpen}) {
   const likedSongs = useSelector((state) => state.music.likedMusics);
   const allPlaylists = useSelector((state) => state.playlist.playlists);
 
-  const currentSong = likedSongs?.[0]; // Showing first liked song if any
+  const currentSong = likedSongs?.[0]; 
 
   const handleNavigation = () => {
     navigate("/");

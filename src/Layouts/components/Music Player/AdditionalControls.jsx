@@ -7,9 +7,7 @@ import {
   ListMusic,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleLikedSong,
-} from "../../../store/userSlice";
+import { toggleLikedSong } from "../../../store/userSlice";
 import toast from "react-hot-toast";
 import { LIKED_OR_DISLIKE } from "../../../utils/constants";
 import axios from "axios";
@@ -18,8 +16,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
   const [isMuted, setIsMuted] = useState(false);
   const dispatch = useDispatch();
 
-   const loggedInUser = useSelector((state)=>state.user.user);
-   
+  const loggedInUser = useSelector((state) => state.user.user);
 
   const toggleMute = () => {
     audioRef.current.muted = !isMuted;
@@ -28,16 +25,15 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
 
   const handleLiked = async (id) => {
     try {
-       
+      dispatch(toggleLikedSong(id));
+
       const res = await axios.put(
         `${LIKED_OR_DISLIKE}/${id}`,
         {},
         { withCredentials: true }
       );
-      dispatch(toggleLikedSong(id));
 
-      console.log(res)
-
+      console.log(res);
     } catch (error) {
       toast.error("Failed to update like");
       console.error(error);
@@ -46,13 +42,16 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
 
   return (
     <div className="flex items-center space-x-2 md:space-x-4">
-      {loggedInUser &&<Heart
-        onClick={() => handleLiked(currentSong._id)}
-        className={`w-6 h-6 cursor-pointer transition-colors duration-300 ${
-          loggedInUser?.liked_playlist?.includes(currentSong._id) ? "text-red-500 fill-red-500" : ""
-        }`}
-      />
-}
+      {loggedInUser && (
+        <Heart
+          onClick={() => handleLiked(currentSong._id)}
+          className={`w-6 h-6 cursor-pointer transition-colors duration-300 ${
+            loggedInUser?.liked_playlist?.includes(currentSong._id)
+              ? "text-red-500 fill-red-500"
+              : ""
+          }`}
+        />
+      )}
       <MessageSquare className="w-6 h-6 cursor-pointer" />
       <ListMusic className="w-6 h-6 cursor-pointer" />
       <button
@@ -70,4 +69,3 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
 };
 
 export default AdditionalControls;
-
