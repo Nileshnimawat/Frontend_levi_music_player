@@ -15,7 +15,7 @@ export const useGetAllMusics = () => {
         const res = await axios.get(GET_MUSICS,{
           withCredentials : true
         });
-         console.log("Fetched API Data:", res);
+        //  console.log("Fetched API Data:", res);
 
         if (res.data && res.data.musics) {
           const allMusics = res.data.musics;
