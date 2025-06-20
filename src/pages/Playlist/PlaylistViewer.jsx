@@ -12,6 +12,7 @@ import {
 } from "../../utils/constants";
 import { addSongToPlaylist, removePlaylist, removeSongFromPlaylist } from "../../store/playlistSlice";
 import reactsvg from "../../assets/react.svg";
+
 const PlaylistViewer = () => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
@@ -97,9 +98,9 @@ const PlaylistViewer = () => {
   };
 
   return (
-    <section className="flex-1 bg-color text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh]">
-      <div className="flex items-end p-4 sm:p-7 gap-5 bg-gradient mb-3">
-        <div className="bg-gradient-color">
+    <div className={`flex-1 bg-[#181818] text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh] `}>
+      <div className="flex  items-end p-4 sm:p-7 gap-5  bg-[#444444] rounded-xl mb-5">
+        <div >
           <img
             src={playlist?.coverImage || reactsvg}
             alt={playlist?.title || "Playlist"}
@@ -117,7 +118,7 @@ const PlaylistViewer = () => {
         </div>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <div className="flex items-center gap-4 px-8">
           <button className="bg-green-500 p-3 md:p-4 rounded-full hover:scale-105 transition">
             <FaPlay className="text-black text-xl sm:text-2xl" />
@@ -190,7 +191,7 @@ const PlaylistViewer = () => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

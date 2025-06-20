@@ -17,7 +17,7 @@ import {
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* 🔐 Auth Routes with background image */}
+
 
  
         <Route path="/login" element={<Login />} />
@@ -25,11 +25,11 @@ const AppRoutes = () => {
    
 
 
-      {/* 📤 Upload + Playlist Creation */}
+  
       <Route path="/upload" element={<MusicUploadForm />} />
       <Route path="/createPlaylist" element={<CreatePlaylist />} />
 
-      {/* 🎵 Main Content */}
+  
       <Route
         path="/"
         element={

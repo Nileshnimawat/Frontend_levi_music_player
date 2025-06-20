@@ -28,5 +28,5 @@ export const useGetAllMusics = () => {
     };
 
     handleApi();
-  }, [ allMusic ]);
+  }, []);
 };
