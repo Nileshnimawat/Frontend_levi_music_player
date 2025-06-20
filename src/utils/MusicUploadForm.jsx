@@ -20,6 +20,7 @@ const MusicUploadForm = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [coverPreview, setCoverPreview] = useState(null);
   const [duration, setDuration] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const audioRef = useRef(null); 
 
@@ -56,9 +57,11 @@ const MusicUploadForm = () => {
 
   const handleUpload = async () => {
     if (!title || !musicFile || !coverImage || !duration) {
-      toast.error("Please fill in all fields.");
+      toast.error("Please fill  all fields.");
       return;
     }
+
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -81,6 +84,8 @@ const MusicUploadForm = () => {
     } catch (err) {
       toast.error("Upload failed");
       console.error(err);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -95,11 +100,14 @@ const MusicUploadForm = () => {
         <div className="flex justify-between items-center mb-4">
           <button onClick={handleClose} className="text-xl">✖</button>
           <h2 className="text-lg font-semibold">Upload Music</h2>
-          <button
+         <button
             onClick={handleUpload}
-            className="bg-gray-800 px-4 py-1 rounded-full hover:bg-gray-700"
+            disabled={loading}
+            className={`bg-gray-800 px-4 py-1 rounded-full ${
+              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+            }`}
           >
-            Upload
+            {loading ? "Creating..." : "Create"}
           </button>
         </div>
 

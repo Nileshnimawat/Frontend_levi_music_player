@@ -17,6 +17,7 @@ import { setUser } from "../../store/userSlice";
 import { setCurrentMusic } from "../../store/musicSlice";
 
 import logo from "../../assets/rounded.jpg"
+import { persistor } from "@/store/store";
 
 export default function Navbar({ isOpen, setIsOpen }) {
   const [query, setQuery] = useState("");

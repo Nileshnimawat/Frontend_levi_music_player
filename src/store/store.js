@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage
+import storage from 'redux-persist/lib/storage'; 
 import { persistReducer, persistStore } from 'redux-persist';
-import musicReducer from './musicSlice';     // ✅ Import your slices
+import musicReducer from './musicSlice';     
 import userReducer from './userSlice';
 import playlistReducer from './playlistSlice';
 import loadingReducer from "./loadingSlice"

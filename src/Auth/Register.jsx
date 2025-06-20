@@ -33,7 +33,6 @@ const Register = () => {
       toast.error(error.response?.data?.message || "Something went wrong");
     }
 
-    // Optional: clear only on success, not failure
     setName("");
     setUsername("");
     setEmail("");

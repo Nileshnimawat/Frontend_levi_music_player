@@ -30,7 +30,10 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
       const res = await axios.put(
         `${LIKED_OR_DISLIKE}/${id}`,
         {},
-        { withCredentials: true }
+        { withCredentials: true,
+          skipLoading: true
+         }
+         
       );
 
       console.log(res);

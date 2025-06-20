@@ -7,7 +7,7 @@ const LikedPlayList = ({ headings }) => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
   const likedIds = useSelector((state)=>state.user.user.liked_playlist) || [];
-  const allMusics = useSelector((state) => state.music.allMusics); // <-- Redux state
+  const allMusics = useSelector((state) => state.music.allMusics); 
   const date = new Date();
  const likedSongs = allMusics?.filter((music)=>likedIds.includes(music._id));
   const handleClick = (index, song) => {
