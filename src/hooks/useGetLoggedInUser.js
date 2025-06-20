@@ -19,5 +19,5 @@ export const useGetLoggedInUser = ()=> {
       }
     };
     fetchUser();
-  }, [MY_PROFILE, dispatch]);
+  }, [dispatch]);
 }
