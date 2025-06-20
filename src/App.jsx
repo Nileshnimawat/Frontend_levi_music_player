@@ -14,9 +14,8 @@ function App() {
   useGetLoggedInUser();
   useGetAllPlaylists();
   const location = useLocation();
-  const dispatch = useDispatch();
 const loading = useSelector((state) => state.loading.isLoading);
-  const currentMusic = useSelector((state) => state.music.currentMusic);
+  const loggedInUser = useSelector((state)=>state.user.user);
 
     const isPublicRoute =
     location.pathname === "/" ||
