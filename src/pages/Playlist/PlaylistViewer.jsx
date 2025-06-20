@@ -130,14 +130,14 @@ const PlaylistViewer = () => {
             onClick={handleAddMusic}
             className="border px-4 py-2 rounded text-white hover:bg-white hover:text-black transition"
           >
-            ➕ Add Music
+            ➕ Add 
           </button>
           {selectedDiv && (
             <button
               onClick={handleRemoveMusic}
               className="border px-4 py-2 rounded text-white hover:bg-red-600 hover:text-white transition"
             >
-              🗑 Remove Music
+              🗑 Remove 
             </button>
           )}
         </div>

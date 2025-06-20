@@ -16,9 +16,18 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
 const loading = useSelector((state) => state.loading.isLoading);
-  const paths =  "/login" || "/register"
-  const path  = location.pathname !== paths
   const currentMusic = useSelector((state) => state.music.currentMusic);
+
+    const isPublicRoute =
+    location.pathname === "/" ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
+
+  useEffect(() => {
+    if (!loggedInUser && !isPublicRoute) {
+      navigate("/");
+    }
+  }, [loggedInUser, location.pathname, navigate]);
 
   return (
     <div className="flex flex-col h-screen scroll-smooth">

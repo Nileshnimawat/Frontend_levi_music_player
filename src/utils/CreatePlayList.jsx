@@ -17,7 +17,7 @@ const CreatePlaylist = () => {
   const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
-    navigate(-1); // Or any logic to hide modal
+    navigate(-1); 
   };
 
   const handleCoverChange = (e) => {
