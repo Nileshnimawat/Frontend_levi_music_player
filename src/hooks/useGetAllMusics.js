@@ -24,9 +24,5 @@ export const useGetAllMusics = () => {
     };
 
     handleApi();
-<<<<<<< HEAD
-  }, []);
-=======
   }, []); 
->>>>>>> 1df4303e849c34d2f6b08f6529c8e3af41670a65
 };
