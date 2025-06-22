@@ -69,13 +69,12 @@ export {
 import LikedPlayList from "@/pages/Playlist/LikedPlayList";
 import PlaylistViewer from "@/pages/Playlist/PlaylistViewer";
 import Section from "@/pages/Section/Section";
-import Album from "@/pages/Section/components/Album";
+
 
 export {
   LikedPlayList,
   PlaylistViewer,
   Section,
-  Album
 }
 
 
@@ -102,11 +101,10 @@ export{
   MainLayout
 }
 
-import CreatePlaylist from "./CreatePlayList";
-import MusicUploadForm from "./MusicUploadForm";
+
+
 import logo from "../assets/background.jpg"
 export {
-  CreatePlaylist,
-  MusicUploadForm,
+
   logo
 }

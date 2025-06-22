@@ -184,3 +184,21 @@
 .blur-3xl {
   filter: blur(100px);
 }
+
+
+/* Enable smooth touch scrolling */
+.touch-pan-y {
+  touch-action: pan-y;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+.manrope {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+ 
+  font-style: normal;
+}

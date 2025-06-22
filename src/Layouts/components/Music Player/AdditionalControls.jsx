@@ -25,7 +25,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
 
   const handleLiked = async (id) => {
     try {
-      dispatch(toggleLikedSong(id));
+     
 
       const res = await axios.put(
         `${LIKED_OR_DISLIKE}/${id}`,
@@ -35,6 +35,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
          }
          
       );
+       dispatch(toggleLikedSong(id));
 
       console.log(res);
     } catch (error) {

@@ -17,26 +17,25 @@ const SongList = ({ data }) => {
         <div
           key={item._id}
           onClick={() => handlePlay(item)}
-          className="relative group flex justify-between items-center py-3 px-3 rounded-md cursor-pointer transition overflow-hidden"
+          className="flex h-[70px] justify-between items-center py-3 px-3 rounded-md cursor-pointer transition relative group"
         >
-          {/* Glass Blur Background on Hover */}
-          <div
-            className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition duration-300"
+          {/* Blur background on hover */}
+          <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition duration-300"
             style={{
-              background: "rgba(18, 18, 18, 0.64)",
-              backdropFilter: "blur(74px)",
-              WebkitBackdropFilter: "blur(74px)",
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
               zIndex: 0,
             }}
           ></div>
 
-          {/* Main Song Content (on top of blur) */}
+          {/* Foreground content */}
           <div className="flex items-center gap-4 relative z-10">
             <span className="text-gray-400 w-4">{idx + 1}</span>
             <img
               src={item?.coverImage}
               alt=""
-              className="w-10 h-10 rounded-sm object-cover"
+              className="w-12 h-12 rounded-sm object-cover"
             />
             <div>
               <p className="font-semibold text-white">{item?.title}</p>
@@ -44,7 +43,6 @@ const SongList = ({ data }) => {
             </div>
           </div>
 
-          {/* Right Side Info */}
           <div className="flex items-center gap-4 text-gray-400 text-sm relative z-10">
             <FaHeadphones />
             <FaClock />

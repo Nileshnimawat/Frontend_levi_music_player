@@ -5,31 +5,17 @@ import {
   LikedPlayList,
   Login,
   Register,
-  MusicUploadForm,
-  CreatePlaylist,
-  PlaylistViewer
+  PlaylistViewer,
 } from "../utils/lib";
-
-
-
-
+import { Plane } from "lucide-react";
+import { AdminPage } from "@/pages/Admin/AdminPage";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-
- 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-   
-
-
-  
-      <Route path="/upload" element={<MusicUploadForm />} />
-      <Route path="/createPlaylist" element={<CreatePlaylist />} />
-
-  
       <Route
         path="/"
         element={
@@ -56,6 +42,12 @@ const AppRoutes = () => {
           </MainLayout>
         }
       />
+
+      <Route path="/admin" element={
+         
+        <AdminPage />
+
+        } />
     </Routes>
   );
 };

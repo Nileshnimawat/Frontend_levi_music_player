@@ -31,7 +31,7 @@ const loading = useSelector((state) => state.loading.isLoading);
   }, [loggedInUser, location.pathname, navigate]);
 
   return (
-    <div className="flex flex-col h-screen scroll-smooth">
+    <div className="flex flex-col h-screen scroll-smooth bg-black">
         {loading && <Loader fullScreen />}
       <AppRoutes />
       

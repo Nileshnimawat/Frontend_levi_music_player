@@ -1,42 +1,63 @@
-import { IoHomeSharp, IoSearch } from "react-icons/io5";
+import { RiHome5Fill } from "react-icons/ri";
 import { FaPlus, FaBars } from "react-icons/fa";
+import { PiPlaylistBold } from "react-icons/pi";
+import { FaUpload } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import liked from "/liked.png";
 import reactsvg from "../../assets/react.svg";
+import {
+  setCurrentPlaylist,
+  setCurrentSource,
+} from "@/store/musicSlice";
 
-export default function Sidebar({isOpen, setIsOpen}) {
+
+
+import AddPlayListDialog from "@/pages/Admin/components/AddPlayListDialog";
+
+export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const dispatch = useDispatch();
 
   const loggedInUser = useSelector((state) => state.user.user);
   const likedSongs = useSelector((state) => state.music.likedMusics);
   const allPlaylists = useSelector((state) => state.playlist.playlists);
+  const likedPlaylistIds =
+    useSelector((state) => state.user.user.liked_playlist) || [];
 
-  const currentSong = likedSongs?.[0]; 
+  const currentSong = likedSongs?.[0];
 
   const handleNavigation = () => {
     navigate("/");
   };
 
+  const handlePlaylist = (playlist) => {
+    dispatch(setCurrentPlaylist(playlist));
+    dispatch(setCurrentSource("playlist"));
+    navigate(`/playlist/${playlist._id}`);
+  };
+
+  const handleLikedPlaylist = () => {
+    dispatch(setCurrentSource("liked"));
+    navigate("/LikedPlayList");
+  };
+
   return (
-    <div className="mt-2 pr-2 rounded-2xl h-full">
-      <div
-        className={`flex relative overflow-y-auto hide-scrollbar ${
-          isOpen ? "h-full" : "h-full"
-        }`}
-      >
+    <div className=" pr-2 rounded-md h-full bg-[#212121] text-gray-400 ">
+      <div className="flex relative overflow-y-auto hide-scrollbar h-full">
         <aside
-          className={`bg-zinc-900 text-white p-5 flex flex-col transition-all duration-300 rounded-xl min-h-full ${
+          className={`text-whiteflex flex-col transition-all duration-300 rounded-xl min-h-full ${
             isOpen
-              ? "w-screen md:w-80"
-              : "hidden items-center sm:block sm:w-16 md:w-25 sm:opacity-100"
+              ? "w-screen md:w-[270px]  p-5 "
+              : "hidden items-center sm:block sm:w-16 md:w-20 p-2 pt-5 sm:opacity-100"
           }`}
         >
           {/* Toggle Button */}
-          <div className={`flex justify-start mb-3 ${!isOpen ? "lg:ml-2" : ""}`}>
+          <div
+            className={`flex justify-between mb-3 ${!isOpen ? "lg:ml-2" : ""}`}
+          >
             <button
               className="text-white p-3 focus:outline-none bg-zinc-800 rounded-full hover:bg-gray-700 transition"
               onClick={() => setIsOpen(!isOpen)}
@@ -45,112 +66,121 @@ export default function Sidebar({isOpen, setIsOpen}) {
             </button>
           </div>
 
-          {/* Navigation Links */}
           <div
-            className={`flex flex-col gap-3 border-b border-gray-600 pb-3 ${
-              !isOpen ? "items-center" : ""
+            className={`flex flex-col gap-1 border-b border-gray-600 pb-3 w-full ${
+              !isOpen ? "items-center" : "items-start"
             }`}
           >
+            {/* Home */}
             <button
               onClick={handleNavigation}
-              className="flex items-center gap-3 text-lg hover:scale-105 transition duration-200"
+              className="flex items-center gap-4 px-4 py-2 w-full hover:border-r-green-500 hover:border-r-8  transition duration-200 rounded-md text-gray-300"
             >
-              <IoHomeSharp className="text-lg md:text-2xl" />
-              {isOpen && "Home"}
+              <div className="w-6 min-w-[24px] flex justify-center">
+                <RiHome5Fill className="text-2xl hover:text-[#1DB954]" />
+              </div>
+              {isOpen && <span className="text-lg">Home</span>}
             </button>
-            {loggedInUser && (
-              <button
-                onClick={() => navigate("/upload")}
-                className="flex items-center gap-3 text-lg hover:scale-105 transition duration-200"
-              >
-                <IoSearch className="text-lg md:text-2xl" />
-                {isOpen && "Upload Music"}
-              </button>
-            )}
-          </div>
 
-          {/* Library Header */}
-          <div
-            className={`flex justify-between items-center mt-3 mb-2 ${
-              isOpen ? "flex-row" : "flex-col"
-            }`}
-          >
-            {isOpen && loggedInUser &&  (
-              <button
-                onClick={() => navigate("/createplaylist")}
-                className="hover:scale-103 transition flex gap-1 border-2 rounded-full p-2 items-center"
-              >
-                <FaPlus className="text-xl" /> 
-                <p className="text-base"> {isOpen && "Create"}</p>
-              </button>
-            )}
+            {/* Playlists */}
+            <button
+              onClick={handleNavigation}
+              className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+            >
+              <div className="w-6 min-w-[24px] flex justify-center">
+                <PiPlaylistBold className="text-2xl" />
+              </div>
+              {isOpen && <span className="text-lg">Playlists</span>}
+            </button>
           </div>
 
           {/* Liked Playlist & User Playlists */}
           <div
-            className={`flex flex-col gap-5 mt-2 h-full overflow-y-auto hide-scrollbar ${
+            className={`flex flex-col gap-1 h-full overflow-y-auto hide-scrollbar ${
               isOpen ? "block" : ""
             }`}
           >
-            {/* Liked Playlist */}
+            {/* === Library Section Header === */}
+            {isOpen && (
+              <h2 className="text-sm text-gray-400 font-semibold uppercase px-3 pt-4">
+                Your Library
+              </h2>
+            )}
+
+            {/* === Liked Playlist === */}
             {loggedInUser && (
               <button
-                onClick={() => navigate("/LikedPlayList")}
-                className="flex gap-3 w-full pl-2 hover:scale-105 duration-200 items-center"
+                onClick={handleLikedPlaylist}
+                className="flex gap-2 w-full pl-3 pr-2 py-2 hover:bg-[#1F1F1F] rounded-md transition duration-200 items-center"
               >
                 <img
-                  src={currentSong?.coverImage || liked}
-                  alt={currentSong?.title || "Liked PlayList"}
-                  className={`w-12 h-auto object-cover ${
-                    !isOpen ? "rounded-full" : "rounded-md"
+                  src={liked}
+                  alt="Liked Playlist"
+                  className={`w-10 h-10 object-cover ${
+                    !isOpen ? "rounded-xl" : "rounded-md"
                   }`}
                 />
                 {isOpen && (
-                  <div className="flex flex-col">
-                    <p className="text-sm font-semibold text-white truncate">
-                      {currentSong?.title || "Liked PlayList"}
+                  <div className="flex flex-col items-start">
+                    <p className="text-sm font-semibold  truncate">
+                      Liked Playlist
                     </p>
-                    <p className="text-xs text-gray-400 truncate">
-                      {loggedInUser?.liked_playlist?.length || 0} songs
+                    <p className="text-xs  text-gray-400 truncate">
+                      {likedPlaylistIds.length} songs
                     </p>
                   </div>
                 )}
               </button>
             )}
 
-            {/* User Playlists */}
-            {loggedInUser &&
-              allPlaylists?.length > 0 &&
-              allPlaylists.map((playlist) => (
-                <button
-                  key={playlist._id}
-                  onClick={() => navigate(`/playlist/${playlist._id}`)}
-                  className="flex gap-3 w-full pl-2 hover:scale-105 duration-200 items-center"
-                >
-                  <img
-                    src={playlist.coverImage || reactsvg}
-                    alt={playlist.title}
-                    className={`w-12 h-auto object-cover ${
-                      isOpen ? "rounded-full" : "rounded-md"
-                    }`}
-                  />
-                  {isOpen && (
-                    <div className="flex flex-col">
-                      <p className="text-sm font-semibold text-white truncate">
-                        {playlist.title}
-                      </p>
-                      <p className="text-xs text-gray-400 truncate">
-                        {playlist.musics?.length || 0} songs
-                      </p>
-                    </div>
-                  )}
-                </button>
-              ))}
+            {/* === Playlists Section Header === */}
+            {isOpen && (
+              <div className="flex items-center justify-between px-3 mt-1">
+                <h2 className="text-sm text-gray-400 font-semibold uppercase">
+                  Playlists
+                </h2>
 
-            {/* No Playlist Fallback */}
-            {loggedInUser && allPlaylists?.length === 0 && (
-              <p className="text-sm text-gray-400 px-2">No playlists found.</p>
+                <AddPlayListDialog />
+              </div>
             )}
+
+            {/* === User Playlists === */}
+            <div className="flex flex-col gap-1  px-2">
+              {loggedInUser &&
+                allPlaylists?.length > 0 &&
+                allPlaylists.map((playlist) => (
+                  <button
+                    key={playlist._id}
+                    onClick={() => handlePlaylist(playlist)}
+                    className="flex gap-3 items-start justify-start w-full hover:bg-[#1F1F1F] px-1 py-2 rounded-md transition"
+                  >
+                    <img
+                      src={playlist.coverImage || reactsvg}
+                      alt={playlist.title}
+                      className={`w-10 h-10 object-cover ${
+                        isOpen ? "rounded-xl" : "rounded-md"
+                      }`}
+                    />
+                    {isOpen && (
+                      <div className="flex flex-col items-start">
+                        <p className="text-sm font-semibold  truncate">
+                          {playlist.title}
+                        </p>
+                        <p className="text-xs text-gray-400 truncate">
+                          {playlist.musics?.length || 0} songs
+                        </p>
+                      </div>
+                    )}
+                  </button>
+                ))}
+
+              {/* === No Playlist Message === */}
+              {loggedInUser && allPlaylists?.length === 0 && (
+                <p className="text-sm text-gray-400 px-3 mt-2">
+                  No playlists found.
+                </p>
+              )}
+            </div>
           </div>
         </aside>
       </div>

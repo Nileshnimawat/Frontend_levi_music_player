@@ -18,3 +18,27 @@ input{
 .bg-gradient-color{
     background-color: #49358e;
 }
+/* Enable smooth touch scrolling */
+.touch-pan-y {
+  touch-action: pan-y;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Prevent image dragging */
+img {
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Carousel container adjustments */
+.react-multi-carousel-list {
+  overflow: visible !important;
+}
+
+.react-multi-carousel-track {
+  display: flex;
+  align-items: stretch;
+}
