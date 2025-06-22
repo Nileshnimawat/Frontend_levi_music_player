@@ -16,7 +16,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
   const [isMuted, setIsMuted] = useState(false);
   const dispatch = useDispatch();
 
-  const loggedInUser = useSelector((state) => state.user.user);
+  const loggedInUser = useSelector((state) => state?.user?.user);
 
   const toggleMute = () => {
     audioRef.current.muted = !isMuted;

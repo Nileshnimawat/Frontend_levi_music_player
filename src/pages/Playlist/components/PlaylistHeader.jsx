@@ -22,9 +22,9 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const currentMusic = useSelector((state) => state.music.currentMusic);
-  const allMusics = useSelector((state) => state.music.allMusics);
-  const allPlaylists = useSelector((state) => state.playlist.playlists);
+  const currentMusic = useSelector((state) => state?.music?.currentMusic);
+  const allMusics = useSelector((state) => state?.music?.allMusics);
+  const allPlaylists = useSelector((state) => state?.playlist?.playlists);
 
   const playlist = allPlaylists.find((p) => p._id === id);
   const playlistMusics =

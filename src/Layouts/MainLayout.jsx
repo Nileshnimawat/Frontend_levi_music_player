@@ -7,7 +7,7 @@ import {
   ResizableHandle,
 } from "@/components/ui/resizable";
 
-import Footer from "./components/Footer";
+
 
 const MainLayout = ({ children }) => {
   const [isRightOpen, setIsRightOpen] = useState(true);

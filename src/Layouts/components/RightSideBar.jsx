@@ -8,7 +8,7 @@ const RightSideBar = () => {
   const [users, setUsers] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState(new Set());
   const [userActivities, setUserActivities] = useState(new Map());
-  const loggedInUser = useSelector((state)=>state.user.user)// Replace with actual login logic
+  const loggedInUser = useSelector((state)=>state?.user?.user)// Replace with actual login logic
 
   useEffect(() => {
     // Simulated fetch - replace with real API call

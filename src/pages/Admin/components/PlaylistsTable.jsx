@@ -3,7 +3,7 @@ import { Calendar, Music, Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 
 const PlaylistsTable = () => {
-  const albums = useSelector((state) => state.playlist.playlists);
+  const albums = useSelector((state) => state?.playlist?.playlists);
 
   return (
     <div className="w-full">

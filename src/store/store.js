@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['music','user','playlist'], 
+  whitelist: ['music','user'], 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

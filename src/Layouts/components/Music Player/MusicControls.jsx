@@ -15,11 +15,11 @@ const MusicControls = ({
   setDuration,
 }) => {
   const dispatch = useDispatch();
-  const allMusics = useSelector((state) => state.music.allMusics);
-  const currentMusic = useSelector((state) => state.music.currentMusic);
-  const currentLikedPlayList = useSelector((state) => state.user.user.liked_playlist);
-  const currentPlaylist = useSelector((state) => state.music.currentPlaylist);
-  const currentSource = useSelector((state) => state.music.currentSource);
+  const allMusics = useSelector((state) => state?.music?.allMusics);
+  const currentMusic = useSelector((state) => state?.music?.currentMusic);
+  const currentLikedPlayList = useSelector((state) => state?.user?.user?.liked_playlist) || [];
+  const currentPlaylist = useSelector((state) => state?.music?.currentPlaylist) || [];
+  const currentSource = useSelector((state) => state?.music?.currentSource);
 
 
 

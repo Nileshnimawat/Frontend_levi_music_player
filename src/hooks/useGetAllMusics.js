@@ -1,7 +1,7 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setAllMusics } from '../store/musicSlice';
 import { GET_MUSICS } from '@/utils/constants';
 export const useGetAllMusics = () => {

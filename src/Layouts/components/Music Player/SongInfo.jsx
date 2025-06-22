@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 const SongInfo = () => {
-  const currentSong = useSelector((state)=>state.music.currentMusic);
+  const currentSong = useSelector((state)=>state?.music?.currentMusic);
   if(!currentSong) return;
   return (
     <div className={`flex items-center space-x-4 `}>

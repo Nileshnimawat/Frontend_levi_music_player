@@ -7,12 +7,12 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv, musics }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { id } = useParams();
-  const allMusics = useSelector((state) => state.music.allMusics);
-  const likedIds = useSelector((state) => state.user.user?.liked_playlist) || [];
-  const allPlaylists = useSelector((state) => state.playlist.playlists);
+  const allMusics = useSelector((state) => state?.music?.allMusics);
+  const likedIds = useSelector((state) => state?.user?.user?.liked_playlist) || [];
+  const allPlaylists = useSelector((state) => state?.playlist?.playlists);
   const date = new Date();
 
-  // Use passed musics if available, else calculate based on route
+
   const playlistMusics = useMemo(() => {
     if (musics) return musics;
 

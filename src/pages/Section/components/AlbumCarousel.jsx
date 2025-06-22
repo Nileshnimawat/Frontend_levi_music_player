@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { FaPlay } from "react-icons/fa";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { setCurrentMusic, setCurrentPlaylist, setCurrentSource } from "../../../store/musicSlice";
+import {  setCurrentPlaylist, setCurrentSource } from "../../../store/musicSlice";
 import { useNavigate } from "react-router-dom";
-import hardSet from "redux-persist/es/stateReconciler/hardSet";
+
 
 const AlbumCarousel = ({ data, title}) => {
   const dispatch = useDispatch();

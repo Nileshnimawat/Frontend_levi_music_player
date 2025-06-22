@@ -39,7 +39,7 @@ const AddMusicDialog = () => {
   const audioInputRef = useRef(null);
   const imageInputRef = useRef(null);
 
-  const albums = useSelector((state)=>state.playlist.playlists)
+  const albums = useSelector((state)=>state?.playlist?.playlists)
 
   const resetForm = () => {
     setTitle("");

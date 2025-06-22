@@ -7,12 +7,12 @@ import { PlaylistBody } from "./components/PlaylistBody";
 const LikedPlayList = ({ headings }) => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
-  const likedIds = useSelector((state) => state.user.user.liked_playlist) || [];
-  const allMusics = useSelector((state) => state.music.allMusics);
+  const likedIds = useSelector((state) => state?.user?.user?.liked_playlist) || [];
+  const allMusics = useSelector((state) => state?.music?.allMusics);
   const date = new Date();
   const likedSongs = useSelector((state) => {
-    const likedIds = state.user.user.liked_playlist;
-    const allSongs = state.music.allMusics;
+    const likedIds = state?.user?.user?.liked_playlist;
+    const allSongs = state?.music?.allMusics;
 
     return likedIds
       .map((id) => allSongs.find((song) => song._id === id))

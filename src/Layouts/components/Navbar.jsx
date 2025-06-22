@@ -9,7 +9,7 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const allMusics = useSelector((state) => state.music.allMusics);
+  const allMusics = useSelector((state) => state?.music?.allMusics);
 
   useEffect(() => {
     if (query.trim() === "") {

@@ -5,7 +5,7 @@ import MusicControls from "./Music Player/MusicControls";
 
 const MusicPlayer = () => {
   const audioRef = useRef(null);
-  const currentMusic = useSelector((state) => state.music.currentMusic);
+  const currentMusic = useSelector((state) => state?.music?.currentMusic);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);

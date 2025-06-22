@@ -1,4 +1,4 @@
-import { RiHome5Fill } from "react-icons/ri";
+import { RiAdminFill, RiHome5Fill, RiRegisteredFill } from "react-icons/ri";
 import { FaPlus, FaBars } from "react-icons/fa";
 import { PiPlaylistBold } from "react-icons/pi";
 import { FaUpload } from "react-icons/fa";
@@ -7,25 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import liked from "/liked.png";
 import reactsvg from "../../assets/react.svg";
-import {
-  setCurrentPlaylist,
-  setCurrentSource,
-} from "@/store/musicSlice";
-
-
+import { setCurrentPlaylist, setCurrentSource } from "@/store/musicSlice";
 
 import AddPlayListDialog from "@/pages/Admin/components/AddPlayListDialog";
+import { handleLogout } from "@/hooks/useAuth";
+import { LogIn, LogOut } from "lucide-react";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const loggedInUser = useSelector((state) => state.user.user);
-  const likedSongs = useSelector((state) => state.music.likedMusics);
-  const allPlaylists = useSelector((state) => state.playlist.playlists);
+  const loggedInUser = useSelector((state) => state?.user?.user);
+  const likedSongs = useSelector((state) => state?.music?.likedMusics);
+  const allPlaylists = useSelector((state) => state?.playlist?.playlists);
   const likedPlaylistIds =
-    useSelector((state) => state.user.user.liked_playlist) || [];
+    useSelector((state) => state?.user?.user?.liked_playlist) || [];
 
   const currentSong = likedSongs?.[0];
 
@@ -92,6 +89,57 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               </div>
               {isOpen && <span className="text-lg">Playlists</span>}
             </button>
+
+            {isOpen && loggedInUser && (
+              <button
+                onClick={()=>handleLogout(dispatch)}
+                className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+              >
+                <div className="w-6 min-w-[24px] flex justify-center">
+                  <LogOut className="text-2xl" />
+                </div>
+                {isOpen && <span className="text-lg">Logout</span>}
+              </button>
+            )}
+
+               {isOpen && !loggedInUser && (
+              <button
+                onClick={()=>navigate("/login")}
+                className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+              >
+                <div className="w-6 min-w-[24px] flex justify-center">
+                  <LogIn className="text-2xl" />
+                </div>
+                {isOpen && <span className="text-lg">Login</span>}
+              </button>
+            )}
+
+               {isOpen && !loggedInUser && (
+              <button
+                onClick={()=>navigate("/register")}
+                className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+              >
+                <div className="w-6 min-w-[24px] flex justify-center">
+                  <RiRegisteredFill className="text-2xl" />
+                </div>
+                {isOpen && <span className="text-lg">Register</span>}
+              </button>
+            )}
+
+            
+               {isOpen && loggedInUser && (
+              <button
+                onClick={()=>navigate("/admin")}
+                className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+              >
+                <div className="w-6 min-w-[24px] flex justify-center">
+                  <RiAdminFill className="text-2xl" />
+                </div>
+                {isOpen && <span className="text-lg">Admin</span>}
+              </button>
+            )}
+
+
           </div>
 
           {/* Liked Playlist & User Playlists */}
@@ -134,7 +182,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             )}
 
             {/* === Playlists Section Header === */}
-            {isOpen && (
+            {isOpen && loggedInUser && (
               <div className="flex items-center justify-between px-3 mt-1">
                 <h2 className="text-sm text-gray-400 font-semibold uppercase">
                   Playlists
