@@ -18,12 +18,12 @@ const artistsData = [
     banner: taylorSwift,
     listeners: 101234567,
   },
-  // Add more artist objects here...
+  
 ];
 
 const Section = () => {
-  const allMusics = useSelector((state) => state.music.allMusics);
-  const filteredMusics = useSelector((state) => state.music.filteredMusics);
+  const allMusics = useSelector((state) => state?.music?.allMusics);
+  const filteredMusics = useSelector((state) => state?.music?.filteredMusics);
   const data = filteredMusics?.length > 0 ? filteredMusics : allMusics;
 
   const myPlaylists = useSelector((state)=>state.playlist.playlists);

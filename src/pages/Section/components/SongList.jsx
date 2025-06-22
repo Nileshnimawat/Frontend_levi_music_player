@@ -4,6 +4,11 @@ import { FaHeadphones, FaClock } from "react-icons/fa";
 import { setCurrentMusic, setCurrentSource } from "@/store/musicSlice";
 
 const SongList = ({ data }) => {
+
+    if (!data) {
+    return <div>No songs available.</div>; 
+  }
+
   const dispatch = useDispatch();
 
   const handlePlay = (item) => {
@@ -13,7 +18,7 @@ const SongList = ({ data }) => {
 
   return (
     <div className="mt-2 px-4 ">
-      {data.map((item, idx) => (
+      {data?.map((item, idx) => (
         <div
           key={item._id}
           onClick={() => handlePlay(item)}

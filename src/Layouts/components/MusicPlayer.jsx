@@ -1,60 +1,60 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { FaHeadphones, FaClock } from "react-icons/fa";
-import { setCurrentMusic, setCurrentSource } from "@/store/musicSlice";
+import { useState, useRef, useEffect, useSelector } from "../../utils/lib";
+import SongInfo from "./Music Player/SongInfo";
+import AdditionalControls from "./Music Player/AdditionalControls";
+import MusicControls from "./Music Player/MusicControls";
 
-const SongList = ({ data }) => {
-  const dispatch = useDispatch();
+const MusicPlayer = () => {
+  const audioRef = useRef(null);
+  const currentMusic = useSelector((state) => state.music.currentMusic);
 
-  const handlePlay = (item) => {
-    dispatch(setCurrentSource("all"));
-    dispatch(setCurrentMusic(item));
-  };
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isRepeat, setIsRepeat] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    }
+  }, [isPlaying, currentMusic]);
+
+  if (!currentMusic) return null;
 
   return (
-    <div className="mt-2 px-4 ">
-      {data.map((item, idx) => (
-        <div
-          key={item._id}
-          onClick={() => handlePlay(item)}
-          className="relative group flex justify-between items-center py-3 px-3 rounded-md cursor-pointer transition overflow-hidden"
-        >
-          {/* Glass Blur Background on Hover */}
-          <div
-            className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition duration-300"
-            style={{
-              background: "rgba(18, 18, 18, 0.64)",
-              backdropFilter: "blur(74px)",
-              WebkitBackdropFilter: "blur(74px)",
-              zIndex: 0,
-            }}
-          ></div>
+    <div
+      style={{
+        background: "rgba(18, 18, 18, 0.64)", 
+        backdropFilter: "blur(74px)", 
+        WebkitBackdropFilter: "blur(74px)", 
+      }}
+      className="fixed bottom-0 left-0 right-0 bg-[#121212]  h-[100px]  text-white px-4 py-3 flex flex-col sm:flex-row items-center justify-between shadow-2xl border-t border-gray-800 z-50 gap-y-3 sm:gap-y-0"
+    >
+      {/* Song Info */}
+      <div className="w-full sm:w-1/3 flex justify-start">
+        <SongInfo currentSong={currentMusic} />
+      </div>
 
-          {/* Main Song Content (on top of blur) */}
-          <div className="flex items-center gap-4 relative z-10">
-            <span className="text-gray-400 w-4">{idx + 1}</span>
-            <img
-              src={item?.coverImage}
-              alt=""
-              className="w-10 h-10 rounded-sm object-cover"
-            />
-            <div>
-              <p className="font-semibold text-white">{item?.title}</p>
-              <p className="text-xs text-gray-400">{item?.artist}</p>
-            </div>
-          </div>
+      {/* Music Controls */}
+      <div className="w-full sm:w-1/3 flex flex-col items-center">
+        <MusicControls
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          isRepeat={isRepeat}
+          setIsRepeat={setIsRepeat}
+          audioRef={audioRef}
+          currentTime={currentTime}
+          duration={duration}
+          setCurrentTime={setCurrentTime}
+          setDuration={setDuration}
+        />
+      </div>
 
-          {/* Right Side Info */}
-          <div className="flex items-center gap-4 text-gray-400 text-sm relative z-10">
-            <FaHeadphones />
-            <FaClock />
-            <span>{item.duration || "3:45"}</span>
-          </div>
-        </div>
-      ))}
+      {/* Additional Controls */}
+      <div className="w-full sm:w-1/3 flex justify-end">
+        <AdditionalControls audioRef={audioRef} currentSong={currentMusic} />
+      </div>
     </div>
   );
 };
 
-export default SongList;
-
+export default MusicPlayer;
