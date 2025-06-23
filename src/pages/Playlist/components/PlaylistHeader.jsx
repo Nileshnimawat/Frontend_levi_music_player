@@ -110,24 +110,28 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
           transition: "background 0.6s ease-in-out",
           backdropFilter: "blur(40px)",
           WebkitBackdropFilter: "blur(40px)",
+          
         }}
-        className="flex items-end p-4 sm:p-7 gap-5 rounded-lg pb-5 z-10"
+        className="flex lg:min-h-[310px] h-auto items-centre  p-4 sm:p-7 gap-5 rounded-lg pb-5 z-10"
       >
-        <div className="p-1 rounded-lg">
+        <div className="flex items-center gap-5">
+        <div className="p-1 rounded-lg ">
           <img
             src={playlist?.coverImage || reactLogo}
             alt={playlist?.title}
-            className="w-20 sm:w-40 md:w-53 h-auto rounded-lg"
+            className="w-20 sm:w-40 md:w-53 md:min-h-[180px] h-auto rounded-lg"
           />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 ">
           <p className="uppercase text-l font-semibold">Playlist</p>
-          <h1 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">
+          <h1 className="text-xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">
             {playlist?.title}
           </h1>
           <p className="mt-2 text-gray-300">{playlist?.musics?.length} musics</p>
         </div>
       </div>
+        </div>
+
 
       {/* Controls */}
       <div className="flex justify-between items-center px-6 py-6 bg-[#121212]">

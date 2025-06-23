@@ -1,4 +1,9 @@
-import { RiAdminFill, RiHome5Fill, RiRegisteredFill } from "react-icons/ri";
+import {
+  RiAdminFill,
+  RiHome5Fill,
+  RiPlayListAddFill,
+  RiRegisteredFill,
+} from "react-icons/ri";
 import { FaPlus, FaBars } from "react-icons/fa";
 import { PiPlaylistBold } from "react-icons/pi";
 import { FaUpload } from "react-icons/fa";
@@ -12,7 +17,6 @@ import { setCurrentPlaylist, setCurrentSource } from "@/store/musicSlice";
 import AddPlayListDialog from "@/pages/Admin/components/AddPlayListDialog";
 import { handleLogout } from "@/hooks/useAuth";
 import { LogIn, LogOut } from "lucide-react";
-
 
 export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
@@ -42,17 +46,24 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
   return (
     <div className=" pr-2 rounded-md h-full bg-[#212121] text-gray-400 ">
-      <div className="flex relative overflow-y-auto hide-scrollbar h-full">
+      <div
+        style={{
+          background: "rgba(18, 18, 18, 0.30)",
+          backdropFilter: "blur(74px)",
+          WebkitBackdropFilter: "blur(74px)",
+        }}
+        className="flex relative overflow-y-auto hide-scrollbar h-full"
+      >
         <aside
           className={`text-whiteflex flex-col transition-all duration-300 rounded-xl min-h-full ${
             isOpen
-              ? "w-screen md:w-[270px]  p-5 "
-              : " items-center sm:block w-10 sm:w-15 md:w-20 p-1 pt-5 sm:opacity-100"
+              ? "w-screen sm:w-[270px]  p-5 "
+              : " items-center  sm:block w-10 sm:w-15 md:w-20 lg:w-24 p-1 pt-5 "
           }`}
         >
           {/* Toggle Button */}
           <div
-            className={`flex justify-between mb-3 ${!isOpen ? "lg:ml-2" : ""}`}
+            className={`flex  mb-3 ${!isOpen ? " items-center justify-center " : ""}`}
           >
             <button
               className="text-white p-3 focus:outline-none bg-zinc-800 rounded-full hover:bg-gray-700 transition"
@@ -72,7 +83,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               onClick={handleNavigation}
               className="flex items-center gap-4 px-4 py-2 w-full hover:border-r-green-500 hover:border-r-8  transition duration-200 rounded-md text-gray-300"
             >
-              <div className="w-6 min-w-[24px] flex justify-center">
+              <div className="w-6  flex justify-center">
                 <RiHome5Fill className="text-2xl hover:text-[#1DB954]" />
               </div>
               {isOpen && <span className="text-lg">Home</span>}
@@ -91,7 +102,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
             {isOpen && loggedInUser && (
               <button
-                onClick={()=>handleLogout(dispatch)}
+                onClick={() => handleLogout(dispatch)}
                 className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
               >
                 <div className="w-6 min-w-[24px] flex justify-center">
@@ -101,9 +112,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               </button>
             )}
 
-               {isOpen && !loggedInUser && (
+            {isOpen && !loggedInUser && (
               <button
-                onClick={()=>navigate("/login")}
+                onClick={() => navigate("/login")}
                 className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
               >
                 <div className="w-6 min-w-[24px] flex justify-center">
@@ -113,9 +124,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               </button>
             )}
 
-               {isOpen && !loggedInUser && (
+            {isOpen && !loggedInUser && (
               <button
-                onClick={()=>navigate("/register")}
+                onClick={() => navigate("/register")}
                 className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
               >
                 <div className="w-6 min-w-[24px] flex justify-center">
@@ -125,10 +136,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               </button>
             )}
 
-            
-               {isOpen && loggedInUser && (
+            {isOpen && loggedInUser && (
               <button
-                onClick={()=>navigate("/admin")}
+                onClick={() => navigate("/admin")}
                 className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
               >
                 <div className="w-6 min-w-[24px] flex justify-center">
@@ -137,8 +147,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 {isOpen && <span className="text-lg">Admin</span>}
               </button>
             )}
-
-
           </div>
 
           {/* Liked Playlist & User Playlists */}
@@ -204,7 +212,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                     <img
                       src={playlist.coverImage || reactsvg}
                       alt={playlist.title}
-                      className={`w-10 h-10 object-cover ${
+                      className={` w-8 h-8 md:w-10 md:h-10 object-cover ${
                         isOpen ? "rounded-xl" : "rounded-md"
                       }`}
                     />

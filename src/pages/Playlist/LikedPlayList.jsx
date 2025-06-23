@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaPlay, FaList } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic, setCurrentSource } from "../../store/musicSlice";
-
+import Footer from "@/Layouts/components/Footer";
 const LikedPlayList = ({ headings }) => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const LikedPlayList = ({ headings }) => {
   };
 
   return (
-    <section className="flex-1 bg-color text-white rounded-xl mt-2 overflow-y-auto custom-scrollbar h-[75vh]">
+    <section className="flex-1 bg-color text-white rounded-xl mt-2 hide-scrollbar ">
       {/* Header Section */}
       <div className="flex items-end p-4 sm:p-7 gap-5 bg-gradient mb-3">
         <div className="bg-gradient-color">
@@ -50,7 +50,7 @@ const LikedPlayList = ({ headings }) => {
       </div>
 
       {/* PlaylistBody (only liked songs) */}
-      <div className="pt-6 px-2 lg:px-5 max-h-[50vh] overflow-y-auto bg-[#121212] custom-scrollbar">
+      <div className="py-6 px-2  bg-[#121212] hide-scrollbar">
         <div className="grid grid-cols-4 gap-4 items-center text-gray-300 text-sm border-b border-gray-600 pb-2 mb-2 px-5">
           <span>Title</span>
           <span>Album</span>
@@ -58,7 +58,7 @@ const LikedPlayList = ({ headings }) => {
           <span className="text-right">Duration</span>
         </div>
 
-        {likedSongs?.map((music) => (
+        {likedSongs?.map((music, idx) => (
           <div
             key={music._id}
             onClick={() => handleClick(music._id, music)}
@@ -67,6 +67,7 @@ const LikedPlayList = ({ headings }) => {
             }`}
           >
             <div className="flex items-start lg:items-center gap-5 flex-col lg:flex-row">
+              <p>{idx+1}</p>
               <img
                 src={music?.coverImage}
                 alt={music?.title}
@@ -91,6 +92,7 @@ const LikedPlayList = ({ headings }) => {
           </div>
         ))}
       </div>
+      <Footer/>
     </section>
   );
 };

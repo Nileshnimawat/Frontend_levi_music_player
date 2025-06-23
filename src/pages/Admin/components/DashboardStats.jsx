@@ -1,19 +1,23 @@
 import { Library, ListMusic, PlayCircle, Users2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useSelector } from "react-redux";
 
 const DashboardStats = () => {
+
+  const MusicsLength = useSelector((state)=>state?.music?.allMusics?.length);
+  const PlaylistsLength = useSelector((state)=>state?.playlist?.globalPlaylists?.length);
   const statsData = [
     {
       icon: ListMusic,
       label: "Total Songs",
-      value: 26,
+      value: MusicsLength || 0,
       bgColor: "bg-emerald-500/10",
       iconColor: "text-emerald-500",
     },
     {
       icon: Library,
-      label: "Total Albums",
-      value: 14,
+      label: "Total Playlists",
+      value: PlaylistsLength,
       bgColor: "bg-violet-500/10",
       iconColor: "text-violet-500",
     },

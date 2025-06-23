@@ -40,7 +40,14 @@ const RightSideBar = () => {
   // if (loggedInUser) return <LoginPrompt />;
 
   return (
-    <div className='h-full bg-[#212121]  flex flex-col '>
+    <div 
+    style={{
+        background: "rgba(18, 18, 18, 0.30)", 
+        backdropFilter: "blur(74px)", 
+        WebkitBackdropFilter: "blur(74px)", 
+      }}
+    
+    className='min-h-screen h-full bg-[#212121]  flex flex-col '>
       <div className='p-4 flex justify-between items-center border-b border-zinc-800'>
         <div className='flex items-center gap-2'>
           <Users className='size-5 shrink-0 bg-white' />
