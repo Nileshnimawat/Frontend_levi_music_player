@@ -27,7 +27,7 @@ const MusicControls = ({
     const getSongsByIds = (ids) =>
       ids.map((id) => allMusics.find((song) => song._id === id)).filter(Boolean);
 
-    if (currentSource === "playlist") return getSongsByIds(currentPlaylist?.musics || []);
+    if (currentSource === "playlist") return currentPlaylist?.musics || [];
     if (currentSource === "liked") return getSongsByIds(currentLikedPlayList || []);
     return allMusics || [];
   };
