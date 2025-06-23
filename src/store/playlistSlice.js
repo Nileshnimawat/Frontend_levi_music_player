@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  playlists: [], // array of playlists
+  playlists: [], 
+  globalPlaylists:[]
 };
 
 const playlistSlice = createSlice({
@@ -10,6 +11,9 @@ const playlistSlice = createSlice({
   reducers: {
     setPlaylists: (state, action) => {
       state.playlists = action.payload;
+    },
+    setGlobalPlaylists: (state, action) => {
+      state.globalPlaylists = action.payload;
     },
     addPlaylist: (state, action) => {
       state.playlists.push(action.payload);
@@ -38,6 +42,7 @@ const playlistSlice = createSlice({
 
 export const {
   setPlaylists,
+  setGlobalPlaylists,
   addPlaylist,
   removePlaylist,
   addSongToPlaylist,

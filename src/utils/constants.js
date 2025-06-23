@@ -21,3 +21,7 @@ export const REMOVE_MUSIC_FROM_PLAYLIST = `${BASE_URL}/api/v1/playlist/removeMus
 //musics
 export const GET_MUSICS =`${BASE_URL}/api/v1/music`
 export const GET_PLAYLIST = `${BASE_URL}/api/v1/playlist`
+export const GET_GLOBAL_PLAYLIST = `${BASE_URL}/api/v1/playlist/global`
+
+export const GET_USER_LIKED_MUSICS = `${BASE_URL}/api/v1/user/likedMusics`
+export const GET_PLAYLIST_BY_ID = `${BASE_URL}/api/v1/playlist`

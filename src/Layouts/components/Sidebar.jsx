@@ -13,6 +13,7 @@ import AddPlayListDialog from "@/pages/Admin/components/AddPlayListDialog";
 import { handleLogout } from "@/hooks/useAuth";
 import { LogIn, LogOut } from "lucide-react";
 
+
 export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,8 +32,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   };
 
   const handlePlaylist = (playlist) => {
-    dispatch(setCurrentPlaylist(playlist));
-    dispatch(setCurrentSource("playlist"));
     navigate(`/playlist/${playlist._id}`);
   };
 

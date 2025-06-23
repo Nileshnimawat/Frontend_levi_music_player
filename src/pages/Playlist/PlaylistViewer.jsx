@@ -1,11 +1,14 @@
 import React, {useState } from "react";
 import { PlaylistHeader } from "./components/PlaylistHeader";
 import { PlaylistBody } from "./components/PlaylistBody";
+import { useGetPlaylistByID } from "@/hooks/useGetPlaylistByID";
+import { useParams } from "react-router-dom";
 
 const PlaylistViewer = () => {
 
-
+  const {id} = useParams();
   const [selectedDiv, setSelectedDiv] = useState(null);
+  const playlist = useGetPlaylistByID(id);
 
 
 

@@ -71,7 +71,7 @@ const AlbumCarousel = ({ data, title}) => {
             <div className="mt-2 px-1">
               <h3 className="text-sm font-semibold line-clamp-1">{item?.title}</h3>
               <p className="text-xs text-gray-400 line-clamp-1">
-                {item?.year || '2023'} - {item?.albumType || 'Album'}
+                {item?.releasedYear || '2023'} - {item?.category || 'Album'}
               </p>
             </div>
           </div>

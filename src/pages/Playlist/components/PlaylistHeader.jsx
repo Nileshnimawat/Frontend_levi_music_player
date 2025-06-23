@@ -23,14 +23,8 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
   const { id } = useParams();
 
   const currentMusic = useSelector((state) => state?.music?.currentMusic);
-  const allMusics = useSelector((state) => state?.music?.allMusics);
-  const allPlaylists = useSelector((state) => state?.playlist?.playlists);
 
-  const playlist = allPlaylists.find((p) => p._id === id);
-  const playlistMusics =
-    playlist?.musics
-      ?.map((musicId) => allMusics.find((m) => m._id === musicId))
-      .filter(Boolean) || [];
+  const playlist = useSelector((state)=>state?.music?.currentPlaylist);
 
   const [gradientBackground, setGradientBackground] = useState("#181818");
 
@@ -130,7 +124,7 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
           <h1 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">
             {playlist?.title}
           </h1>
-          <p className="mt-2 text-gray-300">{playlistMusics.length} musics</p>
+          <p className="mt-2 text-gray-300">{playlist?.musics?.length} musics</p>
         </div>
       </div>
 

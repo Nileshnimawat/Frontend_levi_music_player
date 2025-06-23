@@ -9,11 +9,15 @@ import Loader from "./components/layout/Loader";
 
 
 import "./App.css";
+import { useGetGlobalPlaylists } from "./hooks/useGetGlobalPlayLists";
 
 function App() {
   useGetAllMusics();
   useGetLoggedInUser();
   useGetAllPlaylists();
+  useGetGlobalPlaylists();
+
+  
   const location = useLocation();
   const navigate = useNavigate();
 const loading = useSelector((state) => state.loading.isLoading);

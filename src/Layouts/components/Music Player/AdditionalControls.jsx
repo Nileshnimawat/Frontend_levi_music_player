@@ -25,8 +25,6 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
 
   const handleLiked = async (id) => {
     try {
-     
-
       const res = await axios.put(
         `${LIKED_OR_DISLIKE}/${id}`,
         {},
@@ -35,6 +33,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
          }
          
       );
+      toast.success(res.data.message)
        dispatch(toggleLikedSong(id));
 
       console.log(res);

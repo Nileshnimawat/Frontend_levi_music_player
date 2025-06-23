@@ -26,13 +26,14 @@ const Section = () => {
   const data = filteredMusics?.length > 0 ? filteredMusics : allMusics;
   const loggedInUser = useSelector((state) => state?.user?.user);
   const myPlaylists = useSelector((state) => state.playlist.playlists);
+  const GlobalPlaylists = useSelector((state)=>state?.playlist?.globalPlaylists);
 
   return (
     <section className="flex-1 bg-[#121212] text-white sm:p-2  rounded-xl h-[90%] max-h-screen w-full relative overflow-y-auto overflow-x-hidden hide-scrollbar scroll-smooth">
       {/* Artist Header Section Carousel */}
       <ArtistCarousel artists={artistsData} />
 
-      <AlbumCarousel data={data} title={"Popular Releases"} />
+      <AlbumCarousel data={GlobalPlaylists} title={"Popular Artists"} />
 
       {loggedInUser && (
         <AlbumCarousel data={myPlaylists} title={"My PlayLists"} />

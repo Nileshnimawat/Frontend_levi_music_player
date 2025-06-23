@@ -1,32 +1,17 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic } from "../../../store/musicSlice";
-import { useLocation, useParams } from "react-router-dom";
 
-export const PlaylistBody = ({ setSelectedDiv, selectedDiv, musics }) => {
+
+export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { id } = useParams();
-  const allMusics = useSelector((state) => state?.music?.allMusics);
-  const likedIds = useSelector((state) => state?.user?.user?.liked_playlist) || [];
-  const allPlaylists = useSelector((state) => state?.playlist?.playlists);
+
+
   const date = new Date();
 
-
-  const playlistMusics = useMemo(() => {
-    if (musics) return musics;
-
-    if (location.pathname === "/LikedPlayList") {
-      return likedIds
-        .map((id) => allMusics.find((m) => m._id === id))
-        .filter(Boolean);
-    } else {
-      const playlist = allPlaylists?.find((p) => p._id === id);
-      return playlist?.musics
-        ?.map((id) => allMusics.find((m) => m._id === id))
-        .filter(Boolean) || [];
-    }
-  }, [musics, location.pathname, likedIds, allMusics, allPlaylists, id]);
+  let playlist = useSelector((state) => state?.music?.currentPlaylist);
+    const playlistMusics = playlist?.musics;
+  
 
   const handleClick = (musicId, music) => {
     dispatch(setCurrentMusic(music));
@@ -63,9 +48,15 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv, musics }) => {
               <span className="text-xs text-gray-400">{music?.artist}</span>
             </div>
           </div>
-          <span className="text-xs sm:text-sm md:text-base">{music?.album || "Album"}</span>
-          <span className="text-xs sm:text-sm md:text-base">{music?.likedDate || date.toLocaleDateString()}</span>
-          <span className="text-right text-xs sm:text-sm md:text-base">{music?.duration || "3:29"}</span>
+          <span className="text-xs sm:text-sm md:text-base">
+            {music?.album || "Album"}
+          </span>
+          <span className="text-xs sm:text-sm md:text-base">
+            {music?.likedDate || date.toLocaleDateString()}
+          </span>
+          <span className="text-right text-xs sm:text-sm md:text-base">
+            {music?.duration || "3:29"}
+          </span>
         </div>
       ))}
     </div>

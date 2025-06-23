@@ -14,19 +14,25 @@ import axios from "axios";
 import { Plus, Upload } from "lucide-react";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CREATE_PLAYLIST } from "@/utils/constants";
+import { useDispatch } from "react-redux";
+import { addPlaylist } from "@/store/playlistSlice";
 
 const AddPlayListDialog = ({ name, isGlobal }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
+  const [region, setRegion] = useState("");
+  const [category, setCategory] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
 
   const location = useLocation();
-  const path = location.pathname === "/admin"
+  const isAdmin = location.pathname === "/admin";
 
   const handleImageSelect = (e) => {
     const file = e.target.files?.[0];
@@ -59,7 +65,11 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
       formData.append("title", title);
       formData.append("artist", artist);
       formData.append("coverImage", imageFile);
-     formData.append("isGlobal", isGlobal ? "true" : "false");
+      formData.append("isGlobal", isGlobal ? "true" : "false");
+      if(isAdmin){
+         formData.append("region", region);
+      formData.append("category", category);
+      }
 
       const res = await axios.post(CREATE_PLAYLIST, formData, {
         headers: {
@@ -68,20 +78,19 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
       });
       console.log(res);
 
-      if (res?.data) {
-        if(!path) dispatch(addPlaylist(res.data.playlist));
+      if (res) {
+        if (!isAdmin) dispatch(addPlaylist(res.data.playlist));
         toast.success(res.data.message || "Playlist created successfully!");
-        navigate("/");
       }
-
-      resetForm();
-      setDialogOpen(false);
     } catch (error) {
       toast.error(
         "Failed to create playlist: " +
           (error.response?.data?.message || error.message)
       );
     }
+
+    resetForm();
+    setDialogOpen(false);
   };
 
   return (
@@ -141,14 +150,38 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
 
           {/* Description Input */}
           <div className="space-y-2 text-white">
-            <label className="text-sm font-medium">artist</label>
+            <label className="text-sm font-medium">Artist</label>
             <Input
               value={artist}
               onChange={(e) => setArtist(e.target.value)}
               className="bg-zinc-800 border-zinc-700"
-              placeholder="Enter description (optional)"
+              placeholder="Enter artist (optional)"
             />
           </div>
+
+          { isAdmin && 
+            <div className="space-y-2 text-white">
+              <label className="text-sm font-medium">Region</label>
+              <Input
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                className="bg-zinc-800 border-zinc-700"
+                placeholder="Enter region (optional)"
+              />
+            </div>
+          }
+
+          { isAdmin && 
+            <div className="space-y-2 text-white">
+              <label className="text-sm font-medium">Category</label>
+              <Input
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="bg-zinc-800 border-zinc-700"
+                placeholder="Enter category (optional)"
+              />
+            </div>
+          }
         </div>
 
         <DialogFooter>

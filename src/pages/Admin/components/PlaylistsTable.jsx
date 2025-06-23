@@ -1,9 +1,33 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Music, Trash2 } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_PLAYLIST } from "@/utils/constants";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { removePlaylist } from "@/store/playlistSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const PlaylistsTable = () => {
-  const albums = useSelector((state) => state?.playlist?.playlists);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const albums = useSelector((state) => state?.playlist?.globalPlaylists);
+
+  const  handleDeletePlaylist = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this playlist?"))
+      return;
+
+    try {
+      const res = await axios.delete(`${DELETE_PLAYLIST}/${id}`, {
+        withCredentials: true,
+      });
+      dispatch(removePlaylist(id));
+      toast.success(res.data.message || "Playlist deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete playlist");
+      console.error(error);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -57,7 +81,7 @@ const PlaylistsTable = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => deleteAlbum(album._id)}
+                onClick={() => handleDeletePlaylist(album._id)}
                 className="text-red-400 hover:text-red-300 hover:bg-red-400/10"
               >
                 <Trash2 className="h-4 w-4" />
