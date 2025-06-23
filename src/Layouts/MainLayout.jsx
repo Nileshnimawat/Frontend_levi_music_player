@@ -25,8 +25,10 @@ const MainLayout = ({ children }) => {
         direction="horizontal"
         className="flex-grow  "
       >
+      
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-
+       
+          
         <ResizablePanel minSize={65} maxSize={100} className="mx-3">
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
           <div className="h-full overflow-y-auto hide-scrollbar p-4">
@@ -36,7 +38,7 @@ const MainLayout = ({ children }) => {
 
         <ResizableHandle className={"bg-gray-500 w-1"} />
 
-        <ResizablePanel defaultSize={25} maxSize={30}>
+        <ResizablePanel defaultSize={20} maxSize={20}>
           <RightSideBar isOpen={isRightOpen} setIsOpen={setIsRightOpen} />
         </ResizablePanel>
       </ResizablePanelGroup>

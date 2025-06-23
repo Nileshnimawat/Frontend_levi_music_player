@@ -47,7 +47,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           className={`text-whiteflex flex-col transition-all duration-300 rounded-xl min-h-full ${
             isOpen
               ? "w-screen md:w-[270px]  p-5 "
-              : "hidden items-center sm:block sm:w-16 md:w-20 p-2 pt-5 sm:opacity-100"
+              : " items-center sm:block w-10 sm:w-15 md:w-20 p-1 pt-5 sm:opacity-100"
           }`}
         >
           {/* Toggle Button */}
