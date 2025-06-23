@@ -58,7 +58,7 @@ const LikedPlayList = ({ headings }) => {
           <span className="text-right">Duration</span>
         </div>
 
-        {likedSongs.map((music) => (
+        {likedSongs?.map((music) => (
           <div
             key={music._id}
             onClick={() => handleClick(music._id, music)}

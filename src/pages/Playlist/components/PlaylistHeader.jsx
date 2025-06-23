@@ -23,6 +23,7 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
   const { id } = useParams();
 
   const currentMusic = useSelector((state) => state?.music?.currentMusic);
+  const loggedInUser = useSelector((state)=>state?.user?.user);
 
   const playlist = useSelector((state)=>state?.music?.currentPlaylist);
 
@@ -60,7 +61,7 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
       return toast.error("No music selected!");
     }
 
-    if (playlist.musics.includes(currentMusic._id)) {
+    if (playlist?.musics?.includes(currentMusic?._id)) {
       return toast.error("Music already exists in playlist!");
     }
 
@@ -138,14 +139,15 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
             <FaList className="text-2xl" />
           </button>
 
-          <button
+         {loggedInUser && <button
             onClick={handleAddMusic}
             className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
           >
             ➕ Add
           </button>
+         }
 
-          {selectedDiv && (
+          {loggedInUser && selectedDiv && (
             <button
               onClick={handleRemoveMusic}
               className="border px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
