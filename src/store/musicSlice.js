@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentMusic: null,
   allMusics: [],
-  filteredMusics: [],
   currentPlaylist: [],
   currentSource: null,
+  Musics:[]
 };
 
 const musicSlice = createSlice({
@@ -18,9 +18,10 @@ const musicSlice = createSlice({
     setAllMusics: (state, action) => {
       state.allMusics = action.payload;
     },
-    setFilteredMusics: (state, action) => {
-      state.filteredMusics = action.payload;
+    setMusics:(state, action)=>{
+      state.musics = action.payload;
     },
+
 
     clearCurrentMusic: (state) => {
       state.currentMusic = null;
@@ -38,10 +39,8 @@ const musicSlice = createSlice({
 export const {
   setCurrentMusic,
   setAllMusics,
-
   clearCurrentMusic,
-
-  setFilteredMusics,
+  setMusics,
   setCurrentPlaylist,
   setCurrentSource,
 } = musicSlice.actions;

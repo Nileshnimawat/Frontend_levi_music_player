@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { FaHeadphones, FaClock } from "react-icons/fa";
-import { setCurrentMusic, setCurrentSource } from "@/store/musicSlice";
+import {
+  setAllMusics,
+  setCurrentMusic,
+  setCurrentSource,
+  setMusics,
+} from "@/store/musicSlice";
 
 const SongList = ({ data }) => {
-
-    if (!data) {
-    return <div>No songs available.</div>; 
+  if (!data) {
+    return <div>No songs available.</div>;
   }
-
   const dispatch = useDispatch();
+  useEffect(() => {
+   dispatch(setMusics(data))
+   
+  }, [data])
+  
+  dispatch(setMusics(data));
 
   const handlePlay = (item) => {
     dispatch(setCurrentSource("all"));
@@ -25,7 +34,8 @@ const SongList = ({ data }) => {
           className="flex h-[70px] justify-between items-center py-3 px-3 rounded-md cursor-pointer transition relative group"
         >
           {/* Blur background on hover */}
-          <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition duration-300"
+          <div
+            className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition duration-300"
             style={{
               background: "rgba(255, 255, 255, 0.05)",
               backdropFilter: "blur(8px)",
@@ -60,4 +70,3 @@ const SongList = ({ data }) => {
 };
 
 export default SongList;
-

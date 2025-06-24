@@ -24,39 +24,27 @@ const artistsData = [
 const Section = () => {
   const results = useHomePagePlaylists();
 
-
   const data = useSelector((state) => state?.music?.allMusics);
 
   const loggedInUser = useSelector((state) => state?.user?.user);
   const myPlaylists = useSelector((state) => state?.playlist?.playlists);
 
-
   return (
     <section className="flex-1 bg-[#121212] text-white sm:p-2  rounded-xl h-[90%] max-h-screen w-full relative overflow-y-auto overflow-x-hidden hide-scrollbar scroll-smooth">
       {/* Artist Header Section Carousel */}
-      { results?.mostPlayed && 
-        <ArtistCarousel data={results.mostPlayed} />}
+      {results?.mostPlayed && <ArtistCarousel data={results.mostPlayed} />}
 
-        {results?.artists && (
+      {results?.artists && (
         <AlbumCarousel data={results.artists} title={"Popular Artists"} />
       )}
 
-     
-
-        {results?.global && (
-        <AlbumCarousel data={results.global} title={"Popular Global"} />
-      )}
-      
-      
-     
-       {results?.indian && (
+      {results?.indian && (
         <AlbumCarousel data={results.indian} title={"Popular Indian"} />
       )}
 
-        {results?.topRated && (
+      {results?.topRated && (
         <AlbumCarousel data={results.topRated} title={"Top Rated"} />
       )}
-
 
       {loggedInUser && (
         <AlbumCarousel data={myPlaylists} title={"My PlayLists"} />
@@ -66,7 +54,7 @@ const Section = () => {
         Popular Songs
       </h1>
 
-      <SongList data={data} />
+      {results?.musics && <SongList data={results?.musics} />}
 
       <Footer />
     </section>

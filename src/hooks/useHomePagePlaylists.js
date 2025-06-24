@@ -9,6 +9,7 @@ const useHomePagePlaylists = () => {
     indian: [],
     global: [],
     mostPlayed: [],
+    musics : []
   });
 
   useEffect(() => {
