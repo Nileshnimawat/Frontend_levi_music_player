@@ -16,7 +16,9 @@ const useSearch = (query, delay = 400) => {
 
       setLoading(true);
       try {
-        const res = await axios.get(`${SEARCH_QUERY}?q=${encodeURIComponent(query)}`);
+        const res = await axios.get(`${SEARCH_QUERY}?q=${encodeURIComponent(query)}`,{
+          withCredentials: true,
+        });
         setResults(res.data.results);
       } catch (err) {
         console.error("Search failed:", err);
