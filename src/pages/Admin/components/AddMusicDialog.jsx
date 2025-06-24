@@ -202,25 +202,6 @@ const AddMusicDialog = () => {
             <label className="text-sm font-medium">Duration : {duration}</label>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-white">Album (Optional)</label>
-            <Select
-              value={albumId}
-              onValueChange={(value) => setAlbumId(value)}
-            >
-              <SelectTrigger className="bg-zinc-800 border-zinc-700 text-white">
-                <SelectValue placeholder="Select album" className={"text-white"} />
-              </SelectTrigger>
-              <SelectContent className="bg-zinc-800 border-zinc-700">
-                <SelectItem value=" text-white">No Album (Single)</SelectItem>
-                {albums.map((album) => (
-                  <SelectItem key={album._id} value={album._id} className={"text-white"}>
-                    {album.title}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
         </div>
 
         <DialogFooter>

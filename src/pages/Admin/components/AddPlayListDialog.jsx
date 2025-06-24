@@ -18,8 +18,22 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CREATE_PLAYLIST } from "@/utils/constants";
 import { useDispatch } from "react-redux";
 import { addPlaylist } from "@/store/playlistSlice";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { SelectValue } from "@/components/ui/select";
 
 const AddPlayListDialog = ({ name, isGlobal }) => {
+  const albums = [
+    { title: "artist" },
+    { title: "mostPlayed" },
+    { title: "popular" },
+    { title: "topRated" },
+  ];
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDialogOpen, setDialogOpen] = useState(false);
@@ -66,9 +80,9 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
       formData.append("artist", artist);
       formData.append("coverImage", imageFile);
       formData.append("isGlobal", isGlobal ? "true" : "false");
-      if(isAdmin){
-         formData.append("region", region);
-      formData.append("category", category);
+      if (isAdmin) {
+        formData.append("region", region);
+        formData.append("category", category);
       }
 
       const res = await axios.post(CREATE_PLAYLIST, formData, {
@@ -159,7 +173,7 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
             />
           </div>
 
-          { isAdmin && 
+          {isAdmin && (
             <div className="space-y-2 text-white">
               <label className="text-sm font-medium">Region</label>
               <Input
@@ -169,9 +183,9 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
                 placeholder="Enter region (optional)"
               />
             </div>
-          }
+          )}
 
-          { isAdmin && 
+          {isAdmin && (
             <div className="space-y-2 text-white">
               <label className="text-sm font-medium">Category</label>
               <Input
@@ -181,7 +195,33 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
                 placeholder="Enter category (optional)"
               />
             </div>
-          }
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-white">
+          Select Categories (Optional)
+          </label>
+          <Select onValueChange={(value) => setCategory(value)}>
+            <SelectTrigger className="bg-zinc-800 border-zinc-700 text-white">
+              <SelectValue
+                placeholder="Select "
+                className={"text-white"}
+              />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-800 border-zinc-700">
+              <SelectItem value=" text-white"></SelectItem>
+              {albums.map((album, idx) => (
+                <SelectItem
+                  key={idx}
+                  value={album.title}
+                  className="text-white"
+                >
+                  {album.title}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <DialogFooter>

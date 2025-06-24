@@ -44,36 +44,36 @@ const PlaylistsTable = () => {
       {/* Table Body */}
       <div className="divide-y divide-zinc-700">
         {albums.map((album) => (
-          <div key={album._id} className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-zinc-800/50">
+          <div key={album?._id} className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-zinc-800/50">
             {/* Album Cover */}
             <div className="col-span-1 flex items-center">
               <img 
-                src={album.coverImage} 
-                alt={album.title} 
+                src={album?.coverImage} 
+                alt={album?.title} 
                 className="w-10 h-10 rounded object-cover" 
               />
             </div>
 
             {/* Title */}
             <div className="col-span-3 flex items-center font-medium text-white">
-              {album.title}
+              {album?.title}
             </div>
 
             {/* Artist */}
             <div className="col-span-2 flex items-center text-white">
-              {album.artist}
+              {album?.artist}
             </div>
 
             {/* Release Year */}
             <div className="col-span-2 flex items-center text-zinc-400">
               <Calendar className="h-4 w-4 mr-2" />
-              {album.releaseYear}
+              {album?.releaseYear}
             </div>
 
             {/* Songs Count */}
             <div className="col-span-2 flex items-center text-zinc-400">
               <Music className="h-4 w-4 mr-2" />
-              {album.musics.length} songs
+              {album?.musics?.length} songs
             </div>
 
             {/* Actions */}
