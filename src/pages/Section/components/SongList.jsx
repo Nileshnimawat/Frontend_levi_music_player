@@ -26,7 +26,7 @@ const SongList = ({ data }) => {
   };
 
   return (
-    <div className="mt-2 px-4 ">
+    <div className="mt-2 sm:px-4 ">
       {data?.map((item, idx) => (
         <div
           key={item._id}

@@ -10,12 +10,12 @@ import { Navbar, useGetAllMusics } from "@/utils/lib";
 export const AdminPage = () => {
     useGetAllMusics();
   return (
-    <div className=" bg-[#121212] text-zinc-100 p-8">
+    <div className=" bg-[#121212] text-zinc-100 p-1 sm:p-8">
      
       <Header />
       <DashboardStats />
 
-      <div className="mt-8 bg-[#1E1E1E] rounded-lg p-6">
+      <div className="mt-8 bg-[#1E1E1E] rounded-lg sm:p-6">
         <Tabs defaultValue="musics" className="space-y-6">
           <TabsList className="bg-[#2A2A2A] p-1">
             <TabsTrigger

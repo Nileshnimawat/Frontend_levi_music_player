@@ -12,12 +12,20 @@ import {
 const MainLayout = ({ children }) => {
   const [isRightOpen, setIsRightOpen] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
+  
 
   useEffect(() => {
-    if (window.innerWidth <= 400) {
+    if (window.innerWidth <= 800) {
       setIsOpen(false);
+      setIsRightOpen(false);
     }
+
+     if(window.innerWidth <= 1500){
+      setIsRightOpen(false)
+     }
   }, []);
+
+  
 
   return (
     <div className="flex flex-col h-screen hide-scrollbar bg-[#121212]">
@@ -31,18 +39,18 @@ const MainLayout = ({ children }) => {
           
         <ResizablePanel minSize={65} maxSize={100} >
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <div className="h-full overflow-y-auto hide-scrollbar px-4 ">
+          <div className="h-full overflow-y-auto hide-scrollbar px-2 sm:px-4 ">
             {children}
           </div>
         </ResizablePanel>
 
-        <ResizableHandle className={"bg-gray-500 w-1"} />
+        {window.innerWidth > 600 && <ResizableHandle className={"bg-gray-500 w-1 "} />}
 
-        <ResizablePanel defaultSize={20} maxSize={20}>
-          <div className="bg-[#212121]">
+       {window.innerWidth > 600 && <ResizablePanel defaultSize={20} maxSize={20}>
+          <div className="bg-[#212121] ">
           <RightSideBar isOpen={isRightOpen} setIsOpen={setIsRightOpen} className="" />
          </div>
-        </ResizablePanel>
+        </ResizablePanel>}
       </ResizablePanelGroup>
 
       <MusicPlayer />

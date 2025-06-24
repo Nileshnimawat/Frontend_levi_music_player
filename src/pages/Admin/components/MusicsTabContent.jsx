@@ -4,8 +4,8 @@ import MusicsTable from "./MusicsTable";
 
 const MusicsTabContent = () => {
   return (
-    <div className="rounded-lg">
-      <div className="p-6">
+    <div className=" rounded-lg">
+      <div className="p-2 sm:p-6">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -17,7 +17,7 @@ const MusicsTabContent = () => {
           <AddMusicDialog />
         </div>
       </div>
-      <div className="px-6 pb-6">
+      <div className="sm:px-6 pb-6">
         <MusicsTable />
       </div>
     </div>

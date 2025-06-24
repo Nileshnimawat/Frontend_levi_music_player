@@ -27,7 +27,7 @@ const MusicPlayer = () => {
         backdropFilter: "blur(74px)", 
         WebkitBackdropFilter: "blur(74px)", 
       }}
-      className="fixed bottom-0 left-0 right-0 bg-[#121212]  h-[100px]  text-white px-4 py-3 flex flex-col sm:flex-row items-center justify-between shadow-2xl border-t border-gray-800 z-50 gap-y-3 sm:gap-y-0"
+      className="fixed bottom-0 sm:bottom-0 left-0 right-0 bg-[#121212]  h-[145px] sm:h-[100px] text-white px-4 py-3 flex flex-col sm:flex-row items-center justify-between shadow-2xl border-t border-gray-800 z-50 "
     >
       {/* Song Info */}
       <div className="w-full sm:w-1/3 flex justify-start">
@@ -35,7 +35,7 @@ const MusicPlayer = () => {
       </div>
 
       {/* Music Controls */}
-      <div className="w-full sm:w-1/3 flex flex-col items-center">
+      <div className="w-full sm:w-1/3 flex flex-col items-center ">
         <MusicControls
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
@@ -50,7 +50,7 @@ const MusicPlayer = () => {
       </div>
 
       {/* Additional Controls */}
-      <div className="w-full sm:w-1/3 flex justify-end">
+      <div className="w-full sm:w-1/3 flex sm:justify-end ">
         <AdditionalControls audioRef={audioRef} currentSong={currentMusic} />
       </div>
     </div>

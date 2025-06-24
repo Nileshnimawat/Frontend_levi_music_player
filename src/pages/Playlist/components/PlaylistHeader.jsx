@@ -8,9 +8,7 @@ import {
   REMOVE_MUSIC_FROM_PLAYLIST,
 } from "../../../utils/constants";
 import {
-  addSongToPlaylist,
   removePlaylist,
-  removeSongFromPlaylist,
 } from "../../../store/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,9 +21,9 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
   const { id } = useParams();
 
   const currentMusic = useSelector((state) => state?.music?.currentMusic);
-  const loggedInUser = useSelector((state)=>state?.user?.user);
+  const loggedInUser = useSelector((state) => state?.user?.user);
 
-  const playlist = useSelector((state)=>state?.music?.currentPlaylist);
+  const playlist = useSelector((state) => state?.music?.currentPlaylist);
 
   const [gradientBackground, setGradientBackground] = useState("#181818");
 
@@ -71,10 +69,11 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
         { musicId: currentMusic._id },
         { withCredentials: true }
       );
-      dispatch(
-        addSongToPlaylist({ playlistId: playlist._id, music: currentMusic })
-      );
-      toast.success(res.data.message || "Music added to playlist!");
+      console.log(res)
+      if (res) {
+      
+        toast.success(res?.data?.message || "Music added to playlist!");
+      }
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to add music");
     }
@@ -89,15 +88,13 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
         { musicId: selectedDiv },
         { withCredentials: true }
       );
-      dispatch(
-        removeSongFromPlaylist({
-          playlistId: playlist._id,
-          musicId: selectedDiv,
-        })
-      );
-      setSelectedDiv(null);
-      toast.success(res.data.message || "Music removed from playlist");
+      if (res?.data) {
+          setSelectedDiv(null);
+      toast.success(res?.data?.message || "Music removed from playlist");
+      }
+    
     } catch (error) {
+      console.log(error)
       toast.error(error.response?.data?.message || "Failed to remove music");
     }
   };
@@ -110,28 +107,28 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
           transition: "background 0.6s ease-in-out",
           backdropFilter: "blur(40px)",
           WebkitBackdropFilter: "blur(40px)",
-          
         }}
-        className="flex lg:min-h-[310px] h-auto items-centre  p-4 sm:p-7 gap-5 rounded-lg pb-5 z-10"
+        className="flex min-h-[200px] lg:min-h-[310px] h-auto items-centre  p-4 sm:p-7 gap-5 rounded-lg pb-5 z-10"
       >
         <div className="flex items-center gap-5">
-        <div className="p-1 rounded-lg ">
-          <img
-            src={playlist?.coverImage || reactLogo}
-            alt={playlist?.title}
-            className="w-20 sm:w-40 md:w-53 md:min-h-[180px] h-auto rounded-lg"
-          />
-        </div>
-        <div className="flex-1 ">
-          <p className="uppercase text-l font-semibold">Playlist</p>
-          <h1 className="text-xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold">
-            {playlist?.title}
-          </h1>
-          <p className="mt-2 text-gray-300">{playlist?.musics?.length} musics</p>
+          <div className="p-1 rounded-lg ">
+            <img
+              src={playlist?.coverImage || reactLogo}
+              alt={playlist?.title}
+              className="w-40 min-h-[100px]  md:w-53 md:min-h-[180px] h-auto rounded-lg"
+            />
+          </div>
+          <div className="flex-1 ">
+            <p className="uppercase text-l font-semibold">Playlist</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold">
+              {playlist?.title}
+            </h1>
+            <p className="mt-2 text-gray-300">
+              {playlist?.musics?.length} musics
+            </p>
+          </div>
         </div>
       </div>
-        </div>
-
 
       {/* Controls */}
       <div className="flex justify-between items-center px-6 py-6 bg-[#121212]">
@@ -143,13 +140,14 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
             <FaList className="text-2xl" />
           </button>
 
-         {loggedInUser && <button
-            onClick={handleAddMusic}
-            className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
-          >
-            ➕ Add
-          </button>
-         }
+          {loggedInUser && (
+            <button
+              onClick={handleAddMusic}
+              className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
+            >
+              ➕ Add
+            </button>
+          )}
 
           {loggedInUser && selectedDiv && (
             <button

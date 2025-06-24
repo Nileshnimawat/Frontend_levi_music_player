@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  playlists: [], 
-  globalPlaylists:[]
+  playlists: [],
+  globalPlaylists: [],
 };
 
 const playlistSlice = createSlice({
@@ -23,20 +23,7 @@ const playlistSlice = createSlice({
       state.playlists = state.playlists.filter((p) => p._id !== playlistId);
     },
 
-    addSongToPlaylist: (state, action) => {
-      const { playlistId, music } = action.payload;
-      const playlist = state.playlists.find((p) => p._id === playlistId);
-      if (playlist && !playlist.musics.find((s) => s._id === music._id)) {
-        playlist.musics.push(music._id);
-      }
-    },
-    removeSongFromPlaylist: (state, action) => {
-      const { playlistId, musicId } = action.payload;
-      const playlist = state.playlists.find((p) => p._id === playlistId);
-      if (playlist) {
-        playlist.musics = playlist.musics.filter((music) => music !== musicId);
-      }
-    },
+
   },
 });
 
@@ -45,8 +32,6 @@ export const {
   setGlobalPlaylists,
   addPlaylist,
   removePlaylist,
-  addSongToPlaylist,
-  removeSongFromPlaylist,
 } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

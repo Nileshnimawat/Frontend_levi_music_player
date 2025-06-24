@@ -49,7 +49,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
   };
 
   return (
-    <div className="flex items-center space-x-3 md:space-x-4">
+    <div className="flex items-center space-x-3 md:space-x-4 ">
       {loggedInUser && (
         <Heart
           onClick={() => handleLiked(currentSong._id)}

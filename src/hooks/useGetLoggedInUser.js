@@ -11,7 +11,7 @@ export const useGetLoggedInUser = ()=> {
     const fetchUser = async () => {
       try {
         const res = await axios.get(MY_PROFILE,{ withCredentials: true });
-        if (res.data && res.data.user) {
+        if (res?.data && res?.data?.user) {
           dispatch(setUser(res.data.user));
         }
       } catch (err) {

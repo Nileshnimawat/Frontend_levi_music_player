@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic } from "../../../store/musicSlice";
-
+import SongList from "@/pages/Section/components/SongList";
 
 
 export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
@@ -39,25 +39,24 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
             selectedDiv === music._id ? "bg-[#5a5a5a]" : ""
           }`}
         >
-          
-          <div className="flex items-start lg:items-center gap-5 flex-col lg:flex-row">
-            <p>{idx+1}</p>
+          <div className="flex items-start lg:items-center gap-2 sm:gap-5 flex-col lg:flex-row">
+            <p className="hidden sm:block">{idx+1}</p>
             <img
               src={music?.coverImage}
               alt={music?.title}
-              className="w-7 h-7 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded"
+              className="w-12 h-12 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded"
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
               <span className="font-semibold text-xs sm:text-sm md:text-base text-white">
                 {music?.title}
               </span>
-              <span className="text-xs text-gray-400">{music?.artist}</span>
+              <span className="hidden sm:block text-xs text-gray-400">{music?.artist}</span>
             </div>
           </div>
           <span className="text-xs sm:text-sm md:text-base">
             {music?.album || "Album"}
           </span>
-          <span className="text-xs hidden sm:block sm:text-sm md:text-base">
+          <span className="text-xs sm:block sm:text-sm md:text-base">
             {music?.likedDate || date.toLocaleDateString()}
           </span>
           <span className="text-right text-xs sm:text-sm md:text-base">
@@ -65,6 +64,9 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
           </span>
         </div>
       ))}
+      {/* <SongList data={playlistMusics}/> */}
+      
+
     </div>
   );
 };

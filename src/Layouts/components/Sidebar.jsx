@@ -45,7 +45,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   };
 
   return (
-    <div className=" pr-2 rounded-md h-full bg-[#212121] text-gray-400 ">
+    <div className=" sm:pr-2 rounded-md h-full bg-[#212121] text-gray-400 ">
       <div
         style={{
           background: "rgba(18, 18, 18, 0.30)",
@@ -57,13 +57,13 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         <aside
           className={`text-whiteflex flex-col transition-all duration-300 rounded-xl min-h-full ${
             isOpen
-              ? "w-screen sm:w-[270px]  p-5 "
-              : " items-center  sm:block w-10 sm:w-15 md:w-20 lg:w-24 p-1 pt-5 "
+              ? "w-[220px] sm:w-[270px]  p-5 "
+              : " items-center  sm:block hidden   lg:w-24 p-1 pt-5 "
           }`}
         >
           {/* Toggle Button */}
-          <div
-            className={`flex  mb-3 ${!isOpen ? " items-center justify-center " : ""}`}
+         { <div
+            className={` mb-3 hidden sm:flex ${!isOpen ? " items-center justify-center " : ""}`}
           >
             <button
               className="text-white p-3 focus:outline-none bg-zinc-800 rounded-full hover:bg-gray-700 transition"
@@ -72,6 +72,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               <FaBars className="text-md md:text-2xl" />
             </button>
           </div>
+
+         }
 
           <div
             className={`flex flex-col gap-1 border-b border-gray-600 pb-3 w-full ${

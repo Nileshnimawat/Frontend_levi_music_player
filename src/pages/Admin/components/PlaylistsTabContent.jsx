@@ -6,7 +6,7 @@ const PlaylistsTabContent = () => {
   return (
     <div className="  text-white rounded-lg">
       {/* Header Section */}
-      <div className="p-6 pb-4">
+      <div className="p-2 sm:p-6 pb-4">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="flex items-center gap-2 text-xl font-semibold">
@@ -20,7 +20,7 @@ const PlaylistsTabContent = () => {
       </div>
 
       {/* Content Section */}
-      <div className="px-6 pb-6">
+      <div className="sm:px-6 pb-6">
         <PlaylistsTable />
       </div>
     </div>
