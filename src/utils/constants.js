@@ -25,3 +25,9 @@ export const GET_GLOBAL_PLAYLIST = `${BASE_URL}/api/v1/playlist/global`
 
 export const GET_USER_LIKED_MUSICS = `${BASE_URL}/api/v1/user/likedMusics`
 export const GET_PLAYLIST_BY_ID = `${BASE_URL}/api/v1/playlist`
+
+export const GET_STATS = `${BASE_URL}/api/v1/user/stats`
+
+export const SEARCH_QUERY =  `${BASE_URL}/api/v1/user/search`
+
+export const HOME_PAGE_PLAYLIST = `${BASE_URL}/api/v1/playlist/homePlaylists`

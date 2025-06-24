@@ -9,6 +9,7 @@ import {
 } from "../utils/lib";
 import { Plane } from "lucide-react";
 import { AdminPage } from "@/pages/Admin/AdminPage";
+import SearchResults from "@/Layouts/components/SearchResults";
 
 const AppRoutes = () => {
   return (
@@ -39,6 +40,16 @@ const AppRoutes = () => {
         element={
           <MainLayout>
             <PlaylistViewer />
+          </MainLayout>
+        }
+      />
+
+      
+      <Route
+        path="/search"
+        element={
+          <MainLayout>
+            <SearchResults />
           </MainLayout>
         }
       />

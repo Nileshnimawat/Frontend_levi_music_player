@@ -5,10 +5,12 @@ import DashboardStats from "./components/DashboardStats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MusicsTabContent from "./components/MusicsTabContent";
 import PlaylistsTabContent from "./components/PlaylistsTabContent";
+import { Navbar } from "@/utils/lib";
 
 export const AdminPage = () => {
   return (
     <div className=" bg-[#121212] text-zinc-100 p-8">
+     
       <Header />
       <DashboardStats />
 

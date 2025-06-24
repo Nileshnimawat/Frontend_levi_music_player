@@ -18,7 +18,7 @@ const MusicsTable = () => {
 
       {/* Table Body */}
       <div className="divide-y divide-zinc-700">
-        {songs.slice(0, 10).map((song) => (
+        {songs.map((song) => (
           <div key={song._id} className="grid grid-cols-12 gap-4 px-4 py-3 hover:bg-zinc-800/50">
             {/* Cover Image */}
             <div className="col-span-1 flex items-center">

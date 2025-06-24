@@ -6,6 +6,7 @@ import SongList from "./components/SongList";
 import { useSelector } from "react-redux";
 import edSheeran from "@/assets/ed-sheeran-background.jpg";
 import taylorSwift from "@/assets/taylor-swift.jpg";
+import useHomePagePlaylists from "@/hooks/useHomePagePlaylists";
 
 const artistsData = [
   {
@@ -21,19 +22,41 @@ const artistsData = [
 ];
 
 const Section = () => {
-  const allMusics = useSelector((state) => state?.music?.allMusics);
-  const filteredMusics = useSelector((state) => state?.music?.filteredMusics);
-  const data = filteredMusics?.length > 0 ? filteredMusics : allMusics;
+  const results = useHomePagePlaylists();
+
+
+  const data = useSelector((state) => state?.music?.allMusics);
+
   const loggedInUser = useSelector((state) => state?.user?.user);
-  const myPlaylists = useSelector((state) => state.playlist.playlists);
-  const GlobalPlaylists = useSelector((state)=>state?.playlist?.globalPlaylists);
+  const myPlaylists = useSelector((state) => state?.playlist?.playlists);
+
 
   return (
     <section className="flex-1 bg-[#121212] text-white sm:p-2  rounded-xl h-[90%] max-h-screen w-full relative overflow-y-auto overflow-x-hidden hide-scrollbar scroll-smooth">
       {/* Artist Header Section Carousel */}
-      <ArtistCarousel artists={artistsData} />
+      { results?.mostPlayed && 
+        <ArtistCarousel data={results.mostPlayed} />}
 
-      <AlbumCarousel data={GlobalPlaylists} title={"Popular Artists"} />
+        {results?.artists && (
+        <AlbumCarousel data={results.artists} title={"Popular Artists"} />
+      )}
+
+     
+
+        {results?.global && (
+        <AlbumCarousel data={results.global} title={"Popular Global"} />
+      )}
+      
+      
+     
+       {results?.indian && (
+        <AlbumCarousel data={results.indian} title={"Popular Indian"} />
+      )}
+
+        {results?.topRated && (
+        <AlbumCarousel data={results.topRated} title={"Top Rated"} />
+      )}
+
 
       {loggedInUser && (
         <AlbumCarousel data={myPlaylists} title={"My PlayLists"} />
@@ -42,6 +65,7 @@ const Section = () => {
       <h1 className="text-lg sm:text-xl md:text-2xl font-semibold mt-6 pl-2">
         Popular Songs
       </h1>
+
       <SongList data={data} />
 
       <Footer />

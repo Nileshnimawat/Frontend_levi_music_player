@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const AlbumCarousel = ({ data, title}) => {
+  if(!data ) return;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -55,7 +57,7 @@ const AlbumCarousel = ({ data, title}) => {
         containerClass="carousel-container"
         itemClass="carousel-item"
       >
-        {data.map((item) => (
+        {data?.map((item) => (
           <div
             key={item?._id}
             className="relative group cursor-pointer p-2"

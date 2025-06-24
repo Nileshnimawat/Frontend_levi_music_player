@@ -1,6 +1,6 @@
 import { Music } from "lucide-react";
 import AddMusicDialog from "./AddMusicDialog";
-import SongsTable from "./MusicsTable";
+import MusicsTable from "./MusicsTable";
 
 const MusicsTabContent = () => {
   return (
@@ -18,7 +18,7 @@ const MusicsTabContent = () => {
         </div>
       </div>
       <div className="px-6 pb-6">
-        <SongsTable />
+        <MusicsTable />
       </div>
     </div>
   );
