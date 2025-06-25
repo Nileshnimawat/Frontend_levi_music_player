@@ -28,7 +28,6 @@ export const useSocket = () => {
         coverImage: user.coverImage,
       });
 
-      // Only self receives these:
       newSocket.on("users_online", (onlineUserIds) => {
         dispatch(setOnlineUsers(onlineUserIds));
       });
@@ -43,7 +42,6 @@ export const useSocket = () => {
         dispatch(setUsersInfo(usersMap));
       });
 
-      // Broadcasted to all
       newSocket.on("activity_updated", ({ userId, activity }) => {
         dispatch(updateActivity({ userId, activity }));
       });
