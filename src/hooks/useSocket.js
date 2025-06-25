@@ -18,6 +18,7 @@ export const useSocket = () => {
     if (user && !socket) {
       const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
+         transports: ["websocket"],
       });
 
       dispatch(setSocket(newSocket));
