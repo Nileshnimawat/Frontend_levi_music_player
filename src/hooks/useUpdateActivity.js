@@ -9,7 +9,7 @@ export const useUpdateActivity = () => {
   useEffect(() => {
     if (!socket || !user) return;
 
-    if (currentMusic && currentMusic.title && currentMusic.artist) {
+    if (currentMusic && currentMusic?.title && currentMusic?.artist) {
       socket.emit("update_current_music", {
         userId: user._id,
         music: {

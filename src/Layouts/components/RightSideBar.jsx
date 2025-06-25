@@ -11,28 +11,38 @@ const RightSideBar = () => {
   const onlineUsers = useSelector((state) => state?.socket?.onlineUsers || []);
   const activities = useSelector((state) => state?.socket?.activities || {});
 
-  if (!loggedInUser) return <LoginPrompt/>;
+  if (!loggedInUser) return <LoginPrompt />;
+
+  if (!onlineUsers) {
+    return (
+      <div className="text-center text-sm text-zinc-400 py-6">
+        No friends are currently online 😔
+      </div>
+    );
+  }
 
   return (
     <div
-      className='min-h-screen h-full flex flex-col'
+      className="min-h-screen h-full flex flex-col"
       style={{
         background: "rgba(18, 18, 18, 0.30)",
         backdropFilter: "blur(74px)",
         WebkitBackdropFilter: "blur(74px)",
       }}
     >
-      <div className='p-4 flex justify-between items-center border-b border-zinc-800'>
-        <div className='flex items-center gap-2'>
-          <Users className='size-5 shrink-0 text-white' />
-          <h2 className='font-semibold text-white'>What they're listening to</h2>
+      <div className="p-4 flex justify-between items-center border-b border-zinc-800">
+        <div className="flex items-center gap-2">
+          <Users className="size-5 shrink-0 text-white" />
+          <h2 className="font-semibold text-white">
+            What they're listening to
+          </h2>
         </div>
       </div>
 
-      <ScrollArea className='flex-1'>
-        <div className='p-4 space-y-4'>
+      <ScrollArea className="flex-1">
+        <div className="p-4 space-y-4">
           {Object.entries(usersInfo).map(([userId, user]) => {
-            console.log(userId , user);
+            console.log(userId, user);
             if (userId === loggedInUser._id) return null;
 
             const activity = activities[userId];
@@ -42,36 +52,42 @@ const RightSideBar = () => {
             return (
               <div
                 key={userId}
-                className='cursor-pointer hover:bg-zinc-800/50 p-3 rounded-md transition-colors group'
+                className="cursor-pointer hover:bg-zinc-800/50 p-3 rounded-md transition-colors group"
               >
-                <div className='flex items-start gap-3'>
-                  <div className='relative'>
-                    <Avatar className='size-10 border border-zinc-800'>
-                      <AvatarImage src={user.coverImage} alt={user.name} />
-                      <AvatarFallback>{user.name[0]}</AvatarFallback>
+                <div className="flex items-start gap-3">
+                  <div className="relative">
+                    <Avatar className="size-10 border border-zinc-800">
+                      <AvatarImage src={user?.coverImage} alt={user?.name} />
+                      <AvatarFallback>{user?.name[0]}</AvatarFallback>
                     </Avatar>
                     <div
                       className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-zinc-900 
                       ${isOnline ? "bg-green-500" : "bg-zinc-500"}`}
-                      aria-hidden='true'
+                      aria-hidden="true"
                     />
                   </div>
 
-                  <div className='flex-1 min-w-0'>
-                    <div className='flex items-center gap-2'>
-                      <span className='font-medium text-sm text-white'>{user.name}</span>
-                      {isPlaying && <Music className='size-3.5 text-emerald-400 shrink-0' />}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-sm text-white">
+                        {user.name}
+                      </span>
+                      {isPlaying && (
+                        <Music className="size-3.5 text-emerald-400 shrink-0" />
+                      )}
                     </div>
 
                     {isPlaying ? (
-                      <div className='mt-1'>
-                        <div className='text-sm text-white font-medium truncate'>
-                          {activity.title}
+                      <div className="mt-1">
+                        <div className="text-sm text-white font-medium truncate">
+                          {activity?.title}
                         </div>
-                        <div className='text-xs text-zinc-400 truncate'>{activity.artist}</div>
+                        <div className="text-xs text-zinc-400 truncate">
+                          {activity?.artist}
+                        </div>
                       </div>
                     ) : (
-                      <div className='mt-1 text-xs text-zinc-400'>Idle</div>
+                      <div className="mt-1 text-xs text-zinc-400">Idle</div>
                     )}
                   </div>
                 </div>
@@ -86,18 +102,19 @@ const RightSideBar = () => {
 
 export default RightSideBar;
 
-
 const LoginPrompt = () => (
-  <div className='h-full min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-4'>
-    <div className='relative'>
-      <div className='absolute -inset-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur-lg opacity-75 animate-pulse' />
-      <div className='relative bg-zinc-900 rounded-full p-4'>
-        <HeadphonesIcon className='size-8 text-emerald-400' />
+  <div className="h-full min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-4">
+    <div className="relative">
+      <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur-lg opacity-75 animate-pulse" />
+      <div className="relative bg-zinc-900 rounded-full p-4">
+        <HeadphonesIcon className="size-8 text-emerald-400" />
       </div>
     </div>
-    <div className='space-y-2 max-w-[250px]'>
-      <h3 className='text-lg font-semibold text-white'>See What Friends Are Playing</h3>
-      <p className='text-sm text-zinc-400'>
+    <div className="space-y-2 max-w-[250px]">
+      <h3 className="text-lg font-semibold text-white">
+        See What Friends Are Playing
+      </h3>
+      <p className="text-sm text-zinc-400">
         Login to discover what music your friends are enjoying right now
       </p>
     </div>
