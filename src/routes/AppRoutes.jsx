@@ -10,6 +10,7 @@ import {
 import { Plane } from "lucide-react";
 import { AdminPage } from "@/pages/Admin/AdminPage";
 import SearchResults from "@/Layouts/components/SearchResults";
+import ProtectedRoute from "./ProtectedRoutes";
 
 const AppRoutes = () => {
   return (
@@ -29,9 +30,11 @@ const AppRoutes = () => {
       <Route
         path="/LikedPlayList"
         element={
-          <MainLayout>
-            <LikedPlayList />
-          </MainLayout>
+          <ProtectedRoute>
+            <MainLayout>
+              <LikedPlayList />
+            </MainLayout>
+          </ProtectedRoute>
         }
       />
 
@@ -44,7 +47,6 @@ const AppRoutes = () => {
         }
       />
 
-      
       <Route
         path="/search"
         element={
@@ -54,10 +56,10 @@ const AppRoutes = () => {
         }
       />
 
-      <Route path="/admin" element={
-         
+      <Route path="/admin" element={ 
+        <ProtectedRoute>
         <AdminPage />
-
+        </ProtectedRoute>
         } />
     </Routes>
   );
