@@ -1,6 +1,4 @@
 import React from "react";
-import Footer from "@/Layouts/components/Footer";
-import ArtistCarousel from "@/pages/Section/components/ArtistCorousel";
 import AlbumCarousel from "@/pages/Section/components/AlbumCarousel";
 import SongList from "@/pages/Section/components/SongList";
 import { useLocation } from "react-router-dom";

@@ -1,18 +1,15 @@
 import {
   RiAdminFill,
   RiHome5Fill,
-  RiPlayListAddFill,
   RiRegisteredFill,
 } from "react-icons/ri";
-import { FaPlus, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { PiBroadcastBold, PiPlaylistBold } from "react-icons/pi";
-import { FaUpload } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import liked from "/liked.png";
 import reactsvg from "../../assets/react.svg";
-import { setCurrentPlaylist, setCurrentSource } from "@/store/musicSlice";
+import {  setCurrentSource } from "@/store/musicSlice";
 
 import AddPlayListDialog from "@/pages/Admin/components/AddPlayListDialog";
 import { handleLogout } from "@/hooks/useAuth";
@@ -20,7 +17,6 @@ import { LogIn, LogOut } from "lucide-react";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const loggedInUser = useSelector((state) => state?.user?.user);

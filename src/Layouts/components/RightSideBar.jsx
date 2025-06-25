@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Users, Music } from "lucide-react";
-import { PiUserSoundBold } from "react-icons/pi";
+import { HeadphonesIcon } from "lucide-react";
 
 const RightSideBar = () => {
   const loggedInUser = useSelector((state) => state?.user?.user);
