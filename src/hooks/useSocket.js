@@ -20,6 +20,7 @@ export const useSocket = () => {
         withCredentials: true,
          transports: ["polling","websocket"],
           //autoConnect: false,
+          query: { userId: user._id },
 
       });
 
