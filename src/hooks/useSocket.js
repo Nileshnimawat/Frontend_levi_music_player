@@ -16,7 +16,7 @@ export const useSocket = () => {
 
   useEffect(() => {
     if (user && !socket) {
-      const newSocket = io("http://localhost:8080", {
+      const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
       });
 

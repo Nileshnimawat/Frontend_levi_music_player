@@ -3,7 +3,6 @@ import {
   useGetAllMusics,
   useGetLoggedInUser,
   useGetAllPlaylists,
-  useEffect,
 } from "./utils/lib";
 
 import AppRoutes from "./routes/AppRoutes";
