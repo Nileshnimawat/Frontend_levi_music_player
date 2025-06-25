@@ -15,7 +15,7 @@ export const useSocket = () => {
   const user = useSelector((state) => state?.user?.user);
 
   useEffect(() => {
-    if (user && !socket) {
+    if (user ) {
       const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
          transports: ["polling","websocket"],
