@@ -19,7 +19,7 @@ export const useSocket = () => {
       const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
          transports: ["polling","websocket"],
-          autoConnect: false,
+          //autoConnect: false,
 
       });
 
