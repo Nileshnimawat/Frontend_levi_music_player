@@ -44,9 +44,9 @@ const MainLayout = ({ children }) => {
           </div>
         </ResizablePanel>
 
-        {window.innerWidth > 600 && <ResizableHandle className={"bg-gray-500 w-1 "} />}
+        {window.innerWidth > 200 && <ResizableHandle className={"bg-gray-500 w-1 "} />}
 
-       {window.innerWidth > 600 && <ResizablePanel defaultSize={20} maxSize={20}>
+       {window.innerWidth > 200 && <ResizablePanel defaultSize={30} maxSize={40}>
           <div className="bg-[#212121] ">
           <RightSideBar isOpen={isRightOpen} setIsOpen={setIsRightOpen} className="" />
          </div>

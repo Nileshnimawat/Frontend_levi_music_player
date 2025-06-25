@@ -5,7 +5,7 @@ import {
   RiRegisteredFill,
 } from "react-icons/ri";
 import { FaPlus, FaBars } from "react-icons/fa";
-import { PiPlaylistBold } from "react-icons/pi";
+import { PiBroadcastBold, PiPlaylistBold } from "react-icons/pi";
 import { FaUpload } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -149,7 +149,22 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 {isOpen && <span className="text-lg">Admin</span>}
               </button>
             )}
+
+              {isOpen && loggedInUser && (
+              <button
+                onClick={() => navigate("/room")}
+                className="flex items-center gap-4 px-4 py-2 w-full hover:bg-[#1db9541a] transition duration-200 rounded-md text-gray-300"
+              >
+                <div className="w-6 min-w-[24px] flex justify-center">
+                  <PiBroadcastBold className="text-2xl" />
+                </div>
+                {isOpen && <span className="text-lg">Room</span>}
+              </button>
+            )}
+
           </div>
+
+          
 
           {/* Liked Playlist & User Playlists */}
           <div

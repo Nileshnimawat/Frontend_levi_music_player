@@ -5,10 +5,10 @@ import musicReducer from './musicSlice';
 import userReducer from './userSlice';
 import playlistReducer from './playlistSlice';
 import loadingReducer from "./loadingSlice"
-
+import socketReducer from "./socketSlice"
 const rootReducer = combineReducers({
   music: musicReducer,
-
+  socket:socketReducer,
   user: userReducer,
   playlist: playlistReducer,
   loading:loadingReducer

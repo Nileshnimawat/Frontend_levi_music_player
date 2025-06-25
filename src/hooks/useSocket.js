@@ -1,0 +1,67 @@
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSocket,
+  setOnlineUsers,
+  setActivities,
+  setUsersInfo,
+  updateActivity,
+} from "@/store/socketSlice";
+
+export const useSocket = () => {
+  const dispatch = useDispatch();
+  const socket = useSelector((state) => state?.socket?.socket);
+  const user = useSelector((state) => state?.user?.user);
+
+  useEffect(() => {
+    if (user && !socket) {
+      const newSocket = io("http://localhost:8080", {
+        withCredentials: true,
+      });
+
+      dispatch(setSocket(newSocket));
+
+      newSocket.emit("user_connected", {
+        _id: user._id,
+        name: user.name,
+        coverImage: user.coverImage,
+      });
+
+      // Only self receives these:
+      newSocket.on("users_online", (onlineUserIds) => {
+        dispatch(setOnlineUsers(onlineUserIds));
+      });
+
+      newSocket.on("activities", (activitiesArray) => {
+        const activityMap = Object.fromEntries(activitiesArray);
+        dispatch(setActivities(activityMap));
+      });
+
+      newSocket.on("users_info", (usersInfoArray) => {
+        const usersMap = Object.fromEntries(usersInfoArray);
+        dispatch(setUsersInfo(usersMap));
+      });
+
+      // Broadcasted to all
+      newSocket.on("activity_updated", ({ userId, activity }) => {
+        dispatch(updateActivity({ userId, activity }));
+      });
+
+      newSocket.on("user_disconnected", (userId) => {
+        dispatch(updateActivity({ userId, activity: { status: "Idle" } }));
+      });
+
+      return () => {
+        newSocket.disconnect();
+        dispatch(setSocket(null));
+      };
+    }
+
+    if (!user && socket) {
+      socket.disconnect();
+      dispatch(setSocket(null));
+    }
+  }, [user]);
+};
+

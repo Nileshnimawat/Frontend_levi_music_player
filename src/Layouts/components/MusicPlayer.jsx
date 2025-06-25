@@ -3,7 +3,10 @@ import SongInfo from "./Music Player/SongInfo";
 import AdditionalControls from "./Music Player/AdditionalControls";
 import MusicControls from "./Music Player/MusicControls";
 
+
 const MusicPlayer = () => {
+
+
   const audioRef = useRef(null);
   const currentMusic = useSelector((state) => state?.music?.currentMusic);
 

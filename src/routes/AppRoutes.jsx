@@ -7,10 +7,10 @@ import {
   Register,
   PlaylistViewer,
 } from "../utils/lib";
-import { Plane } from "lucide-react";
 import { AdminPage } from "@/pages/Admin/AdminPage";
 import SearchResults from "@/Layouts/components/SearchResults";
 import ProtectedRoute from "./ProtectedRoutes";
+import ChatPage from "@/pages/chat/ChatPage";
 
 const AppRoutes = () => {
   return (
@@ -56,11 +56,25 @@ const AppRoutes = () => {
         }
       />
 
-      <Route path="/admin" element={ 
-        <ProtectedRoute>
-        <AdminPage />
-        </ProtectedRoute>
-        } />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        }
+      />
+
+        <Route
+        path="/room"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+            <ChatPage />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
