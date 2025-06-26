@@ -7,9 +7,8 @@ import {
   DELETE_PLAYLIST,
   REMOVE_MUSIC_FROM_PLAYLIST,
 } from "../../../utils/constants";
-import {
-  removePlaylist,
-} from "../../../store/playlistSlice";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { removePlaylist } from "../../../store/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import reactLogo from "@/assets/react.svg";
@@ -69,9 +68,8 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
         { musicId: currentMusic._id },
         { withCredentials: true }
       );
-      console.log(res)
+      console.log(res);
       if (res) {
-      
         toast.success(res?.data?.message || "Music added to playlist!");
       }
     } catch (error) {
@@ -89,12 +87,11 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
         { withCredentials: true }
       );
       if (res?.data) {
-          setSelectedDiv(null);
-      toast.success(res?.data?.message || "Music removed from playlist");
+        setSelectedDiv(null);
+        toast.success(res?.data?.message || "Music removed from playlist");
       }
-    
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error(error.response?.data?.message || "Failed to remove music");
     }
   };
@@ -141,12 +138,9 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
           </button>
 
           {loggedInUser && (
-            <button
-              onClick={handleAddMusic}
-              className="border px-4 py-2 rounded hover:bg-white hover:text-black transition"
-            >
-              ➕ Add
-            </button>
+            <div onClick={handleAddMusic} className="flex items-center">
+              <IoMdAddCircleOutline className=" text-3xl" />
+            </div>
           )}
 
           {loggedInUser && selectedDiv && (
