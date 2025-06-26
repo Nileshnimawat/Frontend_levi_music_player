@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
-import {
-  Navbar,
-  Sidebar,
-  RightSideBar,
-  MusicPlayer
-} from "@/utils/lib";
+import { Navbar, Sidebar, RightSideBar, MusicPlayer } from "@/utils/lib";
 
 import {
   ResizablePanelGroup,
   ResizablePanel,
-  ResizableHandle
+  ResizableHandle,
 } from "@/components/ui/resizable";
 
 const MainLayout = ({ children }) => {
@@ -22,7 +17,9 @@ const MainLayout = ({ children }) => {
       const width = window.innerWidth;
       setIsMobile(width <= 800);
       setIsOpen(width > 800);
-      setIsRightOpen(width > 1500 ? true : false);
+      if (window.innerWidth <= 1000) {
+        setIsRightOpen(false);
+      }
     };
 
     handleResize(); // Call once on mount
@@ -31,24 +28,35 @@ const MainLayout = ({ children }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleScreen = () => {
+    if (window.innerWidth <= 800) {
+      return 0;
+    } else return 22;
+  };
+  const handleMaxScreen = () => {
+    if (window.innerWidth <= 800) {
+      return 55;
+    } else return 25;
+  };
+
   return (
     <div className="flex flex-col h-screen hide-scrollbar bg-[#121212]">
       <ResizablePanelGroup direction="horizontal" className="flex-grow">
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <ResizablePanel minSize={65} maxSize={100}>
+        <ResizablePanel minSize={!isMobile ? 65 : 60} maxSize={100}>
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
           <div className="h-full overflow-y-auto hide-scrollbar px-2 sm:px-4">
             {children}
           </div>
         </ResizablePanel>
 
-        {!isMobile && <ResizableHandle className="bg-gray-500 w-1" />}
+        {<ResizableHandle className="bg-gray-500 w-1" />}
 
-        {!isMobile && (
+        { 
           <ResizablePanel
-            defaultSize={isMobile ? 45 : 22}
-            maxSize={25}
+            defaultSize={handleScreen()}
+            maxSize={handleMaxScreen()}
             className="bg-[#212121]"
           >
             <RightSideBar
@@ -57,7 +65,7 @@ const MainLayout = ({ children }) => {
               className=""
             />
           </ResizablePanel>
-        )}
+        }
       </ResizablePanelGroup>
 
       <MusicPlayer />

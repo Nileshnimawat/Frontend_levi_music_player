@@ -24,6 +24,19 @@ const ChatPage = () => {
 
   useRoomSocket();
 
+
+  const handleWidth = ()=>{
+    if(!roomId && window.innerWidth <= 800){
+      return "grid-cols-[220px_1fr]"
+    }
+    else if(roomId && window.innerWidth <= 800){
+      return "grid-cols-[80px_1fr]"
+    }
+    else{
+      return "grid-cols-[80px_1fr]"
+    }
+  }
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -32,15 +45,15 @@ const ChatPage = () => {
 
   return (
     <main className="h-full rounded-lg bg-gradient-to-b from-zinc-800 to-zinc-900 overflow-hidden text-white">
-      <div className="grid lg:grid-cols-[300px_1fr] grid-cols-[80px_1fr] h-[calc(100vh-180px)]">
+      <div className={`grid  lg:grid-cols-[300px_1fr] ${handleWidth() } grid-cols-[80px_1fr] h-[calc(100vh-180px)] `}>
         <UsersList />
-        <div className="flex flex-col h-full ">
+        <div className="flex flex-col h-full  ">
           {roomId ? (
             <>
               <ChatHeader />
 
               {/* ✅ Messages */}
-              <div className="h-[calc(100vh-340px)]">
+              <div className="h-[421px] sm:h-[calc(100vh-340px)]  flex flex-col sm:flex-row">
                 <div ref={scrollRef} className="p-4 space-y-4 overflow-y-auto max-h-full hide-scrollbar">
                   {messages.map((message, index) => {
                     const sender =
@@ -106,7 +119,7 @@ const NoRoomJoined = () => (
     <div className="text-center">
       <h3 className="text-zinc-300 text-lg font-medium mb-1">No room joined</h3>
       <p className="text-zinc-500 text-sm">
-        Join or create a room to start chatting
+        Join or create a room to start chatting and listen music along with your friends at same time
       </p>
     </div>
   </div>

@@ -3,6 +3,8 @@ import {
   useGetAllMusics,
   useGetLoggedInUser,
   useGetAllPlaylists,
+  useEffect,
+  useDispatch,
 } from "./utils/lib";
 
 import AppRoutes from "./routes/AppRoutes";
@@ -12,6 +14,7 @@ import "./App.css";
 import { useGetGlobalPlaylists } from "./hooks/useGetGlobalPlayLists";
 import { useSocket } from "./hooks/useSocket";
 import { useUpdateActivity } from "./hooks/useUpdateActivity";
+import { setIsRoomOwner } from "./store/roomSlice";
 
 
 
@@ -21,6 +24,18 @@ function App() {
   useGetAllPlaylists();
   useGetGlobalPlaylists();
   useSocket();
+
+  const roomId = useSelector((state)=>state?.room?.currentRoomId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+   
+  if(!roomId){
+    dispatch(setIsRoomOwner(false));
+  }
+   
+  }, [roomId])
+  
 
 
   useUpdateActivity();

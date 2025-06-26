@@ -26,8 +26,8 @@ const MessageInput = () => {
 };
 
   return (
-    <div className="p-4 mt-auto border-t border-zinc-800 bg-zinc-900">
-      <div className="flex gap-2 items-center">
+    <div className="p-2.5 sm:p-4 sm:mt-auto border-t border-zinc-800 bg-zinc-900">
+      <div className="flex sm:gap-2 items-center">
         <Input
           placeholder="Type a message"
           value={newMessage}
@@ -36,7 +36,7 @@ const MessageInput = () => {
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
         <Button size="icon" onClick={handleSend} disabled={!newMessage.trim()}>
-          <Send className="size-4" />
+          <Send className="size-5" />
         </Button>
       </div>
     </div>

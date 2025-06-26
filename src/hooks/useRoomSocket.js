@@ -1,7 +1,7 @@
 // hooks/useRoomSocket.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage, setMessages, setUsersInRoom } from "@/store/roomSlice";
+import { addMessage, setCurrentRoomId, setMessages, setUsersInRoom } from "@/store/roomSlice";
 import { setCurrentMusic } from "@/store/musicSlice";
 import { setIsRoomOwner } from "@/store/roomSlice";
 
@@ -44,6 +44,8 @@ export const useRoomSocket = () => {
       socket.off("room_users");
       socket.off("receive_music");
       socket.off("receive_play_pause");
+      setCurrentRoomId(null);
+      dispatch(setIsRoomOwner(false));
     };
   }, [socket, dispatch]);
 

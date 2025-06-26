@@ -14,6 +14,7 @@ import {
   resetRoom,
 } from "@/store/roomSlice";
 
+
 import { setIsRoomOwner } from "@/store/roomSlice";
 
 const UsersList = () => {
@@ -72,7 +73,7 @@ const UsersList = () => {
       <div className="border-r border-zinc-800 flex flex-col items-center justify-center h-full p-4 gap-4">
         <div className="text-xl font-semibold">Join or Create a Chat Room</div>
 
-        <div className="flex gap-2 w-full max-w-md">
+        <div className="flex flex-col sm:flex-row gap-2 w-full max-w-md">
           <Input
             placeholder="Enter Room ID"
             value={inputRoomId}
@@ -99,17 +100,18 @@ const UsersList = () => {
   return (
     <div className="border-r border-zinc-800">
       <div className="flex flex-col h-full">
-        <div className="p-4 border-b border-zinc-800">
-          <div className="flex justify-between items-center">
-            <span className="font-semibold">Room: {currentRoomId}</span>
-            <Button variant="ghost" size="sm" onClick={handleLeaveRoom}>
-              Leave Room
+        <div className="p-2 sm:p-4 border-b border-zinc-800">
+          <div className="flex justify-between items-centre ">
+            {window.innerWidth > 800 && <span className="font-semibold">Room: {currentRoomId}</span>}
+            
+            <Button  variant="ghost" size="sm" onClick={handleLeaveRoom}>
+              Leave {window.innerWidth <= 800? <br/>:""} Room
             </Button>
           </div>
         </div>
 
         <ScrollArea className="h-[calc(100vh-280px)]">
-          <div className="space-y-2 p-4">
+          <div className="space-y-2 p-2 sm:p-4">
             {isLoading ? (
               <UsersListSkeleton />
             ) : (

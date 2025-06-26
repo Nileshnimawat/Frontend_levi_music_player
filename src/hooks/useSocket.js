@@ -30,9 +30,7 @@ export const useSocket = () => {
         coverImage: user.coverImage,
       });
 
-      newSocket.on("users_online", (onlineUserIds) => {
-        dispatch(setOnlineUsers(onlineUserIds));
-      });
+     
 
       newSocket.on("activities", (activitiesArray) => {
         const activityMap = Object.fromEntries(activitiesArray);
@@ -61,6 +59,20 @@ export const useSocket = () => {
     if (!user && socket) {
       socket.disconnect();
       dispatch(setSocket(null));
+      
     }
   }, [user]);
+
+
+  useEffect(() => {
+    if(!user || !socket) return;
+     socket.on("users_online", (onlineUserIds) => {
+        dispatch(setOnlineUsers(onlineUserIds));
+      });
+  
+    return () => {
+      socket.off("users_online")
+    }
+  }, [user, socket, dispatch])
+  
 };

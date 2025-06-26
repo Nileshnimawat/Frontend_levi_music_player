@@ -16,8 +16,8 @@ const RightSideBar = () => {
 
 
    
-//  if (!onlineUsers || onlineUsers?.length === 1) 
-//   return <LoginPrompt loggedInUser={loggedInUser}/>
+if (!onlineUsers || onlineUsers?.length === 1) 
+   return <LoginPrompt loggedInUser={loggedInUser}/>
 
   if (!loggedInUser) return <LoginPrompt />;
 
@@ -25,24 +25,24 @@ const RightSideBar = () => {
 
   return (
     <div
-      className="min-h-screen h-full flex flex-col"
+      className="min-h-screen h-full flex flex-col py-2" 
       style={{
         background: "rgba(18, 18, 18, 0.30)",
         backdropFilter: "blur(74px)",
         WebkitBackdropFilter: "blur(74px)",
       }}
     >
-      <div className="p-4 flex justify-between items-center border-b border-zinc-800">
+      <div className="p-2 sm:p-4 flex justify-between items-center border-b border-zinc-800">
         <div className="flex items-center gap-2">
           <Users className="size-5 shrink-0 text-white" />
-          <h2 className="font-semibold text-white">
+          <h2 className="font-semibold text-white text-xs sm:text:sm md:text-lg lg:text-xl">
             What they're listening to
           </h2>
         </div>
       </div>
 
       <ScrollArea className="flex-1">
-        <div className="p-4 space-y-4">
+        <div className="py-2 sm:p-4 space-y-4">
           {Object.entries(usersInfo).map(([userId, user]) => {
             // console.log(userId, user);
             if (userId === loggedInUser._id) return null;
