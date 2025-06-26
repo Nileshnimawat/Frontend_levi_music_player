@@ -3,22 +3,25 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Users, Music } from "lucide-react";
 import { HeadphonesIcon } from "lucide-react";
+import { useEffect } from "react";
 
 const RightSideBar = () => {
   const loggedInUser = useSelector((state) => state?.user?.user);
+
+
+    
   const usersInfo = useSelector((state) => state?.socket?.usersInfo || {});
   const onlineUsers = useSelector((state) => state?.socket?.onlineUsers || []);
   const activities = useSelector((state) => state?.socket?.activities || {});
 
+
+   
+//  if (!onlineUsers || onlineUsers?.length === 1) 
+//   return <LoginPrompt loggedInUser={loggedInUser}/>
+
   if (!loggedInUser) return <LoginPrompt />;
 
-  if (!onlineUsers) {
-    return (
-      <div className="text-center text-sm text-zinc-400 py-6">
-        No friends are currently online 😔
-      </div>
-    );
-  }
+
 
   return (
     <div
@@ -41,11 +44,11 @@ const RightSideBar = () => {
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-4">
           {Object.entries(usersInfo).map(([userId, user]) => {
-            console.log(userId, user);
+            // console.log(userId, user);
             if (userId === loggedInUser._id) return null;
 
             const activity = activities[userId];
-            const isOnline = onlineUsers.includes(userId);
+            const isOnline = onlineUsers?.includes(userId);
             const isPlaying = activity?.status === "Playing";
 
             return (
@@ -101,7 +104,8 @@ const RightSideBar = () => {
 
 export default RightSideBar;
 
-const LoginPrompt = () => (
+const LoginPrompt = ({loggedInUser}) => (
+  
   <div className="h-full min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-4">
     <div className="relative">
       <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur-lg opacity-75 animate-pulse" />
@@ -113,9 +117,14 @@ const LoginPrompt = () => (
       <h3 className="text-lg font-semibold text-white">
         See What Friends Are Playing
       </h3>
-      <p className="text-sm text-zinc-400">
+   { !loggedInUser &&  <p className="text-sm text-zinc-400">
         Login to discover what music your friends are enjoying right now
       </p>
+      }
+         { <p className="text-sm text-zinc-400">
+        Currently no friends is online
+      </p>
+      }
     </div>
   </div>
 );

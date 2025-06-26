@@ -6,18 +6,21 @@ import userReducer from './userSlice';
 import playlistReducer from './playlistSlice';
 import loadingReducer from "./loadingSlice"
 import socketReducer from "./socketSlice"
+import roomReducer from "./roomSlice"
+
 const rootReducer = combineReducers({
   music: musicReducer,
   socket:socketReducer,
   user: userReducer,
   playlist: playlistReducer,
-  loading:loadingReducer
+  loading:loadingReducer,
+  room:roomReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['music','user', 'playlist'], 
+  whitelist: ['music','user', 'playlist','room'], 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -20,7 +20,7 @@ export const useUpdateActivity = () => {
     } else {
       socket.emit("update_current_music", {
         userId: user._id,
-        music: null, // sets to Idle
+        music: null,
       });
     }
   }, [currentMusic, socket, user]);

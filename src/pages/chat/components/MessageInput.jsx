@@ -1,44 +1,38 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
-
-// Dummy user and selected user
-const dummyUser = {
-  id: "current_user_456",
-  fullName: "You",
-};
-
-const dummySelectedUser = {
-  clerkId: "user_123",
-  fullName: "John Doe",
-};
-
-const dummySendMessage = (receiverId, senderId, message) => {
-  console.log(`Message sent to ${receiverId} from ${senderId}: ${message}`);
-};
+import { useRoomSocket } from "@/hooks/useRoomSocket";
 
 const MessageInput = () => {
   const [newMessage, setNewMessage] = useState("");
+  const { sendMessage } = useRoomSocket();
 
-  const user = dummyUser;
-  const selectedUser = dummySelectedUser;
-  const sendMessage = dummySendMessage;
+  const user = useSelector((state) => state?.user?.user);
+  const roomId = useSelector((state) => state?.room?.currentRoomId);
 
-  const handleSend = () => {
-    if (!selectedUser || !user || !newMessage.trim()) return;
-    sendMessage(selectedUser.clerkId, user.id, newMessage.trim());
-    setNewMessage("");
-  };
+ const handleSend = () => {
+  const trimmed = newMessage.trim();
+  if (!trimmed || !roomId || !user?._id) return;
+
+
+  sendMessage({
+    roomId,
+    text: trimmed,
+  });
+
+  setNewMessage("");
+};
 
   return (
-    <div className="p-4 mt-auto  border-t border-zinc-800">
-      <div className="flex gap-2">
+    <div className="p-4 mt-auto border-t border-zinc-800 bg-zinc-900">
+      <div className="flex gap-2 items-center">
         <Input
           placeholder="Type a message"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          className="bg-zinc-800 border-none"
+          className="bg-zinc-800 border-none flex-1"
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
         <Button size="icon" onClick={handleSend} disabled={!newMessage.trim()}>

@@ -13,12 +13,16 @@ import { useGetGlobalPlaylists } from "./hooks/useGetGlobalPlayLists";
 import { useSocket } from "./hooks/useSocket";
 import { useUpdateActivity } from "./hooks/useUpdateActivity";
 
+
+
 function App() {
   useGetAllMusics();
   useGetLoggedInUser();
   useGetAllPlaylists();
   useGetGlobalPlaylists();
   useSocket();
+
+
   useUpdateActivity();
 
   const loading = useSelector((state) => state?.loading?.isLoading);

@@ -4,6 +4,7 @@ import { persistor } from "@/store/store";
 import { setUser } from "@/store/userSlice";
 import toast from "react-hot-toast";
 import { setCurrentMusic } from "@/store/musicSlice";
+import { setCurrentRoomId } from "@/store/roomSlice";
 
 
 
@@ -19,6 +20,7 @@ export const handleLogout = async(dispatch)=>{
         toast.success(res.data.message);
       dispatch(setUser(null));
        dispatch(setCurrentMusic(null));
+       dispatch(setCurrentRoomId(null));
       persistor.purge(); 
       } 
       

@@ -15,13 +15,11 @@ export const useSocket = () => {
   const user = useSelector((state) => state?.user?.user);
 
   useEffect(() => {
-    if (user ) {
+    if (user) {
       const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
-         transports: ["polling","websocket"],
-          //autoConnect: false,
-          query: { userId: user._id },
-
+        transports: ["polling", "websocket"],
+        query: { userId: user._id },
       });
 
       dispatch(setSocket(newSocket));
@@ -66,4 +64,3 @@ export const useSocket = () => {
     }
   }, [user]);
 };
-
