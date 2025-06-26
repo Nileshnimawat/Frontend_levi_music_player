@@ -25,8 +25,10 @@ const MessageInput = () => {
   setNewMessage("");
 };
 
+
+
   return (
-    <div className="p-2.5 sm:p-4 sm:mt-auto border-t border-zinc-800 bg-zinc-900">
+    <div className={`p-3 sm:p-4 sm:mt-auto border-t border-zinc-800 bg-zinc-900`}>
       <div className="flex sm:gap-2 items-center">
         <Input
           placeholder="Type a message"

@@ -45,7 +45,6 @@ export const useRoomSocket = () => {
       socket.off("receive_music");
       socket.off("receive_play_pause");
       setCurrentRoomId(null);
-      dispatch(setIsRoomOwner(false));
     };
   }, [socket, dispatch]);
 
