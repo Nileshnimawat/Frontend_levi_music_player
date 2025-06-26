@@ -54,7 +54,7 @@ const ChatPage = () => {
 
               {/* ✅ Messages */}
               <div className="h-[calc(100vh-371px)] relative sm:h-[calc(100vh-340px)]  flex flex-col sm:flex-row">
-                <div ref={scrollRef} className="p-4 space-y-4 overflow-y-auto max-h-full hide-scrollbar">
+                <div ref={scrollRef} className="w-full p-4 space-y-4 overflow-y-auto max-h-full hide-scrollbar">
                   {messages.map((message, index) => {
                     const sender =
                       usersInRoom.find((u) => u._id === message?.user?._id) ||
