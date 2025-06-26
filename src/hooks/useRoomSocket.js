@@ -1,11 +1,9 @@
 // hooks/useRoomSocket.js
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addMessage,
-  setMessages,
-  setUsersInRoom,
-} from "@/store/roomSlice";
+import { addMessage, setMessages, setUsersInRoom } from "@/store/roomSlice";
+import { setCurrentMusic } from "@/store/musicSlice";
+import { setIsRoomOwner } from "@/store/roomSlice";
 
 export const useRoomSocket = () => {
   const socket = useSelector((state) => state.socket.socket);
@@ -27,19 +25,53 @@ export const useRoomSocket = () => {
       dispatch(setUsersInRoom(users));
     });
 
+    socket.on("receive_music", ({ music }) => {
+      console.log("🎧 New music received:", music);
+
+      dispatch(setCurrentMusic(music));
+    });
+
+    socket.on("receive_play_pause", ({ isPlaying }) => {
+      const audio = document.getElementById("room-audio");
+      if (!audio) return;
+      if (isPlaying) audio.play();
+      else audio.pause();
+    });
+
     return () => {
       socket.off("room_messages");
       socket.off("receive_message");
       socket.off("room_users");
+      socket.off("receive_music");
+      socket.off("receive_play_pause");
     };
   }, [socket, dispatch]);
 
 
-
-  const joinRoom = (roomId, user) => {
-    if (!socket) return;
-    socket.emit("join_room", { roomId, user });
+  const setRoomMusic = (music, roomId) => {
+    if (socket && roomId && music) {
+      socket.emit("send_music", { roomId, music });
+    }
   };
+  const toggleRoomPlayPause = (isPlaying, roomId) => {
+    if (socket && roomId) {
+      socket.emit("toggle_play_pause", { isPlaying, roomId });
+    }
+  };
+  
+
+  const syncProgress = (currentTime, roomId) => {
+    socket?.emit("sync-progress", { roomId, currentTime });
+  };
+
+
+
+  const onReceiveProgress = (callback) => {
+    socket?.on("receive-progress", ({ currentTime }) => {
+      callback(currentTime);
+    });
+  };
+
   const leaveRoom = (roomId) => {
     if (!socket || !roomId) return;
     socket.emit("leave_room", roomId);
@@ -59,17 +91,28 @@ export const useRoomSocket = () => {
       },
     });
   };
-  const createRoom = (callback) => {
-    if (!socket) return;
-    socket.emit("create_room", (roomId) => {
-      if (callback) callback(roomId);
-    });
-  };
+const createRoom = (callback) => {
+  if (!socket) return;
+  socket.emit("create_room", (roomId) => {
+    dispatch(setIsRoomOwner(true)); 
+    if (callback) callback(roomId);
+  });
+};
+
+const joinRoom = (roomId, user) => {
+  if (!socket) return;
+
+  socket.emit("join_room", { roomId, user });
+};
 
   return {
     joinRoom,
     leaveRoom,
     sendMessage,
     createRoom,
+    setRoomMusic,
+    toggleRoomPlayPause,
+    onReceiveProgress,
+    syncProgress,
   };
 };

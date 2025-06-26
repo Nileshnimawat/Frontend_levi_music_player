@@ -14,6 +14,8 @@ import {
   resetRoom,
 } from "@/store/roomSlice";
 
+import { setIsRoomOwner } from "@/store/roomSlice";
+
 const UsersList = () => {
   const dispatch = useDispatch();
   const socket = useSelector((state) => state?.socket?.socket);
@@ -39,6 +41,7 @@ const UsersList = () => {
 
     createRoom((roomId) => {
       dispatch(setCurrentRoomId(roomId));
+       dispatch(setIsRoomOwner(true)); 
       joinRoom(roomId, currentUser);
       setIsLoading(false);
     });
@@ -47,6 +50,7 @@ const UsersList = () => {
   const handleLeaveRoom = () => {
     leaveRoom(currentRoomId);
     dispatch(resetRoom());
+    dispatch(setIsRoomOwner(false));
   };
 
   const UsersListSkeleton = () =>

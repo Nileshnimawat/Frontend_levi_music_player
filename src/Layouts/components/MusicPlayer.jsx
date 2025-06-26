@@ -9,11 +9,11 @@ const MusicPlayer = () => {
 
   const audioRef = useRef(null);
   const currentMusic = useSelector((state) => state?.music?.currentMusic);
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+    const roomId = useSelector((state)=>state?.room?.currentRoomId);
 
   useEffect(() => {
     if (audioRef.current) {

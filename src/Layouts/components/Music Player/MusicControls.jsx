@@ -2,6 +2,8 @@ import { Play, Pause, SkipBack, SkipForward, Repeat } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic } from "@/store/musicSlice";
 import ProgressBar from "./ProgressBar";
+import { useRoomSocket } from "@/hooks/useRoomSocket";
+import { useEffect } from "react";
 
 const MusicControls = ({
   audioRef,
@@ -20,8 +22,14 @@ const MusicControls = ({
   const currentLikedPlayList = useSelector((state) => state?.user?.user?.liked_playlist) || [];
   const currentPlaylist = useSelector((state) => state?.music?.currentPlaylist) || [];
   const currentSource = useSelector((state) => state?.music?.currentSource);
+  const roomId = useSelector((state) => state?.room?.currentRoomId);
+  const isRoomOwner = useSelector((state) => state?.room?.isRoomOwner);
 
-
+  const {
+    setRoomMusic,
+    toggleRoomPlayPause,
+    onRoomPlayPause,
+  } = useRoomSocket();
 
   const getCurrentSongList = () => {
     const getSongsByIds = (ids) =>
@@ -35,23 +43,21 @@ const MusicControls = ({
   const handleNext = () => {
     const currentList = getCurrentSongList();
     const index = currentList.findIndex((song) => song?._id === currentMusic?._id);
-    if (index === -1 && currentList.length > 0) {
-      dispatch(setCurrentMusic(currentList[0]));
-      return;
-    }
     const nextIndex = (index + 1) % currentList.length;
-    dispatch(setCurrentMusic(currentList[nextIndex]));
+    const nextMusic = currentList[nextIndex] || currentList[0];
+
+    dispatch(setCurrentMusic(nextMusic));
+    if (roomId && isRoomOwner) setRoomMusic(nextMusic, roomId);
   };
 
   const handlePrevious = () => {
     const currentList = getCurrentSongList();
     const index = currentList.findIndex((song) => song._id === currentMusic?._id);
-    if (index === -1 && currentList.length > 0) {
-      dispatch(setCurrentMusic(currentList[0]));
-      return;
-    }
     const prevIndex = (index - 1 + currentList.length) % currentList.length;
-    dispatch(setCurrentMusic(currentList[prevIndex]));
+    const prevMusic = currentList[prevIndex] || currentList[0];
+
+    dispatch(setCurrentMusic(prevMusic));
+    if (roomId && isRoomOwner) setRoomMusic(prevMusic, roomId);
   };
 
   const toggleRepeat = () => {
@@ -69,17 +75,51 @@ const MusicControls = ({
     }
   };
 
+  const handlePlayPause = () => {
+    if (!audioRef.current) return;
+
+    const nextPlayState = !isPlaying;
+    setIsPlaying(nextPlayState);
+
+    if (roomId && isRoomOwner) {
+      toggleRoomPlayPause(nextPlayState, roomId);
+    }
+
+    if (nextPlayState) {
+      audioRef.current.play().catch(() => {});
+    } else {
+      audioRef.current.pause();
+    }
+  };
+
+  const isInRoom = Boolean(roomId);
+  const canControl = !isInRoom || isRoomOwner;
+
   return (
     <>
       <div className="flex items-center space-x-3">
-        <SkipBack onClick={handlePrevious} className="w-6 h-6 cursor-pointer" />
+        <SkipBack
+          onClick={canControl ? handlePrevious : undefined}
+          className={`w-6 h-6 transition ${
+            canControl ? "cursor-pointer text-white" : "text-gray-400 cursor-not-allowed"
+          }`}
+        />
         <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white text-black shadow-lg"
+          onClick={canControl ? handlePlayPause : undefined}
+          className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full shadow-lg ${
+            canControl
+              ? "bg-white text-black cursor-pointer"
+              : "bg-gray-500 text-white cursor-not-allowed"
+          }`}
         >
           {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
         </button>
-        <SkipForward onClick={handleNext} className="w-6 h-6 cursor-pointer" />
+        <SkipForward
+          onClick={canControl ? handleNext : undefined}
+          className={`w-6 h-6 transition ${
+            canControl ? "cursor-pointer text-white" : "text-gray-400 cursor-not-allowed"
+          }`}
+        />
         <Repeat
           onClick={toggleRepeat}
           className={`w-5 h-5 cursor-pointer transition duration-300 ${
@@ -88,10 +128,10 @@ const MusicControls = ({
         />
       </div>
 
-      {/* Audio player and progress bar inside MusicControls */}
       <audio
         ref={audioRef}
-        src={currentMusic.url}
+        id="room-audio"
+        src={currentMusic?.url}
         preload="auto"
         onTimeUpdate={handleAudioUpdate}
         onEnded={() => {
@@ -99,10 +139,11 @@ const MusicControls = ({
             audioRef.current.currentTime = 0;
             audioRef.current.play();
           } else {
-            handleNext(); 
+            handleNext();
           }
         }}
       />
+
       <ProgressBar currentTime={currentTime} duration={duration} audioRef={audioRef} />
     </>
   );
