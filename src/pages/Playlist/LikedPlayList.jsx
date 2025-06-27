@@ -3,9 +3,15 @@ import { FaPlay, FaList } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic, setCurrentSource } from "../../store/musicSlice";
 import Footer from "@/Layouts/components/Footer";
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
+
 const LikedPlayList = ({ headings }) => {
   const [selectedDiv, setSelectedDiv] = useState(null);
   const dispatch = useDispatch();
+       const roomId = useSelector((state) => state?.room?.currentRoomId);
+    const isRoomOwner = useSelector((state) => state?.room?.isRoomOwner);
+    
+      const {setRoomMusic} = useRoomSocketActions();
 
   const likedSongsID = useSelector((state) => state?.user?.user?.liked_playlist || []);
   const allMusics = useSelector((state) => state?.music?.allMusics || []);
@@ -17,6 +23,7 @@ const LikedPlayList = ({ headings }) => {
     dispatch(setCurrentSource("liked"))
     dispatch(setCurrentMusic(music));
     setSelectedDiv(musicId);
+        if(roomId && isRoomOwner) setRoomMusic(music, roomId)
   };
 
   return (

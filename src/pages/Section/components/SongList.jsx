@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaHeadphones, FaClock } from "react-icons/fa";
 import {
   setAllMusics,
@@ -7,8 +7,14 @@ import {
   setCurrentSource,
   setMusics,
 } from "@/store/musicSlice";
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 
 const SongList = ({ data }) => {
+   const roomId = useSelector((state) => state?.room?.currentRoomId);
+  const isRoomOwner = useSelector((state) => state?.room?.isRoomOwner);
+
+  const {setRoomMusic} = useRoomSocketActions();
+
   if (!data) {
     return <div>No songs available.</div>;
   }
@@ -23,6 +29,7 @@ const SongList = ({ data }) => {
   const handlePlay = (item) => {
     dispatch(setCurrentSource("all"));
     dispatch(setCurrentMusic(item));
+     if (roomId && isRoomOwner) setRoomMusic(item, roomId);
   };
 
   return (

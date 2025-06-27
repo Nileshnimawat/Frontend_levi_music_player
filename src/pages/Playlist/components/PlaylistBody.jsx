@@ -1,10 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic } from "../../../store/musicSlice";
 import SongList from "@/pages/Section/components/SongList";
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 
 
 export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
   const dispatch = useDispatch();
+     const roomId = useSelector((state) => state?.room?.currentRoomId);
+  const isRoomOwner = useSelector((state) => state?.room?.isRoomOwner);
+  
+    const {setRoomMusic} = useRoomSocketActions();
 
 
   const date = new Date();
@@ -16,6 +21,7 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
   const handleClick = (musicId, music) => {
     dispatch(setCurrentMusic(music));
     setSelectedDiv(musicId);
+    if(roomId && isRoomOwner) setRoomMusic(music, roomId)
   };
 
   

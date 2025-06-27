@@ -15,6 +15,7 @@ import { useGetGlobalPlaylists } from "./hooks/useGetGlobalPlayLists";
 import { useSocket } from "./hooks/useSocket";
 import { useUpdateActivity } from "./hooks/useUpdateActivity";
 import { setIsRoomOwner } from "./store/roomSlice";
+import { useRoomSocketListeners } from "./hooks/useRoomSocketListeners";
 
 
 
@@ -24,6 +25,7 @@ function App() {
   useGetAllPlaylists();
   useGetGlobalPlaylists();
   useSocket();
+  useRoomSocketListeners();
 
   const roomId = useSelector((state)=>state?.room?.currentRoomId);
   const dispatch = useDispatch();

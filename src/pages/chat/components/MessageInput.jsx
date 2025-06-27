@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
-import { useRoomSocket } from "@/hooks/useRoomSocket";
+import {  useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 
 const MessageInput = () => {
   const [newMessage, setNewMessage] = useState("");
-  const { sendMessage } = useRoomSocket();
+  const { sendMessage } = useRoomSocketActions();
 
   const user = useSelector((state) => state?.user?.user);
   const roomId = useSelector((state) => state?.room?.currentRoomId);

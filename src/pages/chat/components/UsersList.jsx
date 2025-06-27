@@ -8,7 +8,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRoomSocket } from "@/hooks/useRoomSocket";
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 import {
   setCurrentRoomId,
   resetRoom,
@@ -26,7 +26,7 @@ const UsersList = () => {
   const [inputRoomId, setInputRoomId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { joinRoom, leaveRoom, createRoom } = useRoomSocket();
+  const { joinRoom, leaveRoom, createRoom } = useRoomSocketActions();
 
   const handleJoinRoom = () => {
     if (!inputRoomId.trim() || !currentUser) return;

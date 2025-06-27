@@ -1,12 +1,27 @@
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const ProgressBar = ({ currentTime, duration, audioRef }) => {
   const sliderRef = useRef(null);
+  const { syncProgress } = useRoomSocketActions();
+
+  const roomId = useSelector((state) => state.room.currentRoomId);
+  const isRoomOwner = useSelector((state) => state.room.isRoomOwner);
 
   const handleSeek = () => {
-     if (!audioRef?.current || !sliderRef?.current) return;
+     if (roomId && !isRoomOwner) return;
+
+    if (!audioRef?.current || !sliderRef?.current) return;
+   
     const seekValue = sliderRef.current.value;
-    audioRef.current.currentTime = (seekValue / 100) * duration;
+    const newTime = (seekValue / 100) * duration;
+
+    audioRef.current.currentTime = newTime;
+
+    if (isRoomOwner && roomId) {
+      syncProgress(newTime, roomId);
+    }
   };
 
   const formatTime = (time) => {

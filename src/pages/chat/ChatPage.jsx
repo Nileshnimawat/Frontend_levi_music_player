@@ -5,7 +5,7 @@ import ChatHeader from "./components/ChatHeader";
 import UsersList from "./components/UsersList";
 import MessageInput from "./components/MessageInput";
 import { useSelector } from "react-redux";
-import { useRoomSocket } from "@/hooks/useRoomSocket";
+
 
 
 const formatTime = (date) => {
@@ -22,7 +22,7 @@ const ChatPage = () => {
   const user = useSelector((state) => state?.user?.user);
   const roomId = useSelector((state) => state?.room?.currentRoomId);
 
-  useRoomSocket();
+
 
 
   const handleWidth = ()=>{
@@ -119,7 +119,7 @@ const NoRoomJoined = () => (
     <div className="text-center">
       <h3 className="text-zinc-300 text-lg font-medium mb-1">No room joined</h3>
       <p className="text-zinc-500 text-sm">
-        Join or create a room to start chatting and listen music along with your friends at same time
+        Join or create a room to start chatting and listen music along with your friends at same time it's a prototype please don't refresh your page after joining or creating room we will add persistence in future
       </p>
     </div>
   </div>

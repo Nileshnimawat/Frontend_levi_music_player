@@ -2,7 +2,7 @@ import { Play, Pause, SkipBack, SkipForward, Repeat } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMusic } from "@/store/musicSlice";
 import ProgressBar from "./ProgressBar";
-import { useRoomSocket } from "@/hooks/useRoomSocket";
+import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
 import { useEffect } from "react";
 
 const MusicControls = ({
@@ -28,8 +28,7 @@ const MusicControls = ({
   const {
     setRoomMusic,
     toggleRoomPlayPause,
-    onRoomPlayPause,
-  } = useRoomSocket();
+  } = useRoomSocketActions();
 
   const getCurrentSongList = () => {
     const getSongsByIds = (ids) =>
