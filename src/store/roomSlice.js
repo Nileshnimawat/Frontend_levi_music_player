@@ -6,6 +6,7 @@ const initialState = {
   messages: [],
   usersInRoom: [],
   isRoomOwner: false,
+  roomOwnerId : null
 };
 
 const roomSlice = createSlice({
@@ -14,6 +15,9 @@ const roomSlice = createSlice({
   reducers: {
     setCurrentRoomId: (state, action) => {
       state.currentRoomId = action.payload;
+    },
+    setRoomOwnerId: (state, action) => {
+      state.roomOwnerId = action.payload;
     },
     setMessages: (state, action) => {
       state.messages = action.payload;
@@ -41,7 +45,8 @@ export const {
   addMessage,
   setUsersInRoom,
   resetRoom,
-  setIsRoomOwner
+  setIsRoomOwner,
+  setRoomOwnerId
 } = roomSlice.actions;
 
 export default roomSlice.reducer;

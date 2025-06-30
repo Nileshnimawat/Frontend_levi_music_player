@@ -8,6 +8,8 @@ import {
   setUsersInfo,
   updateActivity,
 } from "@/store/socketSlice";
+import { setActivities, setOnlineUsers, setUsersInfo } from "@/store/socketSlice";
+import { setCurrentRoomId, setIsRoomOwner, setRoomOwnerId } from "@/store/roomSlice";
 
 export const useSocket = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ export const useSocket = () => {
     if (user) {
       const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
         withCredentials: true,
-        transports: ["polling", "websocket"],
+        transports: ["websocket"],
         query: { userId: user._id },
       });
 
@@ -29,8 +31,6 @@ export const useSocket = () => {
         name: user.name,
         coverImage: user.coverImage,
       });
-
-     
 
       newSocket.on("activities", (activitiesArray) => {
         const activityMap = Object.fromEntries(activitiesArray);
@@ -58,21 +58,28 @@ export const useSocket = () => {
 
     if (!user && socket) {
       socket.disconnect();
-      dispatch(setSocket(null));
-      
+
+      if (!user && socket) {
+        socket.disconnect();
+        dispatch(setSocket(null));
+        dispatch(setOnlineUsers([]));
+        dispatch(setActivities({}));
+        dispatch(setUsersInfo({}));
+        dispatch(setCurrentRoomId(null));
+        dispatch(setRoomOwnerId(null))
+        dispatch(setIsRoomOwner(false));
+      }
     }
   }, [user]);
 
-
   useEffect(() => {
-    if(!user || !socket) return;
-     socket.on("users_online", (onlineUserIds) => {
-        dispatch(setOnlineUsers(onlineUserIds));
-      });
-  
+    if (!user || !socket) return;
+    socket.on("users_online", (onlineUserIds) => {
+      dispatch(setOnlineUsers(onlineUserIds));
+    });
+
     return () => {
-      socket.off("users_online")
-    }
-  }, [user, socket, dispatch])
-  
+      socket.off("users_online");
+    };
+  }, [user, socket, dispatch]);
 };

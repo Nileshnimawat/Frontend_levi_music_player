@@ -45,7 +45,7 @@ if (!onlineUsers || onlineUsers?.length === 1)
         <div className="py-2 sm:p-4 space-y-4">
           {Object.entries(usersInfo).map(([userId, user]) => {
             // console.log(userId, user);
-            if (userId === loggedInUser._id) return null;
+            //if (userId === loggedInUser._id) return null;
 
             const activity = activities[userId];
             const isOnline = onlineUsers?.includes(userId);

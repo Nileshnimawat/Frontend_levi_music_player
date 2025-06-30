@@ -26,6 +26,7 @@ function App() {
   useGetGlobalPlaylists();
   useSocket();
   useRoomSocketListeners();
+  useUpdateActivity();
 
   const roomId = useSelector((state)=>state?.room?.currentRoomId);
   const dispatch = useDispatch();
@@ -39,8 +40,6 @@ function App() {
   }, [roomId])
   
 
-
-  useUpdateActivity();
 
   const loading = useSelector((state) => state?.loading?.isLoading);
 

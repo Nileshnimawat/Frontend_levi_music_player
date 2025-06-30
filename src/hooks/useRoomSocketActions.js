@@ -1,10 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setIsRoomOwner, setCurrentRoomId } from "@/store/roomSlice";
+import { setIsRoomOwner, setCurrentRoomId, setRoomOwnerId } from "@/store/roomSlice";
+import { useEffect } from "react";
 
 export const useRoomSocketActions = () => {
   const socket = useSelector((state) => state.socket.socket);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+
+   useEffect(() => {
+    if (!socket) return;
+    socket.emit("try_reconnect");
+  }, [socket, user]);
 
   const sendMessage = ({ roomId, text }) => {
     if (!socket || !user) return;
@@ -25,7 +31,6 @@ export const useRoomSocketActions = () => {
   const createRoom = (callback) => {
     if (!socket) return;
     socket.emit("create_room", (roomId) => {
-      dispatch(setIsRoomOwner(true));
       dispatch(setCurrentRoomId(roomId));
       if (callback) callback(roomId);
     });
@@ -39,9 +44,11 @@ export const useRoomSocketActions = () => {
 
   const leaveRoom = (roomId) => {
     if (!socket || !roomId) return;
-    socket.emit("leave_room", roomId);
-    dispatch(setIsRoomOwner(false));
+    socket.emit("leave_room", {roomId, userId : user._id});
+ 
     dispatch(setCurrentRoomId(null));
+    dispatch(setRoomOwnerId(null));
+    dispatch(setIsRoomOwner(false));
   };
 
   const setRoomMusic = (music, roomId) => {

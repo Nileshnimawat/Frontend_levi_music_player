@@ -111,15 +111,21 @@ const ChatPage = () => {
 
 export default ChatPage;
 
-import logo from "@/assets/liked.png"
+
+import { IoChatbox } from "react-icons/io5";
 
 const NoRoomJoined = () => (
   <div className="flex flex-col items-center justify-center h-full space-y-6">
-    <img src={logo} alt="Spotify" className="size-16 animate-bounce" />
+    <div className="relative animate-bounce">
+      <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur-lg opacity-75 animate-pulse" />
+      <div className="relative bg-zinc-900 rounded-full p-4">
+        <IoChatbox className="size-8 text-emerald-400" />
+      </div> 
+    </div>
     <div className="text-center">
       <h3 className="text-zinc-300 text-lg font-medium mb-1">No room joined</h3>
       <p className="text-zinc-500 text-sm">
-        Join or create a room to start chatting and listen music along with your friends at same time it's a prototype please don't refresh your page after joining or creating room we will add persistence in future
+        Join or create a room to start chatting and listen music along with your friends at same time. <br /> Room owner has ability to change Playback Track etc. <br /> Make sure to Create New room if all the users have leave the previous room. 
       </p>
     </div>
   </div>

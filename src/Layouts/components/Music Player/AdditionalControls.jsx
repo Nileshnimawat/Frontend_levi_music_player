@@ -54,7 +54,7 @@ const AdditionalControls = ({ audioRef, currentSong }) => {
         <Heart
           onClick={() => handleLiked(currentSong._id)}
           className={`w-6 h-6 cursor-pointer transition-colors duration-300 ${
-            loggedInUser?.liked_playlist?.includes(currentSong._id)
+            loggedInUser?.liked_playlist?.includes(currentSong?._id)
               ? "text-red-500 fill-red-500"
               : ""
           }`}
