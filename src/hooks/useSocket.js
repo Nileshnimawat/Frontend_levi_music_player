@@ -8,7 +8,6 @@ import {
   setUsersInfo,
   updateActivity,
 } from "@/store/socketSlice";
-import { setActivities, setOnlineUsers, setUsersInfo } from "@/store/socketSlice";
 import { setCurrentRoomId, setIsRoomOwner, setRoomOwnerId } from "@/store/roomSlice";
 
 export const useSocket = () => {
