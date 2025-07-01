@@ -137,28 +137,35 @@ export const PlaylistHeader = ({ selectedDiv, setSelectedDiv }) => {
             <FaList className="text-2xl" />
           </button>
 
-          {loggedInUser && (
-            <div onClick={handleAddMusic} className="flex items-center">
-              <IoMdAddCircleOutline className=" text-3xl" />
-            </div>
-          )}
+          {loggedInUser &&
+            (loggedInUser?.role === "admin" ||
+              playlist?.isGlobal === false) && (
+              <div onClick={handleAddMusic} className="flex items-center">
+                <IoMdAddCircleOutline className=" text-3xl" />
+              </div>
+            )}
 
-          {loggedInUser && selectedDiv && (
-            <button
-              onClick={handleRemoveMusic}
-              className="border px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
-            >
-              🗑 Remove
-            </button>
-          )}
+          {loggedInUser &&
+            (loggedInUser?.role === "admin" || playlist?.isGlobal === false) &&
+            selectedDiv && (
+              <button
+                onClick={handleRemoveMusic}
+                className="border px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
+              >
+                🗑 Remove
+              </button>
+            )}
         </div>
 
-        <button
-          onClick={handleDeletePlaylist}
-          className="border p-2 rounded hover:text-white transition"
-        >
-          <FaTrash />
-        </button>
+        {loggedInUser &&
+          (loggedInUser?.role === "admin" || playlist?.isGlobal === false) && (
+            <button
+              onClick={handleDeletePlaylist}
+              className="border p-2 rounded hover:text-white transition"
+            >
+              <FaTrash />
+            </button>
+          )}
       </div>
     </>
   );

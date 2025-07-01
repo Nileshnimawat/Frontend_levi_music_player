@@ -8,10 +8,14 @@ import {
   setMusics,
 } from "@/store/musicSlice";
 import { useRoomSocketActions } from "@/hooks/useRoomSocketActions";
+import ToggleLikeOrDislike from "@/hooks/useToggleLikeOrDislike";
+import { Heart } from "lucide-react";
 
 const SongList = ({ data }) => {
    const roomId = useSelector((state) => state?.room?.currentRoomId);
   const isRoomOwner = useSelector((state) => state?.room?.isRoomOwner);
+  const loggedInUser = useSelector((state)=>state?.user?.user);
+  
 
   const {setRoomMusic} = useRoomSocketActions();
 
@@ -27,6 +31,7 @@ const SongList = ({ data }) => {
   dispatch(setMusics(data));
 
   const handlePlay = (item) => {
+     if (roomId && !isRoomOwner) return;
     dispatch(setCurrentSource("all"));
     dispatch(setCurrentMusic(item));
      if (roomId && isRoomOwner) setRoomMusic(item, roomId);
@@ -62,11 +67,23 @@ const SongList = ({ data }) => {
             <div>
               <p className="font-semibold text-white">{item?.title}</p>
               <p className="text-xs text-gray-400">{item?.artist}</p>
+                
             </div>
           </div>
-
+            
           <div className="flex items-center gap-4 text-gray-400 text-sm relative z-10">
-            <FaHeadphones />
+             {loggedInUser && (
+        <Heart
+          onClick={() => ToggleLikeOrDislike(item._id, dispatch)}
+          className={`w-5 h-5 cursor-pointer transition-colors duration-300 ${
+            loggedInUser?.liked_playlist?.includes(item?._id)
+              ? "text-red-500 fill-red-500"
+              : ""
+          }`}
+        />
+      )}
+
+          
             <FaClock />
             <span>{item.duration || "3:45"}</span>
           </div>

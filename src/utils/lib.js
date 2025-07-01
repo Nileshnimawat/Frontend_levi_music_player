@@ -55,12 +55,12 @@ export {
 
 import { useGetLoggedInUser } from "../hooks/useGetLoggedInUser";
 import { useGetAllPlaylists } from "@/hooks/useGetAllPlaylists";
-import { useToggleLikeOrDislike } from "../hooks/useToggleLikeOrDislike"
+import { ToggleLikeOrDislike } from "../hooks/useToggleLikeOrDislike"
 import { useGetAllMusics } from "../hooks/useGetAllMusics";
 export {
   useGetLoggedInUser,
   useGetAllPlaylists,
- useToggleLikeOrDislike,
+ ToggleLikeOrDislike,
   useGetAllMusics
 }
 

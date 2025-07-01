@@ -19,6 +19,7 @@ export const PlaylistBody = ({ setSelectedDiv, selectedDiv }) => {
   
 
   const handleClick = (musicId, music) => {
+       if (roomId && !isRoomOwner) return;
     dispatch(setCurrentMusic(music));
     setSelectedDiv(musicId);
     if(roomId && isRoomOwner) setRoomMusic(music, roomId)

@@ -93,8 +93,8 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
       console.log(res);
 
       if (res) {
-        if (!isAdmin) dispatch(addPlaylist(res.data.playlist));
-        toast.success(res.data.message || "Playlist created successfully!");
+        if (!isAdmin) dispatch(addPlaylist(res?.data?.playlist));
+        toast.success(res?.data?.message || "Playlist created successfully!");
       }
     } catch (error) {
       toast.error(
@@ -198,7 +198,7 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
           )}
         </div>
 
-        <div className="space-y-2">
+       {isAdmin && <div className="space-y-2">
           <label className="text-sm font-medium text-white">
           Select Categories (Optional)
           </label>
@@ -222,7 +222,7 @@ const AddPlayListDialog = ({ name, isGlobal }) => {
               ))}
             </SelectContent>
           </Select>
-        </div>
+        </div> }
 
         <DialogFooter>
           <Button

@@ -20,6 +20,7 @@ const LikedPlayList = ({ headings }) => {
   const likedSongs = allMusics.filter((music) => likedSongsID.includes(music._id));
 
   const handleClick = (musicId, music) => {
+       if (roomId && !isRoomOwner) return;
     dispatch(setCurrentSource("liked"))
     dispatch(setCurrentMusic(music));
     setSelectedDiv(musicId);
