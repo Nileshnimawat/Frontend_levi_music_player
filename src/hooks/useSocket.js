@@ -49,6 +49,10 @@ export const useSocket = () => {
         dispatch(updateActivity({ userId, activity: { status: "Idle" } }));
       });
 
+       newSocket.on("users_online", (onlineUserIds) => {
+      dispatch(setOnlineUsers(onlineUserIds));
+    });
+
       return () => {
         newSocket.disconnect();
         dispatch(setSocket(null));
@@ -71,14 +75,4 @@ export const useSocket = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (!user || !socket) return;
-    socket.on("users_online", (onlineUserIds) => {
-      dispatch(setOnlineUsers(onlineUserIds));
-    });
-
-    return () => {
-      socket.off("users_online");
-    };
-  }, [user, socket, dispatch]);
 };
