@@ -40,12 +40,10 @@ cd Frontend_levi_music_player
 
 2. Install Dependencies
 npm install
+
 3. Setup Environment Variables
 Create a .env file in the root:
 
-env
-Copy
-Edit
 VITE_API_URL=http://localhost:5000
 VITE_SOCKET_URL=http://localhost:5000
 (Adjust URLs to match your backend setup)
@@ -53,18 +51,6 @@ VITE_SOCKET_URL=http://localhost:5000
 4. Start Development Server
 npm run dev
 
-
-###📁 Folder Structure
-
-src/
-│
-├── components/     # Reusable UI components
-├── pages/          # Page-level components
-├── store/          # Redux slices for likes, playlists, users, etc.
-├── routes/         # Route configurations
-├── hooks/          # Custom React hooks
-├── layouts/        # Page layouts (e.g., Sidebar + Player)
-└── utils/          # Helper functions
 
 📌 Notes
 This repo is frontend only. Make sure your backend server (Node/Express/Socket.IO) is running for full functionality.
@@ -78,3 +64,4 @@ Built by Nilesh Nimawat
 MIT License – Feel free to fork, enhance, and contribute!
 
 Let me know if you also want a backend version of this `README.md` or a 
+3
