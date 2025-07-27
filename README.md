@@ -6,6 +6,10 @@ This is the **frontend** of the **Levi Music Player**, a sleek and modern full-s
 Built with **React**, **Redux**, **TailwindCSS**, and **Socket.IO**, this UI provides a dynamic user experience similar to Spotify.
 
 ---
+BACKEND REPO:
+```bash
+https://github.com/Nileshnimawat/Backend_Levi_Music_Player
+```
 
 ## 🌟 Features
 
