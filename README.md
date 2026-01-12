@@ -125,7 +125,7 @@ Open your browser at: [http://localhost:5173](http://localhost:5173)
 
 Developed by [Nilesh Nimawat](https://github.com/Nileshnimawat)
 
-> Don't forget to run the backend alongside: [Levi Music Player – Backend](https://github.com/your-username/Backend_Levi_Music_Player)
+> Don't forget to run the backend alongside: [Levi Music Player – Backend](https://github.com/Nileshnimawat/Backend_Levi_Music_Player)
 ontribute!
 
 Let me know if you also want a backend version of this `README.md` or a 
